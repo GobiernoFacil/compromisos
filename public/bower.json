@@ -1,0 +1,14 @@
+{
+    "name": "Plataforma de cumplimientos del Gobierno de Chile",
+    "dependencies": {
+        "jquery": ">= 2.1.*",
+        "bootstrap": ">= 3.1.*",
+        "select2": ">= 3.4.*",
+        "select2-bootstrap-css": "bootstrap3",
+        "tinymce": "latest",
+        "jquery.maskedinput": "latest",
+        "bootstrap-datepicker": "latest",
+        "flot":"latest",
+        "moment": "latest"
+    }
+}

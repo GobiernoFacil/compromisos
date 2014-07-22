@@ -1,0 +1,22 @@
+.panel-filtro-anidado ul {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 20px;
+}
+.panel-filtro-anidado ul:first-child {
+  padding: 0;
+}
+.panel-filtro-anidado ul li {
+  display: none;
+  padding: 4px 0;
+}
+.panel-filtro-anidado ul li.active {
+  display: block;
+}
+.panel-filtro-anidado .badge {
+  opacity: 0.5;
+}
+.chart.pie {
+  width: 100%;
+  height: 600px;
+}

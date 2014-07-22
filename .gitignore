@@ -1,0 +1,15 @@
+/bootstrap/compiled.php
+composer.phar
+composer.lock
+.env.*.php
+.env.php
+.DS_Store
+Thumbs.db
+.idea
+sphinx/etc
+sphinx/index
+sphinx/log
+sphinx/run
+sphinx/searchd.log
+sphinx/sphinx.inc
+vendor/thujohn/pdf/src/Thujohn/Pdf/dompdf/lib/fonts/log.htm

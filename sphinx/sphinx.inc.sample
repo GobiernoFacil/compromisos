@@ -1,0 +1,6 @@
+<?php
+$user='';
+$pass='';
+$db='cumplimiento';
+$port=3306;
+$listen=9312;

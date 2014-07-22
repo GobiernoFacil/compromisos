@@ -1,0 +1,23 @@
+{
+  "name": "select2-bootstrap-css",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components"
+  ],
+  "devDependencies": {
+    "bootstrap": "3.0.0",
+    "sass-bootstrap": "git://github.com/jlong/sass-twitter-bootstrap.git#a74363ec86353cff4e51559941be8f1da511be55",
+    "respond": "~1.2.0"
+  },
+  "homepage": "https://github.com/t0m/select2-bootstrap-css",
+  "_release": "b6ce130a21",
+  "_resolution": {
+    "type": "branch",
+    "branch": "bootstrap3",
+    "commit": "b6ce130a21e0bf6a4f84fb79341f0c7af63efdd1"
+  },
+  "_source": "git://github.com/t0m/select2-bootstrap-css.git",
+  "_target": "bootstrap3",
+  "_originalSource": "select2-bootstrap-css"
+}
