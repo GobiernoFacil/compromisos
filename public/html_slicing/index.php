@@ -16,21 +16,28 @@
 	
 <body><header id="header">
 	<div class="container">
-		<h1><a href="#header" class="slideto">Alianza para el Gobierno Abierto - Plan de Acción 2013-2015 México</a></h1>
-		<nav>
-			<ul>
+		<div class="row">
+			<div class="col-md-1">
+				<h1><a href="#header" class="slideto">Alianza para el Gobierno Abierto - Plan de Acción 2013-2015 México</a></h1>
+			</div>
+			<nav class="col-md-5 col-md-offset-6">
+				<ul>
 				<li><a href="#" >Misión y Objetivos</a></li>
 				<li><a href="#plan">Blog</a></li>
 				<li><a href="#plan">Antecedentes</a></li>
 				<li><a href="#plan">Preguntas Frecuentes</a></li>
-			</ul>
-		</nav>
+				</ul>
+			</nav>
+		</div>
 	</div>
 </header>
+<section id="tablero">
+	<h2>Tablero</h2>
+</section>
 
 <section id="alianza">
 	<div class="container">
-
+		
 			
 	</div>
 <footer id="footer">
