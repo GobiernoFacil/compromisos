@@ -125,7 +125,6 @@ p, ul, ol, dl, table, form {
 /* = LINKS */
 a, a:link {
   color: #302d2e;
-  background-color: transparent;
   font-family: 'Roboto', sans-serif;
   text-decoration: none; }
 
@@ -134,11 +133,9 @@ a, a:link {
 
 a:visited {
   color: gray;
-  background-color: transparent;
   text-decoration: none; }
 
 a:hover, a:active, a:focus {
-  background-color: transparent;
   text-decoration: none; }
 
 /* = remove borders from links */
@@ -778,20 +775,71 @@ input:focus, select:focus, textarea:focus {
       line-height: 70px;
       padding: 0; }
 
+/* = Content
+--------------------*/
 #tablero {
-  background: #3d3f41;
-  padding: 30px 0; }
-  #tablero h2 {
-    color: #fff;
-    text-transform: uppercase;
-    font-size: 32px;
-    line-height: 1.3;
-    font-weight: lighter;
-    text-align: center; }
+  background: #e5e5e5;
+  padding: 40px 0; }
+
+.title {
+  text-transform: uppercase;
+  font-size: 28px;
+  margin-bottom: 30px;
+  line-height: 1.3;
+  font-weight: lighter; }
 
 #alianza {
   background: #f5f5f5 url(../img/colours.png) repeat-x center top;
   padding: 90px 0 30px 0; }
+
+/* = elementos del tablero
+--------------------*/
+.guia {
+  color: #808080;
+  font-size: 12px;
+  text-transform: uppercase; }
+  .guia span {
+    margin: 0 15px 0 0; }
+
+.cuadro {
+  display: inline-block;
+  height: 12px;
+  width: 12px; }
+
+/*colores*/
+.completado {
+  background: #00a76f; }
+
+.proceso {
+  background: #ffe460; }
+
+.tarde {
+  background: #ff6451; }
+
+/* = lista ------*/
+.list-title {
+  background: #666666;
+  padding: 8px 0; }
+  .list-title h3 {
+    color: white;
+    font-size: 13px;
+    text-transform: uppercase; }
+
+.list-key {
+  background: white;
+  margin-top: 5px; }
+  .list-key .id {
+    background: #ccc;
+    height: 100%; }
+  .list-key .id, .list-key .ct {
+    padding-top: 20px; }
+
+a.objetivo {
+  float: left;
+  display: inline-block;
+  height: 25px;
+  width: 19%;
+  margin-left: 1%; }
 
 /* = Footer
 --------------------*/

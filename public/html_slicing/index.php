@@ -31,15 +31,109 @@
 		</div>
 	</div>
 </header>
-<section id="tablero">
-	<h2>Tablero</h2>
-</section>
 
 <section id="alianza">
 	<div class="container">
-		
-			
+		<div class="row">
+			<h2 class="title">Tablero</h2>
+			<p class="guia"> <b class="cuadro completado"></b> <span>Completado</span> 
+			<b class="cuadro proceso"></b> <span>En Proceso</span> <b class="cuadro tarde"></b> <span>Tarde</span>  </p>
+		</div>
 	</div>
+</section>
+
+<section id="tablero">
+	<div class="container">
+		<div class="row list-title">
+			<div class="col-md-1">
+			</div>
+			<div class="col-md-2">
+				<h3>Objetivos</h3>
+			</div>
+			<div class="col-md-3">
+				<h3>Primer Objetivo</h3>
+			</div>
+			<div class="col-md-3">
+				<h3>Segundo Objetivo</h3>
+			</div>
+			<div class="col-md-3">
+				<h3>Tercer Objetivo</h3>
+			</div>
+		</div><!-- ends list-title-->
+		
+		<div class="row list-key">
+			<div class="col-md-1 id">
+				<h4>1</h4>
+			</div>
+			<div class="col-md-2 ct">
+				<p>Tu gobierno en un solo punto | gob.mx</p>
+			</div>
+			<div class="col-md-3 ct">
+				<p>
+					<a href="#" class="objetivo completado"></a>
+					<a href="#" class="objetivo tarde"></a>
+					<a href="#" class="objetivo tarde"></a>
+					<a href="#" class="objetivo tarde"></a>
+					<a href="#" class="objetivo tarde"></a>
+				</p>
+			</div>
+			<div class="col-md-3 ct">
+				<p>
+					<a href="#" class="objetivo completado"></a>
+					<a href="#" class="objetivo completado"></a>
+					<a href="#" class="objetivo completado"></a>
+					<a href="#" class="objetivo proceso"></a>
+					<a href="#" class="objetivo tarde"></a>
+				</p>
+			</div>
+			<div class="col-md-3 ct">
+				<p>
+					<a href="#" class="objetivo completado"></a>
+					<a href="#" class="objetivo tarde"></a>
+					<a href="#" class="objetivo tarde"></a>
+					<a href="#" class="objetivo tarde"></a>
+					<a href="#" class="objetivo tarde"></a>
+				</p>
+			</div>
+		</div><!-- ends list-->
+		
+		<div class="row list-key">
+			<div class="col-md-1 id">
+				<h4>2</h4>
+			</div>
+			<div class="col-md-2 ct">
+				<p>Regulación clara y transparente</p>
+			</div>
+			<div class="col-md-3 ct">
+					<p><a href="#" class="objetivo completado"></a>
+					<a href="#" class="objetivo completado"></a>
+					<a href="#" class="objetivo tarde"></a>
+					<a href="#" class="objetivo tarde"></a>
+					<a href="#" class="objetivo tarde"></a></p>
+			</div>
+			<div class="col-md-3 ct">
+				<p>
+					<a href="#" class="objetivo completado"></a>
+					<a href="#" class="objetivo completado"></a>
+					<a href="#" class="objetivo completado"></a>
+					<a href="#" class="objetivo proceso"></a>
+					<a href="#" class="objetivo tarde"></a>
+				</p>
+			</div>
+			<div class="col-md-3 ct">
+				<p>
+					<a href="#" class="objetivo completado"></a>
+					<a href="#" class="objetivo tarde"></a>
+					<a href="#" class="objetivo tarde"></a>
+					<a href="#" class="objetivo tarde"></a>
+					<a href="#" class="objetivo tarde"></a>
+				</p>
+			</div>
+		</div><!-- ends list-->
+		
+	</div>	
+</section>
+
 <footer id="footer">
 	<div class="container">
 		

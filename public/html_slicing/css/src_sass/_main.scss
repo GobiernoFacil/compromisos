@@ -173,7 +173,6 @@ p, ul, ol, dl, table, form { /* 13px */
 a,
 a:link {
 	color: rgb(48, 45, 46);
-	background-color: transparent;
 	font-family:  'Roboto', sans-serif;
 	text-decoration: none;
 }
@@ -184,14 +183,12 @@ a:link {
 
 a:visited {
 	color: gray;
-	background-color: transparent;
 	text-decoration: none;
 }
 
 a:hover,
 a:active,
 a:focus {
-	background-color: transparent;
 	text-decoration: none;
 }
 
