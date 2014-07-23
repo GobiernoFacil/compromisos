@@ -9,8 +9,8 @@
 		<![endif]-->
 		
 		<link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,700,300|Roboto:400,300,300italic,400italic,700,700italic' rel='stylesheet' type='text/css'>
-		<link rel="stylesheet" href="/css/normalize.css">
-		<link rel="stylesheet" type="text/css" href="/css/styles.css" />
+		<link rel="stylesheet" href="css/normalize.css">
+		<link rel="stylesheet" type="text/css" href="css/styles.css" />
 		<meta name="viewport" content="initial-scale=1.0" />
 	</head>
 	
