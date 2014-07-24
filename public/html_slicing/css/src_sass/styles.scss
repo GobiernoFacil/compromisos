@@ -123,6 +123,32 @@
 	background: #ccc;
 	color: $black-60;
 	display: none;
+	p {
+		font-size: 14px;
+	}
+	.vcard {
+		font-size: 12px;
+		.fn { font-weight: 700;}
+		.fn,
+		.organization-unit,
+		.tel {
+			display: block;
+		}
+		a { color: $black-60;
+			margin: 0;
+			text-transform: none;
+			&:hover { color: $black-90;}
+		}
+	}
+	h5 { font-size: 10px;}
+	a { 
+		color: $links;
+		text-transform: uppercase;
+		display: block;
+		font-size: 11px;
+		margin: 10px 0;
+	}
+	
 }
 
 .id,
