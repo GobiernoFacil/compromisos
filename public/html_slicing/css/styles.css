@@ -861,9 +861,9 @@ input:focus, select:focus, textarea:focus {
       position: relative;
       color: #666666;
       z-index: 9999;
-      -webkit-box-shadow: 1px 2px 5px #999;
-      -moz-box-shadow: 1px 2px 5px #999;
-      box-shadow: 1px 2px 5px #999; }
+      -webkit-box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.3);
+      -moz-box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.3);
+      box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.3); }
       .cumplimiento ul li .detalle:after {
         bottom: 100%;
         left: 10%;

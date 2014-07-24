@@ -133,7 +133,7 @@
 				position: relative; 
 				color: $black-60; 
 				z-index: 9999;
-				@include  box-shadow(1px, 2px, 5px, #999);
+				@include  box-shadow(1px, 2px, 5px, rgba(0,0,0,0.3));
 				// agrega flecha
 				&:after {
 					bottom: 100%;
