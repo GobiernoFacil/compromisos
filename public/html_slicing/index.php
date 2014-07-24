@@ -61,6 +61,7 @@
 			</div>
 		</div><!-- ends list-title-->
 		
+		<!-- comienza lista-->
 		<div class="row list-key">
 			<div class="col-md-1 id">
 				<h4>1</h4>
@@ -69,31 +70,213 @@
 				<p>Tu gobierno en un solo punto | gob.mx</p>
 			</div>
 			<div class="col-md-3 ct">
-				<p>
-					<a href="#" class="objetivo completado"></a>
-					<a href="#" class="objetivo tarde"></a>
-					<a href="#" class="objetivo tarde"></a>
-					<a href="#" class="objetivo tarde"></a>
-					<a href="#" class="objetivo tarde"></a>
-				</p>
+				<!-- lista de objetivos y status-->
+				<ul class="cumplimiento">
+					<li><a href="#" class="objetivo completado"></a>
+						<ul>
+							<li><div class="detalle">
+								<p>Habilitar los mecanismos técnicos para la integración de tramites y servicios</p>
+								<h4>5</h4>
+								<p class="row"><span class="col-md-6">Tramites y servicios en gob.mx por dependencias y entidades</span>
+								<span class="col-md-6"> <a href="#" class="medios">Medios de verificación</a></span>
+								</p>
+								<p>Responsable: <a href="#">Unidad de Gobierno Digital</a></p>
+							</div>
+							</li>
+						</ul>
+					</li>
+					<li><a href="#" class="objetivo completado"></a>
+						<ul>
+							<li><div class="detalle">
+								<p>Habilitar los mecanismos técnicos para la integración de tramites y servicios</p>
+								<h4>5</h4>
+								<p class="row"><span class="col-md-6">Tramites y servicios en gob.mx por dependencias y entidades</span>
+								<span class="col-md-6"> <a href="#" class="medios">Medios de verificación</a></span>
+								</p>
+								<p>Responsable: <a href="#">Unidad de Gobierno Digital</a></p>
+							</div>
+							</li>
+						</ul>
+					</li>
+					<li><a href="#" class="objetivo tarde"></a>
+						<ul>
+							<li><div class="detalle">
+								<p>Habilitar los mecanismos técnicos para la integración de tramites y servicios</p>
+								<h4>5</h4>
+								<p class="row"><span class="col-md-6">Tramites y servicios en gob.mx por dependencias y entidades</span>
+								<span class="col-md-6"> <a href="#" class="medios">Medios de verificación</a></span>
+								</p>
+								<p>Responsable: <a href="#">Unidad de Gobierno Digital</a></p>
+							</div>
+							</li>
+						</ul>
+					</li>
+					<li><a href="#" class="objetivo tarde"></a>
+						<ul>
+							<li><div class="detalle">
+								<p>Habilitar los mecanismos técnicos para la integración de tramites y servicios</p>
+								<h4>5</h4>
+								<p class="row"><span class="col-md-6">Tramites y servicios en gob.mx por dependencias y entidades</span>
+								<span class="col-md-6"> <a href="#" class="medios">Medios de verificación</a></span>
+								</p>
+								<p>Responsable: <a href="#">Unidad de Gobierno Digital</a></p>
+							</div>
+							</li>
+						</ul>
+					</li>
+					<li><a href="#" class="objetivo tarde"></a>
+						<ul>
+							<li><div class="detalle">
+								<p>Habilitar los mecanismos técnicos para la integración de tramites y servicios</p>
+								<h4>5</h4>
+								<p class="row"><span class="col-md-6">Tramites y servicios en gob.mx por dependencias y entidades</span>
+								<span class="col-md-6"> <a href="#" class="medios">Medios de verificación</a></span>
+								</p>
+								<p>Responsable: <a href="#">Unidad de Gobierno Digital</a></p>
+							</div>
+							</li>
+						</ul>
+					</li>					
+				</ul>
 			</div>
 			<div class="col-md-3 ct">
-				<p>
-					<a href="#" class="objetivo completado"></a>
-					<a href="#" class="objetivo completado"></a>
-					<a href="#" class="objetivo completado"></a>
-					<a href="#" class="objetivo proceso"></a>
-					<a href="#" class="objetivo tarde"></a>
-				</p>
-			</div>
+				<!-- lista de objetivos y status-->
+				<ul class="cumplimiento">
+					<li><a href="#" class="objetivo completado"></a>
+						<ul>
+							<li><div class="detalle">
+								<p>Habilitar los mecanismos técnicos para la integración de tramites y servicios</p>
+								<h4>5</h4>
+								<p class="row"><span class="col-md-6">Tramites y servicios en gob.mx por dependencias y entidades</span>
+								<span class="col-md-6"> <a href="#" class="medios">Medios de verificación</a></span>
+								</p>
+								<p>Responsable: <a href="#">Unidad de Gobierno Digital</a></p>
+							</div>
+							</li>
+						</ul>
+					</li>
+					<li><a href="#" class="objetivo completado"></a>
+						<ul>
+							<li><div class="detalle">
+								<p>Habilitar los mecanismos técnicos para la integración de tramites y servicios</p>
+								<h4>5</h4>
+								<p class="row"><span class="col-md-6">Tramites y servicios en gob.mx por dependencias y entidades</span>
+								<span class="col-md-6"> <a href="#" class="medios">Medios de verificación</a></span>
+								</p>
+								<p>Responsable: <a href="#">Unidad de Gobierno Digital</a></p>
+							</div>
+							</li>
+						</ul>
+					</li>
+					<li><a href="#" class="objetivo tarde"></a>
+						<ul>
+							<li><div class="detalle">
+								<p>Habilitar los mecanismos técnicos para la integración de tramites y servicios</p>
+								<h4>5</h4>
+								<p class="row"><span class="col-md-6">Tramites y servicios en gob.mx por dependencias y entidades</span>
+								<span class="col-md-6"> <a href="#" class="medios">Medios de verificación</a></span>
+								</p>
+								<p>Responsable: <a href="#">Unidad de Gobierno Digital</a></p>
+							</div>
+							</li>
+						</ul>
+					</li>
+					<li><a href="#" class="objetivo tarde"></a>
+						<ul>
+							<li><div class="detalle">
+								<p>Habilitar los mecanismos técnicos para la integración de tramites y servicios</p>
+								<h4>5</h4>
+								<p class="row"><span class="col-md-6">Tramites y servicios en gob.mx por dependencias y entidades</span>
+								<span class="col-md-6"> <a href="#" class="medios">Medios de verificación</a></span>
+								</p>
+								<p>Responsable: <a href="#">Unidad de Gobierno Digital</a></p>
+							</div>
+							</li>
+						</ul>
+					</li>
+					<li><a href="#" class="objetivo tarde"></a>
+						<ul>
+							<li><div class="detalle">
+								<p>Habilitar los mecanismos técnicos para la integración de tramites y servicios</p>
+								<h4>5</h4>
+								<p class="row"><span class="col-md-6">Tramites y servicios en gob.mx por dependencias y entidades</span>
+								<span class="col-md-6"> <a href="#" class="medios">Medios de verificación</a></span>
+								</p>
+								<p>Responsable: <a href="#">Unidad de Gobierno Digital</a></p>
+							</div>
+							</li>
+						</ul>
+					</li>					
+				</ul>			</div>
 			<div class="col-md-3 ct">
-				<p>
-					<a href="#" class="objetivo completado"></a>
-					<a href="#" class="objetivo tarde"></a>
-					<a href="#" class="objetivo tarde"></a>
-					<a href="#" class="objetivo tarde"></a>
-					<a href="#" class="objetivo tarde"></a>
-				</p>
+				<!-- lista de objetivos y status-->
+				<ul class="cumplimiento">
+					<li><a href="#" class="objetivo completado"></a>
+						<ul>
+							<li><div class="detalle">
+								<p>Habilitar los mecanismos técnicos para la integración de tramites y servicios</p>
+								<h4>5</h4>
+								<p class="row"><span class="col-md-6">Tramites y servicios en gob.mx por dependencias y entidades</span>
+								<span class="col-md-6"> <a href="#" class="medios">Medios de verificación</a></span>
+								</p>
+								<p>Responsable: <a href="#">Unidad de Gobierno Digital</a></p>
+							</div>
+							</li>
+						</ul>
+					</li>
+					<li><a href="#" class="objetivo completado"></a>
+						<ul>
+							<li><div class="detalle">
+								<p>Habilitar los mecanismos técnicos para la integración de tramites y servicios</p>
+								<h4>5</h4>
+								<p class="row"><span class="col-md-6">Tramites y servicios en gob.mx por dependencias y entidades</span>
+								<span class="col-md-6"> <a href="#" class="medios">Medios de verificación</a></span>
+								</p>
+								<p>Responsable: <a href="#">Unidad de Gobierno Digital</a></p>
+							</div>
+							</li>
+						</ul>
+					</li>
+					<li><a href="#" class="objetivo proceso"></a>
+						<ul>
+							<li><div class="detalle">
+								<p>Habilitar los mecanismos técnicos para la integración de tramites y servicios</p>
+								<h4>5</h4>
+								<p class="row"><span class="col-md-6">Tramites y servicios en gob.mx por dependencias y entidades</span>
+								<span class="col-md-6"> <a href="#" class="medios">Medios de verificación</a></span>
+								</p>
+								<p>Responsable: <a href="#">Unidad de Gobierno Digital</a></p>
+							</div>
+							</li>
+						</ul>
+					</li>
+					<li><a href="#" class="objetivo proceso"></a>
+						<ul>
+							<li><div class="detalle">
+								<p>Habilitar los mecanismos técnicos para la integración de tramites y servicios</p>
+								<h4>5</h4>
+								<p class="row"><span class="col-md-6">Tramites y servicios en gob.mx por dependencias y entidades</span>
+								<span class="col-md-6"> <a href="#" class="medios">Medios de verificación</a></span>
+								</p>
+								<p>Responsable: <a href="#">Unidad de Gobierno Digital</a></p>
+							</div>
+							</li>
+						</ul>
+					</li>
+					<li><a href="#" class="objetivo proceso"></a>
+						<ul>
+							<li><div class="detalle">
+								<p>Habilitar los mecanismos técnicos para la integración de tramites y servicios</p>
+								<h4>5</h4>
+								<p class="row"><span class="col-md-6">Tramites y servicios en gob.mx por dependencias y entidades</span>
+								<span class="col-md-6"> <a href="#" class="medios">Medios de verificación</a></span>
+								</p>
+								<p>Responsable: <a href="#">Unidad de Gobierno Digital</a></p>
+							</div>
+							</li>
+						</ul>
+					</li>					
+				</ul>
 			</div>
 		</div><!-- ends list-->
 		
@@ -105,29 +288,213 @@
 				<p>Regulación clara y transparente</p>
 			</div>
 			<div class="col-md-3 ct">
-					<p><a href="#" class="objetivo completado"></a>
-					<a href="#" class="objetivo completado"></a>
-					<a href="#" class="objetivo tarde"></a>
-					<a href="#" class="objetivo tarde"></a>
-					<a href="#" class="objetivo tarde"></a></p>
+				<!-- lista de objetivos y status-->
+				<ul class="cumplimiento">
+					<li><a href="#" class="objetivo completado"></a>
+						<ul>
+							<li><div class="detalle">
+								<p>Habilitar los mecanismos técnicos para la integración de tramites y servicios</p>
+								<h4>5</h4>
+								<p class="row"><span class="col-md-6">Tramites y servicios en gob.mx por dependencias y entidades</span>
+								<span class="col-md-6"> <a href="#" class="medios">Medios de verificación</a></span>
+								</p>
+								<p>Responsable: <a href="#">Unidad de Gobierno Digital</a></p>
+							</div>
+							</li>
+						</ul>
+					</li>
+					<li><a href="#" class="objetivo completado"></a>
+						<ul>
+							<li><div class="detalle">
+								<p>Habilitar los mecanismos técnicos para la integración de tramites y servicios</p>
+								<h4>5</h4>
+								<p class="row"><span class="col-md-6">Tramites y servicios en gob.mx por dependencias y entidades</span>
+								<span class="col-md-6"> <a href="#" class="medios">Medios de verificación</a></span>
+								</p>
+								<p>Responsable: <a href="#">Unidad de Gobierno Digital</a></p>
+							</div>
+							</li>
+						</ul>
+					</li>
+					<li><a href="#" class="objetivo proceso"></a>
+						<ul>
+							<li><div class="detalle">
+								<p>Habilitar los mecanismos técnicos para la integración de tramites y servicios</p>
+								<h4>5</h4>
+								<p class="row"><span class="col-md-6">Tramites y servicios en gob.mx por dependencias y entidades</span>
+								<span class="col-md-6"> <a href="#" class="medios">Medios de verificación</a></span>
+								</p>
+								<p>Responsable: <a href="#">Unidad de Gobierno Digital</a></p>
+							</div>
+							</li>
+						</ul>
+					</li>
+					<li><a href="#" class="objetivo tarde"></a>
+						<ul>
+							<li><div class="detalle">
+								<p>Habilitar los mecanismos técnicos para la integración de tramites y servicios</p>
+								<h4>5</h4>
+								<p class="row"><span class="col-md-6">Tramites y servicios en gob.mx por dependencias y entidades</span>
+								<span class="col-md-6"> <a href="#" class="medios">Medios de verificación</a></span>
+								</p>
+								<p>Responsable: <a href="#">Unidad de Gobierno Digital</a></p>
+							</div>
+							</li>
+						</ul>
+					</li>
+					<li><a href="#" class="objetivo tarde"></a>
+						<ul>
+							<li><div class="detalle">
+								<p>Habilitar los mecanismos técnicos para la integración de tramites y servicios</p>
+								<h4>5</h4>
+								<p class="row"><span class="col-md-6">Tramites y servicios en gob.mx por dependencias y entidades</span>
+								<span class="col-md-6"> <a href="#" class="medios">Medios de verificación</a></span>
+								</p>
+								<p>Responsable: <a href="#">Unidad de Gobierno Digital</a></p>
+							</div>
+							</li>
+						</ul>
+					</li>					
+				</ul>
 			</div>
 			<div class="col-md-3 ct">
-				<p>
-					<a href="#" class="objetivo completado"></a>
-					<a href="#" class="objetivo completado"></a>
-					<a href="#" class="objetivo completado"></a>
-					<a href="#" class="objetivo proceso"></a>
-					<a href="#" class="objetivo tarde"></a>
-				</p>
-			</div>
+				<!-- lista de objetivos y status-->
+				<ul class="cumplimiento">
+					<li><a href="#" class="objetivo completado"></a>
+						<ul>
+							<li><div class="detalle">
+								<p>Habilitar los mecanismos técnicos para la integración de tramites y servicios</p>
+								<h4>5</h4>
+								<p class="row"><span class="col-md-6">Tramites y servicios en gob.mx por dependencias y entidades</span>
+								<span class="col-md-6"> <a href="#" class="medios">Medios de verificación</a></span>
+								</p>
+								<p>Responsable: <a href="#">Unidad de Gobierno Digital</a></p>
+							</div>
+							</li>
+						</ul>
+					</li>
+					<li><a href="#" class="objetivo proceso"></a>
+						<ul>
+							<li><div class="detalle">
+								<p>Habilitar los mecanismos técnicos para la integración de tramites y servicios</p>
+								<h4>5</h4>
+								<p class="row"><span class="col-md-6">Tramites y servicios en gob.mx por dependencias y entidades</span>
+								<span class="col-md-6"> <a href="#" class="medios">Medios de verificación</a></span>
+								</p>
+								<p>Responsable: <a href="#">Unidad de Gobierno Digital</a></p>
+							</div>
+							</li>
+						</ul>
+					</li>
+					<li><a href="#" class="objetivo proceso"></a>
+						<ul>
+							<li><div class="detalle">
+								<p>Habilitar los mecanismos técnicos para la integración de tramites y servicios</p>
+								<h4>5</h4>
+								<p class="row"><span class="col-md-6">Tramites y servicios en gob.mx por dependencias y entidades</span>
+								<span class="col-md-6"> <a href="#" class="medios">Medios de verificación</a></span>
+								</p>
+								<p>Responsable: <a href="#">Unidad de Gobierno Digital</a></p>
+							</div>
+							</li>
+						</ul>
+					</li>
+					<li><a href="#" class="objetivo proceso"></a>
+						<ul>
+							<li><div class="detalle">
+								<p>Habilitar los mecanismos técnicos para la integración de tramites y servicios</p>
+								<h4>5</h4>
+								<p class="row"><span class="col-md-6">Tramites y servicios en gob.mx por dependencias y entidades</span>
+								<span class="col-md-6"> <a href="#" class="medios">Medios de verificación</a></span>
+								</p>
+								<p>Responsable: <a href="#">Unidad de Gobierno Digital</a></p>
+							</div>
+							</li>
+						</ul>
+					</li>
+					<li><a href="#" class="objetivo tarde"></a>
+						<ul>
+							<li><div class="detalle">
+								<p>Habilitar los mecanismos técnicos para la integración de tramites y servicios</p>
+								<h4>5</h4>
+								<p class="row"><span class="col-md-6">Tramites y servicios en gob.mx por dependencias y entidades</span>
+								<span class="col-md-6"> <a href="#" class="medios">Medios de verificación</a></span>
+								</p>
+								<p>Responsable: <a href="#">Unidad de Gobierno Digital</a></p>
+							</div>
+							</li>
+						</ul>
+					</li>					
+				</ul>			</div>
 			<div class="col-md-3 ct">
-				<p>
-					<a href="#" class="objetivo completado"></a>
-					<a href="#" class="objetivo tarde"></a>
-					<a href="#" class="objetivo tarde"></a>
-					<a href="#" class="objetivo tarde"></a>
-					<a href="#" class="objetivo tarde"></a>
-				</p>
+				<!-- lista de objetivos y status-->
+				<ul class="cumplimiento">
+					<li><a href="#" class="objetivo tarde"></a>
+						<ul>
+							<li><div class="detalle">
+								<p>Habilitar los mecanismos técnicos para la integración de tramites y servicios</p>
+								<h4>5</h4>
+								<p class="row"><span class="col-md-6">Tramites y servicios en gob.mx por dependencias y entidades</span>
+								<span class="col-md-6"> <a href="#" class="medios">Medios de verificación</a></span>
+								</p>
+								<p>Responsable: <a href="#">Unidad de Gobierno Digital</a></p>
+							</div>
+							</li>
+						</ul>
+					</li>
+					<li><a href="#" class="objetivo tarde"></a>
+						<ul>
+							<li><div class="detalle">
+								<p>Habilitar los mecanismos técnicos para la integración de tramites y servicios</p>
+								<h4>5</h4>
+								<p class="row"><span class="col-md-6">Tramites y servicios en gob.mx por dependencias y entidades</span>
+								<span class="col-md-6"> <a href="#" class="medios">Medios de verificación</a></span>
+								</p>
+								<p>Responsable: <a href="#">Unidad de Gobierno Digital</a></p>
+							</div>
+							</li>
+						</ul>
+					</li>
+					<li><a href="#" class="objetivo tarde"></a>
+						<ul>
+							<li><div class="detalle">
+								<p>Habilitar los mecanismos técnicos para la integración de tramites y servicios</p>
+								<h4>5</h4>
+								<p class="row"><span class="col-md-6">Tramites y servicios en gob.mx por dependencias y entidades</span>
+								<span class="col-md-6"> <a href="#" class="medios">Medios de verificación</a></span>
+								</p>
+								<p>Responsable: <a href="#">Unidad de Gobierno Digital</a></p>
+							</div>
+							</li>
+						</ul>
+					</li>
+					<li><a href="#" class="objetivo tarde"></a>
+						<ul>
+							<li><div class="detalle">
+								<p>Habilitar los mecanismos técnicos para la integración de tramites y servicios</p>
+								<h4>5</h4>
+								<p class="row"><span class="col-md-6">Tramites y servicios en gob.mx por dependencias y entidades</span>
+								<span class="col-md-6"> <a href="#" class="medios">Medios de verificación</a></span>
+								</p>
+								<p>Responsable: <a href="#">Unidad de Gobierno Digital</a></p>
+							</div>
+							</li>
+						</ul>
+					</li>
+					<li><a href="#" class="objetivo tarde"></a>
+						<ul>
+							<li><div class="detalle">
+								<p>Habilitar los mecanismos técnicos para la integración de tramites y servicios</p>
+								<h4>5</h4>
+								<p class="row"><span class="col-md-6">Tramites y servicios en gob.mx por dependencias y entidades</span>
+								<span class="col-md-6"> <a href="#" class="medios">Medios de verificación</a></span>
+								</p>
+								<p>Responsable: <a href="#">Unidad de Gobierno Digital</a></p>
+							</div>
+							</li>
+						</ul>
+					</li>					
+				</ul>
 			</div>
 		</div><!-- ends list-->
 		

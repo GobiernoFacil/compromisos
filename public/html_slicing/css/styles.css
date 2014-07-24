@@ -834,12 +834,83 @@ input:focus, select:focus, textarea:focus {
   .list-key .id, .list-key .ct {
     padding-top: 20px; }
 
-a.objetivo {
+.cumplimiento li {
   float: left;
   display: inline-block;
+  list-style: none;
   height: 25px;
+  line-height: 25px;
   width: 19%;
   margin-left: 1%; }
+  .cumplimiento li:hover {
+    cursor: pointer; }
+    .cumplimiento li:hover ul {
+      display: block; }
+.cumplimiento ul {
+  position: absolute;
+  display: none; }
+  .cumplimiento ul li {
+    float: none;
+    display: inline;
+    margin: 0; }
+    .cumplimiento ul li .detalle {
+      background: #dedede;
+      padding: 10px;
+      width: 267px;
+      margin-top: 10px;
+      position: relative;
+      color: #666666;
+      z-index: 9999;
+      -webkit-box-shadow: 1px 2px 5px #999;
+      -moz-box-shadow: 1px 2px 5px #999;
+      box-shadow: 1px 2px 5px #999; }
+      .cumplimiento ul li .detalle:after {
+        bottom: 100%;
+        left: 10%;
+        border: solid transparent;
+        content: " ";
+        height: 0;
+        width: 0;
+        position: absolute;
+        pointer-events: none;
+        border-bottom-color: #dedede;
+        border-width: 10px;
+        margin-left: -10px; }
+
+.detalle h4 {
+  font-size: 26px;
+  font-weight: 700;
+  padding-top: 8px; }
+.detalle p {
+  border-bottom: 1px solid white;
+  font-size: 12px;
+  line-height: 1.3;
+  margin: 0;
+  padding-bottom: 5px; }
+  .detalle p:last-child {
+    border-bottom: 0;
+    font-size: 11px;
+    padding-top: 10px;
+    text-transform: uppercase; }
+    .detalle p:last-child a {
+      color: #2579f8; }
+  .detalle p.row {
+    font-size: 9px; }
+    .detalle p.row span {
+      padding: 0; }
+  .detalle p .medios {
+    background: #6e6c6c;
+    border-bottom: 1px solid black;
+    color: white;
+    display: block;
+    padding: 5px 2px;
+    text-align: center;
+    text-transform: uppercase; }
+
+a.objetivo {
+  display: block;
+  height: 25px;
+  width: 100%; }
 
 /* = Footer
 --------------------*/
