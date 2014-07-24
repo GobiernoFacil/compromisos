@@ -809,12 +809,18 @@ input:focus, select:focus, textarea:focus {
 /*colores*/
 .completado {
   background: #00a76f; }
+  .completado:hover {
+    background: #089364; }
 
 .proceso {
   background: #ffe460; }
+  .proceso:hover {
+    background: #e9cf52; }
 
 .tarde {
   background: #ff6451; }
+  .tarde:hover {
+    background: #d44230; }
 
 /* = lista ------*/
 .list-title {

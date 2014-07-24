@@ -73,9 +73,15 @@
 	width: 12px;
 }
 /*colores*/
-.completado {  background: $completado}
-.proceso { 	background: $proceso}
-.tarde { 		background: $tarde}	
+.completado {  background: $completado;
+	&:hover { background: $completado_hov}
+}
+.proceso { 	background: $proceso;
+	&:hover { background: $proceso_hov;}
+}
+.tarde { background: $tarde;
+	&:hover { background: $tarde_hov;}
+}	
 
 /* = lista ------*/
 .list-title { 
