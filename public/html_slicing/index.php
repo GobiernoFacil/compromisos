@@ -66,7 +66,7 @@
 			<div class="col-md-1 id">
 				<h4>1</h4>
 				<div class="plus">
-					<a href="#">+</a>
+					<a href="#" title="responsable-1">+</a>
 				</div>
 			</div>
 			<div class="col-md-2 ct">
@@ -282,12 +282,25 @@
 				</ul>
 			</div>
 		</div><!-- ends list-->
+		<div id="responsable-1" class="row list-responsable">
+			<div class="col-md-5 col-md-offset-1 ct">
+				<p>Plataforma virtual la información sobre las Normas Oficiales Mexicanas Vigentes.</p> 
+			</div>
+			<div class="col-md-3 ct">
+				<p>Yolanda Martínez Mancilla
+					Titular de la Unidad de Gobierno Digital</p>
+			</div>
+			<div class="col-md-3 ct">
+				<p>Yolanda Martínez Mancilla
+					Titular de la Unidad de Gobierno Digital</p>
+			</div>
+		</div>
 		
 		<div class="row list-key">
 			<div class="col-md-1 id">
 				<h4>2</h4>
 				<div class="plus">
-					<a href="#">+</a>
+					<a href="#" title="responsable-2">+</a>
 				</div>
 
 			</div>
@@ -504,6 +517,19 @@
 				</ul>
 			</div>
 		</div><!-- ends list-->
+		<div id="responsable-2" class="row list-responsable">
+			<div class="col-md-5 col-md-offset-1 ct">
+				<p>Plataforma virtual la información sobre las Normas Oficiales Mexicanas Vigentes.</p> 
+			</div>
+			<div class="col-md-3 ct">
+				<p>Yolanda Martínez Mancilla
+					Titular de la Unidad de Gobierno Digital</p>
+			</div>
+			<div class="col-md-3 ct">
+				<p>Yolanda Martínez Mancilla
+					Titular de la Unidad de Gobierno Digital</p>
+			</div>
+		</div>
 		
 	</div>	
 </section>
@@ -528,5 +554,11 @@
 		
 	</div>
 </footer>	
+<!--JS-->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="/js/libs/jquery-1.10.2.min.js"><\/script>')</script>
+
+<script src="js/tablero.js"></script>
+
 </body>
 </html>

@@ -117,10 +117,16 @@
 			 }
 		}
 	}
-	.id,
-	.ct {padding-top: 20px;}
 }
 
+.list-responsable {
+	background: #ccc;
+	color: $black-60;
+	display: none;
+}
+
+.id,
+.ct {padding-top: 20px;}
 
 .cumplimiento {
 	li {

@@ -850,8 +850,14 @@ input:focus, select:focus, textarea:focus {
         color: white;
         font-size: 26px;
         font-weight: 300; }
-  .list-key .id, .list-key .ct {
-    padding-top: 20px; }
+
+.list-responsable {
+  background: #ccc;
+  color: #666666;
+  display: none; }
+
+.id, .ct {
+  padding-top: 20px; }
 
 .cumplimiento li {
   float: left;
