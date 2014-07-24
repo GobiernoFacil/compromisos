@@ -154,6 +154,7 @@
 .id,
 .ct {padding-top: 20px;}
 
+//los cuadros que marcan si se cumple
 .cumplimiento {
 	li {
 		float: left;
@@ -169,11 +170,10 @@
 				display: block; 
 			}
 		}
-			
 	}
 	ul {
-		position: absolute;  
-		display: none; 
+		position: relative;  
+		display: none;
 		li {
 			float: none; 
 			display: inline;
@@ -205,7 +205,18 @@
 		}
 	}
 }
-
+//para evitar que salga de la pantalla
+.tercer .cumplimiento {
+	li ul {
+	float: right;
+	}
+	ul li .detalle:after {
+		left: auto;
+		right: 10%;
+	}
+	
+}
+//muestra detalle de avance
 .detalle {
 	h4 {
 		font-size: 26px;

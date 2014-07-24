@@ -893,7 +893,7 @@ input:focus, select:focus, textarea:focus {
     .cumplimiento li:hover ul {
       display: block; }
 .cumplimiento ul {
-  position: absolute;
+  position: relative;
   display: none; }
   .cumplimiento ul li {
     float: none;
@@ -922,6 +922,12 @@ input:focus, select:focus, textarea:focus {
         border-bottom-color: #dedede;
         border-width: 10px;
         margin-left: -10px; }
+
+.tercer .cumplimiento li ul {
+  float: right; }
+.tercer .cumplimiento ul li .detalle:after {
+  left: auto;
+  right: 10%; }
 
 .detalle h4 {
   font-size: 26px;
