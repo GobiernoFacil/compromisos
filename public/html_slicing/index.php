@@ -65,6 +65,9 @@
 		<div class="row list-key">
 			<div class="col-md-1 id">
 				<h4>1</h4>
+				<div class="plus">
+					<a href="#">+</a>
+				</div>
 			</div>
 			<div class="col-md-2 ct">
 				<p>Tu gobierno en un solo punto | gob.mx</p>
@@ -283,6 +286,10 @@
 		<div class="row list-key">
 			<div class="col-md-1 id">
 				<h4>2</h4>
+				<div class="plus">
+					<a href="#">+</a>
+				</div>
+
 			</div>
 			<div class="col-md-2 ct">
 				<p>Regulación clara y transparente</p>

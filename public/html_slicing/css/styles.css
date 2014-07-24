@@ -829,8 +829,21 @@ input:focus, select:focus, textarea:focus {
   background: white;
   margin-top: 5px; }
   .list-key .id {
+    position: relative;
     background: #ccc;
-    height: 100%; }
+    color: black;
+    height: 100%;
+    text-align: center; }
+    .list-key .id h4 {
+      font-size: 21px;
+      font-weight: 700;
+      padding-bottom: 10px; }
+    .list-key .id .plus {
+      padding-bottom: 20px; }
+      .list-key .id .plus a {
+        color: white;
+        font-size: 26px;
+        font-weight: 300; }
   .list-key .id, .list-key .ct {
     padding-top: 20px; }
 
