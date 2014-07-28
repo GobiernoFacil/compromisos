@@ -1,8 +1,8 @@
 <?php namespace Maatwebsite\Excel;
 
 use Closure;
-use PHPExcel;
 use Maatwebsite\Excel\Readers\Batch;
+use Maatwebsite\Excel\Classes\PHPExcel;
 use Maatwebsite\Excel\Readers\LaravelExcelReader;
 use Maatwebsite\Excel\Writers\LaravelExcelWriter;
 use Maatwebsite\Excel\Exceptions\LaravelExcelException;
@@ -58,28 +58,27 @@ class Excel
      * @param  callable|null $callback
      * @return LaravelExcelWriter
      */
-    public function create($title, $callback = null)
+    public function create($filename, $callback = null)
     {
-        // Set the default properties
-        $this->excel->setDefaultProperties(array(
-            'title' => $title
-        ));
+        // Writer instance
+        $writer = clone $this->writer;
 
         // Disconnect worksheets to prevent unnecessary ones
         $this->excel->disconnectWorksheets();
 
         // Inject our excel object
-        $this->writer->injectExcel($this->excel);
+        $writer->injectExcel($this->excel);
 
-        // Set the title
-        $this->writer->setTitle($title);
+        // Set the filename and title
+        $writer->setFileName($filename);
+        $writer->setTitle($filename);
 
         // Do the callback
         if($callback instanceof Closure)
-            call_user_func($callback, $this->writer);
+            call_user_func($callback, $writer);
 
         // Return the writer object
-        return $this->writer;
+        return $writer;
     }
 
     /**
@@ -94,21 +93,24 @@ class Excel
      */
     public function load($file, $callback = null, $encoding = null)
     {
+        // Reader instance
+        $reader = clone $this->reader;
+
         // Inject excel object
-        $this->reader->injectExcel($this->excel);
+        $reader->injectExcel($this->excel);
 
         // Set the encoding
         $encoding = is_string($callback) ? $callback : $encoding;
 
         // Start loading
-        $this->reader->load($file, $encoding);
+        $reader->load($file, $encoding);
 
         // Do the callback
         if($callback instanceof Closure)
-            call_user_func($callback, $this->reader);
+            call_user_func($callback, $reader);
 
         // Return the reader object
-        return $this->reader;
+        return $reader;
     }
 
     /**
@@ -116,9 +118,22 @@ class Excel
      * @param  $sheets
      * @return LaravelExcelReader
      */
-    public function selectSheets($sheets)
+    public function selectSheets($sheets = array())
     {
-        $this->reader->setSelectedSheets(is_array($sheets) ? $sheets : array($sheets));
+        $sheets = is_array($sheets) ? $sheets : func_get_args();
+        $this->reader->setSelectedSheets($sheets);
+        return $this;
+    }
+
+    /**
+     * Select sheets by index
+     * @param  [type] $sheets [description]
+     * @return [type]         [description]
+     */
+    public function selectSheetsByIndex($sheets = array())
+    {
+        $sheets = is_array($sheets) ? $sheets : func_get_args();
+        $this->reader->setSelectedSheetIndices($sheets);
         return $this;
     }
 

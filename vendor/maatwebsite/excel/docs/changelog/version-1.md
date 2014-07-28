@@ -1,5 +1,34 @@
 # Version 1
 
+### 1.1.5
+
+- Select sheets by index with `Excel::selectSheetsByIndex(0,1)->load(...)`
+- Separator typo fix
+- Added `->setFileName()` method
+- Use `->setTitle()` only for workbook title not for setting the filename anymore
+- Made `setAutoSize()` chainable for other sheet methods
+- Export config setting to disable pre calculation of formulas during export
+- Export config setting to set the autosizing method (approx|exact)
+- Auto sizing export from view fix
+
+### 1.1.4
+
+- Fix for importing 0 as null
+- New unit tests
+
+### 1.1.3
+
+- Cell writer `->setBorder()` fix
+
+### 1.1.2
+
+- Fix for multiple imports on one pageload
+- Multiple new import heading conversions (`Config: excel::import.heading: true|false|slugged|ascii|numeric|hashed|trans|original`)
+
+### 1.1.1
+
+- Retrieve workbook and sheet title during import (`->getTitle()`)
+
 ### 1.1.0
 
 - `Limit()`, `skip()` and `take()` support for fetching results

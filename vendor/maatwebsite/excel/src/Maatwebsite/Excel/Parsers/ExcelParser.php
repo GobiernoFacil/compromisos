@@ -93,6 +93,9 @@ class ExcelParser {
     {
         $this->reader = $reader;
         $this->excel = $reader->excel;
+
+        // Reset
+        $this->reset();
     }
 
     /**
@@ -114,24 +117,33 @@ class ExcelParser {
             // Set worksheet count
             $this->w = 0;
 
-            // Loop through the worksheets
-            foreach($this->excel->getWorksheetIterator() as $this->worksheet)
-            {
-                // Parse the worksheet
-                $worksheet = $this->parseWorksheet();
+            // Get selected sheets
+            $iterator = $this->excel->getWorksheetIterator();
 
-                // If multiple sheets
-                if($this->parseAsMultiple())
+            // Loop through the worksheets
+            foreach($iterator as $this->worksheet)
+            {
+                // Check if the sheet might have been selected by it's index
+                if($this->reader->isSelectedByIndex($iterator->key() ))
                 {
-                    // Push every sheet
-                    $workbook->push($worksheet);
+                    // Parse the worksheet
+                    $worksheet = $this->parseWorksheet();
+
+                    // If multiple sheets
+                    if($this->parseAsMultiple())
+                    {
+                        // Push every sheet
+                        $workbook->push($worksheet);
+                        $workbook->setTitle($this->excel->getProperties()->getTitle());
+                    }
+                    else
+                    {
+                        // Ignore the sheet collection
+                        $workbook = $worksheet;
+                        break;
+                    }
                 }
-                else
-                {
-                    // Ignore the sheet collection
-                    $workbook = $worksheet;
-                    break;
-                }
+
                 $this->w++;
             }
         }
@@ -148,7 +160,8 @@ class ExcelParser {
      */
     protected function parseAsMultiple()
     {
-        return $this->excel->getSheetCount() > 1 || Config::get('excel::import.force_sheets_collection', false);
+        return ( $this->excel->getSheetCount() > 1 && count($this->reader->getSelectedSheetIndices()) !== 1 )
+            || Config::get('excel::import.force_sheets_collection', false);
     }
 
     /**
@@ -159,9 +172,6 @@ class ExcelParser {
     {
         // Set the active worksheet
         $this->excel->setActiveSheetIndex($this->w);
-
-        // Get the worksheet name
-        $title = $this->excel->getActiveSheet()->getTitle();
 
         // Fetch the labels
         $this->indices = $this->reader->hasHeading() ? $this->getIndices() : array();
@@ -185,19 +195,116 @@ class ExcelParser {
         // Loop through the cells
         foreach ($this->row->getCellIterator() as $this->cell)
         {
-            // Set labels
-            if(Config::get('excel::import.to_ascii', true))
-            {
-                $this->indices[] = Str::slug($this->cell->getValue(), $this->reader->getSeperator());
-            }
-            else
-            {
-                $this->indices[] = strtolower(str_replace(array(' '), $this->reader->getSeperator(), $this->cell->getValue()));
-            }
+            $this->indices[] = $this->getIndex($this->cell);
         }
 
         // Return the labels
         return $this->indices;
+    }
+
+    /**
+     * Get index
+     * @param  $cell
+     * @return string
+     */
+    protected function getIndex($cell)
+    {
+        // Get heading type
+        $config = Config::get('excel::import.heading', true);
+        $config = $config === true ? 'slugged' : $config;
+
+        // Get value
+        $value  = $this->getOriginalIndex($cell);
+
+        switch($config)
+        {
+            case 'slugged':
+                return $this->getSluggedIndex($value, Config::get('excel::import.to_ascii', true));
+                break;
+
+            case 'ascii':
+                return $this->getAsciiIndex($value);
+                break;
+
+            case 'hashed':
+                return $this->getHashedIndex($value);
+                break;
+
+            case 'trans':
+                return $this->getTranslatedIndex($value);
+                break;
+
+            case 'original':
+                return $value;
+                break;
+        }
+    }
+
+    /**
+     * Get slugged index
+     * @param  string $value
+     * @return string
+     */
+    protected function getSluggedIndex($value, $ascii = false)
+    {
+        // Get original
+        $separator  = $this->reader->getSeparator();
+
+        // Convert to ascii when needed
+        if($ascii)
+            $value = $this->getAsciiIndex($value);
+
+        // Convert all dashes/underscores into separator
+        $flip = $separator == '-' ? '_' : '-';
+        $value = preg_replace('!['.preg_quote($flip).']+!u', $separator, $value);
+
+        // Remove all characters that are not the separator, letters, numbers, or whitespace.
+        $value = preg_replace('![^'.preg_quote($separator).'\pL\pN\s]+!u', '', mb_strtolower($value));
+
+        // Replace all separator characters and whitespace by a single separator
+        $value = preg_replace('!['.preg_quote($separator).'\s]+!u', $separator, $value);
+
+        return trim($value, $separator);
+    }
+
+    /**
+     * Get ASCII index
+     * @param  string $value
+     * @return string
+     */
+    protected function getAsciiIndex($value)
+    {
+        return Str::ascii($value);
+    }
+
+    /**
+     * Hahsed index
+     * @param  string $value
+     * @return string
+     */
+    protected function getHashedIndex($value)
+    {
+        return md5($value);
+    }
+
+    /**
+     * Get translated index
+     * @param  string $value
+     * @return string
+     */
+    protected function getTranslatedIndex($value)
+    {
+        return trans($value);
+    }
+
+    /**
+     * Get orignal indice
+     * @param  string $value
+     * @return string
+     */
+    protected function getOriginalIndex($cell)
+    {
+        return $cell->getValue();
     }
 
     /**
@@ -208,6 +315,9 @@ class ExcelParser {
     {
         // Set empty parsedRow array
         $parsedRows = new RowCollection();
+
+        // set sheet title
+        $parsedRows->setTitle($this->excel->getActiveSheet()->getTitle());
 
         // Get the startrow
         $startRow = $this->getStartRow();
@@ -477,6 +587,16 @@ class ExcelParser {
         // Set the columns
         return $this->columns;
 
+    }
+
+    /**
+     * Reset
+     * @return [type] [description]
+     */
+    protected function reset()
+    {
+        $this->indices = array();
+        $this->isParsed = false;
     }
 
 }

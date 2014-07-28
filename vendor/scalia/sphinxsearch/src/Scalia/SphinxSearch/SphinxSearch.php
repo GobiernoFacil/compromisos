@@ -7,6 +7,7 @@ class SphinxSearch {
   protected $_config;
   protected $_total_count;
   protected $_time;
+  protected $_eager_loads;
 
   public function __construct()
   {
@@ -19,20 +20,21 @@ class SphinxSearch {
     $this->_config = \Config::get('sphinxsearch::indexes');
     reset($this->_config);
     $this->_index_name = isset($this->_config['name'])?implode(',', $this->_config['name']):key($this->_config);
+    $this->_eager_loads = array();
   }
 
-  public function search($string, $index_name = NULL)
+  public function search($string, $index_name = null)
   {
     $this->_search_string = $string;
-    if (NULL !== $index_name)
+    if (null !== $index_name)
     {
-       //if index name contains , or ' ', multiple index search
-      if (strpos($index_name, ' ')||strpos($index_name,','))
+      // if index name contains , or ' ', multiple index search
+      if (strpos($index_name, ' ') || strpos($index_name,','))
       {
-          if (!isset($this->_config['mapping']))
-          {
-	      $this->_config['mapping']=false;
-          }
+        if (!isset($this->_config['mapping']))
+        {
+          $this->_config['mapping']=false;
+        }
       }
       $this->_index_name = $index_name;
     }
@@ -60,9 +62,9 @@ class SphinxSearch {
     return $this;
   }
 
-  public function setSortMode($mode, $par = NULL)
+  public function setSortMode($mode, $sortby = null)
   {
-    $this->_connection->setSortMode($mode, $par);
+    $this->_connection->setSortMode($mode, $sortby);
     return $this;
   }
 
@@ -78,13 +80,19 @@ class SphinxSearch {
     return $this;
   }
 
+  public function setSelect($select)
+  {
+    $this->_connection->setSelect($select);
+    return $this;
+  }
+
   public function limit($limit, $offset = 0, $max_matches = 1000, $cutoff = 1000)
   {
     $this->_connection->setLimits($offset, $limit, $max_matches, $cutoff);
     return $this;
   }
 
-  public function filter($attribute, $values, $exclude = FALSE)
+  public function filter($attribute, $values, $exclude = false)
   {
     if (is_array($values))
     {
@@ -114,7 +122,7 @@ class SphinxSearch {
     return $this->_connection->query($this->_search_string, $this->_index_name);
   }
 
-  public function get($respect_sort_order = FALSE)
+  public function get($respect_sort_order = false)
   {
     $this->_total_count = 0;
     $result             = $this->_connection->query($this->_search_string, $this->_index_name);
@@ -127,17 +135,21 @@ class SphinxSearch {
       // Get time taken for search.
       $this->_time = $result['time'];
 
-      if($result['total'] > 0 && isset($result['matches']))
+      if($result['total'] && isset($result['matches']))
       {
         // Get results' id's and query the database.
         $matchids = array_keys($result['matches']);
 
-        $config = isset($this->_config['mapping'])?$this->_config['mapping']:$this->_config[$this->_index_name];
+        $config = isset($this->_config['mapping']) ? $this->_config['mapping'] : $this->_config[$this->_index_name];
         if ($config)
         {
-          if(isset($config['modelname']))
+          if (isset($config['modelname']))
           {
-            $result = call_user_func_array($config['modelname'] . "::whereIn", array($config['column'], $matchids))->get();
+            if ($this->_eager_loads) {
+              $result = call_user_func_array($config['modelname'] . "::whereIn", array($config['column'], $matchids))->with($this->_eager_loads)->get();
+            } else {
+              $result = call_user_func_array($config['modelname'] . "::whereIn", array($config['column'], $matchids))->get();
+            }
           }
           else
           {
@@ -160,13 +172,31 @@ class SphinxSearch {
         foreach($matchids as $matchid)
         {
           $key = self::getResultKeyByID($matchid, $result);
-          $return_val[] = $result[$key];
+          if (false !== $key)
+          {
+            $return_val[] = $result[$key];
+          }
         }
         return $return_val;
       }
     }
 
+    // important: reset the array of eager loads prior to making next call
+    $this->_eager_loads = array();
+
     return $result;
+  }
+
+  public function with()
+  {
+    $this->_eager_loads = array();
+
+    foreach (func_get_args() as $a)
+    {
+      $this->_eager_loads[] = $a;
+    }
+
+    return $this;
   }
 
   public function getTotalCount()
