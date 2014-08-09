@@ -1,0 +1,33 @@
+
+
+// Font stacks for easy inclusion and customization
+$font-family-sans-serif:  "Roboto", Helvetica, Arial, sans-serif;
+$font-family-serif:       Georgia, "Times New Roman", Times, serif;
+$font-family-monospace:   Monaco, Menlo, Consolas, "Courier New", monospace;
+
+$font-family-base:        $font-family-sans-serif; //500
+
+
+
+
+// Generate a straightforward type scale
+
+$font-size-base:          15px;
+$font-size-large:         $font-size-base * 1.25; // ~18px
+$font-size-small:         $font-size-base * 0.85; // ~12px
+$font-size-mini:          $font-size-base * 0.75; // ~11px
+
+
+
+// Baseline for the line-height of the body
+// To be used in conjunction with $font-size-base
+$line-height-base:        1.4;
+
+// Enable the option to customize headings
+$headings-font-family:    inherit; // From $font-family-base
+$headings-font-weight:    500;
+
+$heading-main-h1: 64px;
+$headings-main-h2: 47.5px; 
+$headings-main-h3: 32px; 
+$headings-main-h4: 23.75px; 

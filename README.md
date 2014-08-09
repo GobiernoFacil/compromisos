@@ -1,25 +1,31 @@
-## Laravel PHP Framework
+=======
+Plataforma de control público de seguimiento
+================
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/downloads.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+Tablero de control público de seguimiento del [PA15] (http://pa2015.mx/).
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, and caching.
+El objetivo del tablero de control es servir como una herramienta de seguimiento de la
+implementación de los 26 compromisos que componen el Plan de Acción 2013-2015 de la Alianza para 
+el Gobierno Abierto.
 
-Laravel aims to make the development process a pleasing one for the developer without sacrificing application functionality. Happy developers make the best code. To this end, we've attempted to combine the very best of what we have seen in other web frameworks, including frameworks implemented in other languages, such as Ruby on Rails, ASP.NET MVC, and Sinatra.
+Los compromisos cuentan con planes de trabajo con metas semestrales para su cumplimiento (3 
+metas en total). Cada meta contiene actividades específicas a realizarse en periodos de 6 meses 
+para cumplirlas, las cuales tienen indicadores, medios de verificación y responsables puntuales. Esta 
+información debe visualizarse en el tablero.
 
-Laravel is accessible, yet powerful, providing powerful tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+Los responsables del cumplimiento de los compromisos son: funcionarios públicos y miembros de 
+organizaciones de la sociedad civil (OSC).
 
-## Official Documentation
 
-Documentation for the entire framework can be found on the [Laravel website](http://laravel.com/docs).
+## adaptación
 
-### Contributing To Laravel
+El Tablero funciona tomando como base la [Plataforma para la gestión del cumplimiento de compromisos.](https://github.com/e-gob/cumplimiento).
 
-**All issues and pull requests should be filed on the [laravel/framework](http://github.com/laravel/framework) repository.**
+## Características
 
-### License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+* Visualiza el grado de cumplimiento de las actividades específicas de los 26 compromisos
+* Muestra de forma diferenciada las actividades de funcionarios públicos y de las organizaciones de la sociedad civil.
+* Muestra cumplimiento o incumplimiento (dependiendo el caso) de las metas semestrales y permitir visualizar notas explicativas de los responsables (funcionarios y OSC) sobre su estatus (razones del cumplimiento, incumplimiento o retraso).
+* Permite a los responsables de los compromisos (tanto a funcionarios públicos como a organizaciones de la sociedad civil) editar el conjunto de actividades puntuales (añadir nuevas o modificar otras) necesarias para cumplir con las metas del compromiso.
+* Estará disponible en el sitio web de la Alianza de Gobierno Abierto en México: http://aga.org.mx/
+* Permite comentarios de la ciudadanía en general y respuestas de los responsables de los compromisos.

@@ -1,0 +1,376 @@
+@import '_main';
+@import '_fonts';
+@import '_color';
+@import '_layout';
+@import '_mixins';
+
+
+/* =Main content and comment content
+-------------------------------------------------------------- */
+
+#header {
+	background-color: #000;
+	h1 {
+		margin-top: 15px;
+		a { 
+			background: url(../img/logo.png) no-repeat;
+			height: 40px;
+			width: 40px;
+			margin: 0 auto;
+			@include ir;
+		}
+	}
+	nav ul {
+		min-height: 70px;
+		margin: 0;
+		li { 
+			margin-left: 20px;
+			display: inline;
+		}
+		a { color: white;
+			webkit-box-shadow: inset 0 -5px 0 0 #333;
+			-moz-box-shadow: inset 0 -5px 0 0 #333;
+			box-shadow: inset 0 -5px 0 0 #333;
+			font-size: 12px;
+			line-height: 70px;
+			padding: 0;
+		}
+	}
+}
+
+
+/* = Content
+--------------------*/
+#tablero {
+	background: #e5e5e5;
+	padding: 40px 0;
+}
+.title {
+	text-transform: uppercase;
+	font-size: 28px;
+	margin-bottom: 30px;
+	line-height: 1.3;
+	font-weight: lighter;
+}
+#alianza {
+	background: #f5f5f5 url(../img/colours.png) repeat-x center top;
+	padding: 90px 0 30px 0;
+}
+
+
+/* = elementos del tablero
+--------------------*/
+.guia {
+	color: $black-50;
+	font-size: 12px;
+	text-transform: uppercase;
+	span { margin: 0 15px 0 0 ;}
+	
+}
+.cuadro {
+	display: inline-block;
+	height: 12px;
+	width: 12px;
+}
+/*colores*/
+.completado {  background: $completado;
+	&:hover { background: $completado_hov}
+}
+.proceso { 	background: $proceso;
+	&:hover { background: $proceso_hov;}
+}
+.tarde { background: $tarde;
+	&:hover { background: $tarde_hov;}
+}	
+
+/* = lista ------*/
+.list-title { 
+	background: $black-60;
+	padding: 8px 0;
+	h3 { 
+		color: white;
+		font-size: 13px;
+		text-transform: uppercase;
+	}
+}
+
+.list-key {
+	background: white;
+	margin-top: 5px;
+	.id { 
+		position: relative;
+		background: #ccc;
+		color: black;
+		height: 100%;
+		text-align: center;
+		h4 { 
+			font-size: 21px;
+			font-weight: 700;
+			padding-bottom: 10px;			
+		}
+		.plus {
+			 padding-bottom: 20px;
+			 a { 
+				 color: white;
+				 font-size: 26px;
+				 font-weight: 300;
+			 }
+		}
+	}
+}
+
+.list-responsable {
+	background: #ccc;
+	color: $black-60;
+	display: none;
+	p {
+		font-size: 14px;
+	}
+	.vcard {
+		font-size: 12px;
+		.fn { font-weight: 700;}
+		.fn,
+		.organization-unit,
+		.tel {
+			display: block;
+		}
+		a { color: $black-60;
+			margin: 0;
+			text-transform: none;
+			&:hover { color: $black-90;}
+		}
+	}
+	h5 { font-size: 10px;}
+	a { 
+		color: $links;
+		text-transform: uppercase;
+		display: block;
+		font-size: 11px;
+		margin: 10px 0;
+	}
+	
+}
+
+.id,
+.ct {padding-top: 20px;}
+
+//los cuadros que marcan si se cumple
+.cumplimiento {
+	li {
+		float: left;
+		display: inline-block;
+		list-style: none;
+		height: 25px;
+		line-height: 25px;
+		width: 19%;
+		margin-left: 1%;
+		&:hover {
+			cursor: pointer;
+			ul{
+				display: block; 
+			}
+		}
+	}
+	ul {
+		position: relative;  
+		display: none;
+		li {
+			float: none; 
+			display: inline;
+			margin: 0;
+			.detalle {
+				background: #dedede;
+				padding: 10px;
+				width: 267px; 
+				margin-top: 10px;
+				position: relative; 
+				color: $black-60; 
+				z-index: 9999;
+				@include  box-shadow(1px, 2px, 5px, rgba(0,0,0,0.3));
+				// agrega flecha
+				&:after {
+					bottom: 100%;
+					left: 10%;
+					border: solid transparent;
+					content: " ";
+					height: 0;
+					width: 0;
+					position: absolute;
+					pointer-events: none;
+					border-bottom-color: #dedede;
+					border-width: 10px;
+					margin-left: -10px;
+				}
+			}
+		}
+	}
+}
+//para evitar que salga de la pantalla
+.tercer .cumplimiento {
+	li ul {
+	float: right;
+	}
+	ul li .detalle:after {
+		left: auto;
+		right: 10%;
+	}
+	
+}
+//muestra detalle de avance
+.detalle {
+	h4 {
+		font-size: 26px;
+		font-weight: 700;
+		padding-top: 8px;
+	} 
+	p {
+		border-bottom: 1px solid white;
+		font-size: 12px;
+		line-height: 1.3;
+		margin: 0;
+		padding-bottom: 5px;
+		&:last-child { 
+			border-bottom: 0;
+			font-size: 11px;
+			padding-top: 10px;
+			text-transform: uppercase;
+			a { color: $links;}
+		}
+		&.row {
+			font-size: 9px;		
+			span {padding: 0;}
+		}
+		.medios {
+			background: #6e6c6c;
+			border-bottom: 1px solid black;
+			color: white;
+			display: block;
+			padding: 5px 2px;
+			text-align: center;
+			text-transform: uppercase;
+		}
+	}
+}
+a.objetivo {
+	display: block;
+	height: 25px;
+	width: 100%;
+}
+
+
+.disqus {
+	background: #fff;
+	margin-top: 66px;
+	margin-bottom:   40px;
+}
+
+/* = Footer
+--------------------*/
+#footer {
+	background: #333 url(../img/colours.png) repeat-x center 115%;
+	text-align: center;
+	padding-top: 20px;
+	padding-bottom: 60px;
+	ul.logos {
+		width: 80%;
+		margin: 0 auto;
+		li {
+			display: inline-block;
+			height: 80px;
+			margin: 10px;
+			span {
+				display: table;
+				height: 100%;
+				span {
+					display: table-cell;
+					vertical-align: middle;
+				}
+			}
+		}
+	}
+
+}
+/* logos --------------------*/
+.logo { @include ir; }
+
+.logo-sprite, 
+.logo-article19, 
+.logo-cidac, 
+.logo-cultura-ecologica, 
+.logo-fundar, 
+.logo-gesoc, 
+.logo-gobierno, 
+.logo-ifai, 
+.logo-imco, 
+.logo-mexico-abierto, 
+.logo-social-tic, 
+.logo-transparencia-mexicana {
+	background: url('../img/logo-sd81e81bacc.png') no-repeat;
+}
+.logo-gobierno {
+	width: 153px;
+	height: 46px;
+}
+.logo-mexico-abierto {
+	background-position: 0 -412px;
+	width: 104px;
+	height: 28px;
+}
+.logo-ifai {
+	background-position: 0 -198px;
+	width: 82px;
+	height: 49px;
+}
+.logo-cultura-ecologica {
+	background-position: 0 -126px;
+	width: 70px;
+	height: 72px;
+}
+.logo-fundar {
+	background-position: 0 -46px;
+	width: 145px;
+	height: 36px;
+}
+.logo-imco {
+	background-position: 0 -82px;
+	width: 111px;
+	height: 44px;
+}
+.logo-article19 {
+	background-position: 0 -462px;
+	width: 81px;
+	height: 41px;
+}
+
+.logo-cidac {
+	background-position: 0 -361px;
+	width: 51px;
+	height: 51px;
+}
+.logo-gesoc {
+	background-position: 0 -283px;
+	width: 104px;
+	height: 78px;
+}
+.logo-transparencia-mexicana {
+	background-position: 0 -247px;
+	width: 120px;
+	height: 36px;
+}
+.logo-social-tic {
+	background-position: 0 -440px;
+	width: 112px;
+	height: 22px;
+}
+
+@media (min-width: 55em) {
+	#footer ul.logos li {
+		margin: 10px 20px;
+	}
+}
+/* =Print
+----------------------------------------------- */
+
+@media print {
+	
+}
