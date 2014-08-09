@@ -17,10 +17,6 @@ Los responsables del cumplimiento de los compromisos son: funcionarios públicos
 organizaciones de la sociedad civil (OSC).
 
 
-## adaptación
-
-El Tablero funciona tomando como base la [Plataforma para la gestión del cumplimiento de compromisos.](https://github.com/e-gob/cumplimiento).
-
 ## Características
 
 * Visualiza el grado de cumplimiento de las actividades específicas de los 26 compromisos
