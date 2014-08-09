@@ -73,7 +73,7 @@ Route::get('admin/compromisos/agregar', function(){
 
 // * add user
 Route::get('admin/usuarios/agregar', function(){
-  return "aquí va lo de agregar usuario";
+  return View::make('admin.users_add');
 });
 
 // * add step
