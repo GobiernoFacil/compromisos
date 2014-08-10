@@ -1,30 +1,40 @@
 <?php
 
-// BASE URI: admin/usuarios
+class UserController extends \BaseController {
 
-class UserController extends BaseController {
-
-	public function __construct(){
-
-	}
-
-	// admin/usuarios (GET)
-	// show the users list
-	public function getIndex(){
-	  $users = User::all();
+	/**
+	 * Display a listing of the resource.
+	 *
+	 * @return Response
+	 */
+	public function index()
+	{
+		//
+		$users = User::all();
 	  return View::make('admin.users')
 	    ->with('users', $users);
 	}
 
-	// admin/usuarios/agregar
-	// show the new user form
-	public function getAgregar(){
+
+	/**
+	 * Show the form for creating a new resource.
+	 *
+	 * @return Response
+	 */
+	public function create()
+	{
+		//
 		return View::make('admin.users_add');
 	}
 
-	// admin/usuarios (POST)
-	// save a new user
-	public function postIndex(){
+
+	/**
+	 * Store a newly created resource in storage.
+	 *
+	 * @return Response
+	 */
+	public function store()
+	{
 		$user = Input::all();
 		$user['password'] = Hash::make($user['password']);
 		$user['is_admin'] = ! empty($user['is_admin']);
@@ -41,19 +51,45 @@ class UserController extends BaseController {
 
 		$user->save();
 
-		return Redirect::to('admin/usuarios');
+		return Redirect::to('user');
 	}
 
-	// admin/usuarios/editar/{id} (GET)
-	// show the update user form
-	public function getEditar($id){
+
+	/**
+	 * Display the specified resource.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function show($id)
+	{
+		//
+	}
+
+
+	/**
+	 * Show the form for editing the specified resource.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function edit($id)
+	{
+		//
 		$user = User::find($id);
 		return View::make('admin.users_update')->with('user', $user);
 	}
 
-	// admin/usuarios (PUT)
-	// save an existing user
-	public function putIndex($id){
+
+	/**
+	 * Update the specified resource in storage.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function update($id)
+	{
+		//
 		$user = User::find($id);
 
 		$user->username  = Input::get('username');
@@ -67,15 +103,23 @@ class UserController extends BaseController {
 		endif;
 
 		$user->save();
-		return Redirect::to('admin/usuarios');
+		return Redirect::to('user');
 	}
 
-	// admin/usuarios/{id} (DELETE)
-	// 8< - - - - - - KILL A USER -  - - - - - - >8
-	public function deleteIndex($id){
+
+	/**
+	 * Remove the specified resource from storage.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function destroy($id)
+	{
+		//
 		$user = User::find($id);
 		$user->delete();
-		return Redirect::to('admin/usuarios');
+		return Redirect::to('user');
 	}
+
 
 }

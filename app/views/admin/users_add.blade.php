@@ -1,7 +1,7 @@
 @extends('backend')
 
 @section('content')
-  {{Form::open(['url' => 'admin/usuarios'])}}
+  {{Form::open(['url' => 'user'])}}
     <p>
       <label for="username">Correo: </label>
       <input type="text" name="username" id="username">

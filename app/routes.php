@@ -52,7 +52,7 @@ Route::get('admin', function(){
   return View::make('admin.admin');
 });
 
-Route::controller('admin/usuarios', 'UserController');
+Route::resource('user', 'UserController');
 
 
 // * commitments list
@@ -120,13 +120,6 @@ Route::put('admin/avance/{id}', function($id){
 // * update event
 Route::put('admin/evento/{id}', function($id){
   return "aquí se actualiza un evento";
-})->where('id', '[1-9]+');
-
-// * delete user
-Route::delete('admin/usuario/{id}', function($id){
-  $user = User::find($id);
-  $user->delete();
-  return Redirect::to('admin/usuarios');
 })->where('id', '[1-9]+');
 
 // * delete commitment

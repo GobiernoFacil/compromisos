@@ -6,7 +6,7 @@
 <div class="container">
 <!-- users menu -->
 <ul>
-  <li>{{link_to('admin/usuarios/agregar', 'agregar usuario')}}</li>
+  <li>{{link_to('user/create', 'agregar usuario')}}</li>
 </ul>
 <!-- users table -->
   <table>
@@ -32,12 +32,12 @@
         <td>{{$user->is_admin ? 'Sí':'No'}}</td>
         <td>
           <!-- update link -->
-          {{link_to('admin/usuarios/editar/' . $user->id, 'editar')}}
+          {{link_to('user/' . $user->id . '/edit', 'editar')}}
 
           <!-- delete form -->
           @if($user->id != Auth::user()->id)
             {{Form::open([
-              'url' => 'admin/usuarios/' . $user->id, 
+              'url' => 'user/' . $user->id, 
               'method' => 'DELETE'
             ])}}
 

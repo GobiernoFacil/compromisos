@@ -2,8 +2,8 @@
 
 @section('content')
   {{Form::open([
-    'url'    => 'admin/usuarios/' . $user->id,
-    'method' => 'put'
+    'url'    => 'user/' . $user->id,
+    'method' => 'PUT'
   ])}}
     <p>
       <label for="username">Correo: </label>
