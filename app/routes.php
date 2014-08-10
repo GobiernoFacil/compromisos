@@ -91,8 +91,20 @@ Route::post('admin/usuarios', function(){
   $user = Input::all();
   $user['password'] = Hash::make($user['password']);
   $user['is_admin'] = ! empty($user['is_admin']);
+  unset($user['_token']);
 
-  die();
+  $user = new User;
+  $user->username  = Input::get('username');
+  $user->password  = Hash::make($user['password']);
+  $user->name      = Input::get('name');
+  $user->phone     = Input::get('phone');
+  $user->charge    = Input::get('charge');
+  $user->user_type = Input::get('user_type');
+  $user->is_admin  = ! empty($user['is_admin']);
+
+  $user->save();
+
+  return Redirect::to('admin/usuarios');
 });
 
 // * save new commitment
@@ -112,7 +124,8 @@ Route::post('admin/evento', function(){
 
 // * update user form
 Route::get('admin/usuario/{id}', function($id){
-  return "aquí va el formulario para editar un usuario existente";
+  $user = User::find($id);
+  return View::make('admin.users_update')->with('user', $user);
 })->where('id', '[1-9]+');
 
 // * update commitment form
