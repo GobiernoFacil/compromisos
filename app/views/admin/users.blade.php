@@ -1,11 +1,14 @@
 @extends('backend')
+
+@section('content')
+@include('backend_nav')
+
+<div class="container">
 <!-- users menu -->
 <ul>
   <li>{{link_to('admin/usuarios/agregar', 'agregar usuario')}}</li>
 </ul>
-
 <!-- users table -->
-@section('content')
   <table>
     <thead>
       <tr>
@@ -47,4 +50,5 @@
       @endforeach
     </tbody>
   </table>
+</div>
 @stop
