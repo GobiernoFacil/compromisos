@@ -10,6 +10,9 @@ class CommitmentController extends \BaseController {
 	public function index()
 	{
 		//
+		$commitments = Commitment::all();
+	  return View::make('admin.commitments')
+	    ->with('commitments', $commitments);
 	}
 
 

@@ -52,7 +52,13 @@ Route::get('admin', function(){
   return View::make('admin.admin');
 });
 
+// THE USER LOGIC
+// 
 Route::resource('user', 'UserController');
+
+// THE COMMITMENT LOGIN
+//
+Route::resource('commitment', 'CommitmentController');
 
 
 // * commitments list
