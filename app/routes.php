@@ -25,7 +25,7 @@ Route::get('compromisos', function(){
 // THE LOGIN PAGE
 // * login form
 Route::get('login', function(){
-  return View::make('admin/login');
+  return View::make('admin.login');
 });
 // * user validation
 Route::post('login', function(){
@@ -88,7 +88,11 @@ Route::get('admin/evento/agregar', function(){
 
 // * save new user
 Route::post('admin/usuarios', function(){
-  return "aquí va lo de salvar un nuevo usuario";
+  $user = Input::all();
+  $user['password'] = Hash::make($user['password']);
+  $user['is_admin'] = ! empty($user['is_admin']);
+
+  die();
 });
 
 // * save new commitment
