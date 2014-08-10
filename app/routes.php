@@ -52,6 +52,9 @@ Route::get('admin', function(){
   return View::make('admin.admin');
 });
 
+Route::controller('admin/usuarios', 'UserController');
+
+
 // * commitments list
 Route::get('admin/compromisos', function(){
   $commitments = Commitment::all();
@@ -59,21 +62,9 @@ Route::get('admin/compromisos', function(){
     ->with('commitments', $commitments);
 });
 
-// * users list
-Route::get('admin/usuarios', function(){
-  $users = User::all();
-  return View::make('admin.users')
-    ->with('users', $users);
-});
-
 // * add commitment
 Route::get('admin/compromisos/agregar', function(){
   return "aquí va el formulario para agregar compromiso";
-});
-
-// * add user
-Route::get('admin/usuarios/agregar', function(){
-  return View::make('admin.users_add');
 });
 
 // * add step
@@ -84,27 +75,6 @@ Route::get('admin/avance/agregar', function(){
 // * add event
 Route::get('admin/evento/agregar', function(){
   return "aquí va el formulario para agregar un evento";
-});
-
-// * save new user
-Route::post('admin/usuarios', function(){
-  $user = Input::all();
-  $user['password'] = Hash::make($user['password']);
-  $user['is_admin'] = ! empty($user['is_admin']);
-  unset($user['_token']);
-
-  $user = new User;
-  $user->username  = Input::get('username');
-  $user->password  = Hash::make(Input::get('password'));
-  $user->name      = Input::get('name');
-  $user->phone     = Input::get('phone');
-  $user->charge    = Input::get('charge');
-  $user->user_type = Input::get('user_type');
-  $user->is_admin  = ! empty(Input::get('is_admin'));
-
-  $user->save();
-
-  return Redirect::to('admin/usuarios');
 });
 
 // * save new commitment
@@ -122,12 +92,6 @@ Route::post('admin/evento', function(){
   return "aquí va lo de salvar un nuevo evento";
 });
 
-// * update user form
-Route::get('admin/usuario/{id}', function($id){
-  $user = User::find($id);
-  return View::make('admin.users_update')->with('user', $user);
-})->where('id', '[1-9]+');
-
 // * update commitment form
 Route::get('admin/compromiso/{id}', function($id){
   return "aquí va el formulario para editar un compromiso existente";
@@ -141,25 +105,6 @@ Route::get('admin/avance/{id}', function($id){
 // * update event form
 Route::get('admin/evento/{id}', function($id){
   return "aquí va el formulario para editar un evento existente";
-})->where('id', '[1-9]+');
-
-// * update user
-Route::put('admin/usuario/{id}', function($id){
-  $user = User::find($id);
-
-  $user->username  = Input::get('username');
-  $user->name      = Input::get('name');
-  $user->phone     = Input::get('phone');
-  $user->charge    = Input::get('charge');
-  $user->user_type = Input::get('user_type');
-  $user->is_admin  = ! empty(Input::get('is_admin'));
-  if( ! empty(Input::get('password'))):
-    $user->password  = Hash::make(Input::get('password'));
-  endif;
-
-  $user->save();
-  return Redirect::to('admin/usuarios');
-
 })->where('id', '[1-9]+');
 
 // * update commitment

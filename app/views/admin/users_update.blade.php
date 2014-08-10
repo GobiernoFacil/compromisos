@@ -2,7 +2,7 @@
 
 @section('content')
   {{Form::open([
-    'url'    => 'admin/usuario/' . $user->id,
+    'url'    => 'admin/usuarios/' . $user->id,
     'method' => 'put'
   ])}}
     <p>

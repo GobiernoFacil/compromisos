@@ -32,13 +32,13 @@
         <td>{{$user->is_admin ? 'Sí':'No'}}</td>
         <td>
           <!-- update link -->
-          {{link_to('admin/usuario/' . $user->id, 'editar')}}
+          {{link_to('admin/usuarios/editar/' . $user->id, 'editar')}}
 
           <!-- delete form -->
           @if($user->id != Auth::user()->id)
             {{Form::open([
-              'url' => 'admin/usuario/' . $user->id, 
-              'method' => 'delete'
+              'url' => 'admin/usuarios/' . $user->id, 
+              'method' => 'DELETE'
             ])}}
 
             <input type="submit" value="eliminar">
