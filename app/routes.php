@@ -95,12 +95,12 @@ Route::post('admin/usuarios', function(){
 
   $user = new User;
   $user->username  = Input::get('username');
-  $user->password  = Hash::make($user['password']);
+  $user->password  = Hash::make(Input::get('password'));
   $user->name      = Input::get('name');
   $user->phone     = Input::get('phone');
   $user->charge    = Input::get('charge');
   $user->user_type = Input::get('user_type');
-  $user->is_admin  = ! empty($user['is_admin']);
+  $user->is_admin  = ! empty(Input::get('is_admin'));
 
   $user->save();
 
@@ -145,7 +145,21 @@ Route::get('admin/evento/{id}', function($id){
 
 // * update user
 Route::put('admin/usuario/{id}', function($id){
-  return "aquí se actualiza un usuario";
+  $user = User::find($id);
+
+  $user->username  = Input::get('username');
+  $user->name      = Input::get('name');
+  $user->phone     = Input::get('phone');
+  $user->charge    = Input::get('charge');
+  $user->user_type = Input::get('user_type');
+  $user->is_admin  = ! empty(Input::get('is_admin'));
+  if( ! empty(Input::get('password'))):
+    $user->password  = Hash::make(Input::get('password'));
+  endif;
+
+  $user->save();
+  return Redirect::to('admin/usuarios');
+
 })->where('id', '[1-9]+');
 
 // * update commitment
@@ -165,7 +179,9 @@ Route::put('admin/evento/{id}', function($id){
 
 // * delete user
 Route::delete('admin/usuario/{id}', function($id){
-  return "aquí se le da matarili a un usuario";
+  $user = User::find($id);
+  $user->delete();
+  return Redirect::to('admin/usuarios');
 })->where('id', '[1-9]+');
 
 // * delete commitment
