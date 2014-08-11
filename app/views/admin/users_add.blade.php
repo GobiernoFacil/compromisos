@@ -4,7 +4,7 @@
 @include('backend_nav')
 <div class="container">
 	<h1 class="title"> Agregar Usuario</h1>
-  {{Form::open(['url' => 'admin/usuarios',
+  {{Form::open(['url' => 'user',
   'class' => 'form-horizontal'
   ])}}
   	<div class="form-group">

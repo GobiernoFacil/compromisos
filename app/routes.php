@@ -25,7 +25,7 @@ Route::get('compromisos', function(){
 // THE LOGIN PAGE
 // * login form
 Route::get('login', function(){
-  return View::make('admin/login');
+  return View::make('admin.login');
 });
 // * user validation
 Route::post('login', function(){
@@ -52,6 +52,15 @@ Route::get('admin', function(){
   return View::make('admin.admin');
 });
 
+// THE USER LOGIC
+// 
+Route::resource('user', 'UserController');
+
+// THE COMMITMENT LOGIN
+//
+Route::resource('commitment', 'CommitmentController');
+
+
 // * commitments list
 Route::get('admin/compromisos', function(){
   $commitments = Commitment::all();
@@ -59,21 +68,9 @@ Route::get('admin/compromisos', function(){
     ->with('commitments', $commitments);
 });
 
-// * users list
-Route::get('admin/usuarios', function(){
-  $users = User::all();
-  return View::make('admin.users')
-    ->with('users', $users);
-});
-
 // * add commitment
 Route::get('admin/compromisos/agregar', function(){
   return "aquí va el formulario para agregar compromiso";
-});
-
-// * add user
-Route::get('admin/usuarios/agregar', function(){
-  return View::make('admin.users_add');
 });
 
 // * add step
@@ -84,11 +81,6 @@ Route::get('admin/avance/agregar', function(){
 // * add event
 Route::get('admin/evento/agregar', function(){
   return "aquí va el formulario para agregar un evento";
-});
-
-// * save new user
-Route::post('admin/usuarios', function(){
-  return "aquí va lo de salvar un nuevo usuario";
 });
 
 // * save new commitment
@@ -106,11 +98,6 @@ Route::post('admin/evento', function(){
   return "aquí va lo de salvar un nuevo evento";
 });
 
-// * update user form
-Route::get('admin/usuario/{id}', function($id){
-  return "aquí va el formulario para editar un usuario existente";
-})->where('id', '[1-9]+');
-
 // * update commitment form
 Route::get('admin/compromiso/{id}', function($id){
   return "aquí va el formulario para editar un compromiso existente";
@@ -126,11 +113,6 @@ Route::get('admin/evento/{id}', function($id){
   return "aquí va el formulario para editar un evento existente";
 })->where('id', '[1-9]+');
 
-// * update user
-Route::put('admin/usuario/{id}', function($id){
-  return "aquí se actualiza un usuario";
-})->where('id', '[1-9]+');
-
 // * update commitment
 Route::put('admin/compromiso/{id}', function($id){
   return "aquí se actualiza un compromiso";
@@ -144,11 +126,6 @@ Route::put('admin/avance/{id}', function($id){
 // * update event
 Route::put('admin/evento/{id}', function($id){
   return "aquí se actualiza un evento";
-})->where('id', '[1-9]+');
-
-// * delete user
-Route::delete('admin/usuario/{id}', function($id){
-  return "aquí se le da matarili a un usuario";
 })->where('id', '[1-9]+');
 
 // * delete commitment

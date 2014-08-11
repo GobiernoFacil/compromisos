@@ -30,8 +30,8 @@ class CreateUsers extends Migration {
       $table->increments('id');
       $table->string('title');
       $table->string('plan');
-      $table->integer('government_user');
-      $table->integer('society_user');
+      $table->integer('government_user')->default(0);
+      $table->integer('society_user')->default(0);
       $table->timestamps();
     });
 

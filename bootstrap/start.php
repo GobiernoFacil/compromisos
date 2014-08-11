@@ -26,7 +26,7 @@ $app = new Illuminate\Foundation\Application;
 
 $env = $app->detectEnvironment(array(
 
-	'local' => array('boriss-mbp.lan', 'imac-de-boris.lan','Torito.local'),
+	'local' => array('boriss-mbp.lan', 'imac-de-boris.lan', 'Boriss-MacBook-Pro.local','Torito.local'),
 
 ));
 
