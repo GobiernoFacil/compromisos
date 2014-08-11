@@ -9,10 +9,10 @@ class CommitmentController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
-		$commitments = Commitment::all();
-	  return View::make('admin.commitments')
-	    ->with('commitments', $commitments);
+	  //
+	  $commitments = Commitment::all();
+	   return View::make('admin.commitments')
+	     ->with('commitments', $commitments);
 	}
 
 
@@ -23,7 +23,14 @@ class CommitmentController extends \BaseController {
 	 */
 	public function create()
 	{
-		//
+	  //
+	  $government_users = User::where('user_type', 'government')->lists('name','id');
+	  $society_users = User::where('user_type', 'society')->lists('name','id');
+	  return View::make('admin.commitments_add')
+	    ->with([
+	    	'government_users' => $government_users,
+	    	'society_users' => $society_users
+	      ]);
 	}
 
 
@@ -34,7 +41,10 @@ class CommitmentController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+	  //
+	  $Commitment = new Commitment(Input::all());
+	  $Commitment->save();
+	  return Redirect::to('commitment');
 	}
 
 
