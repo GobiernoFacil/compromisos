@@ -35,10 +35,10 @@ class UserController extends \BaseController {
 	 */
 	public function store()
 	{
-		$user = Input::all();
-		$user['password'] = Hash::make($user['password']);
-		$user['is_admin'] = ! empty($user['is_admin']);
-		unset($user['_token']);
+	  $user = Input::all();
+	  $user['password'] = Hash::make($user['password']);
+	  $user['is_admin'] = ! empty($user['is_admin']);
+	  unset($user['_token']);
 
 		$user = new User;
 		$user->username  = Input::get('username');
@@ -47,7 +47,7 @@ class UserController extends \BaseController {
 		$user->phone     = Input::get('phone');
 		$user->charge    = Input::get('charge');
 		$user->user_type = Input::get('user_type');
-		$user->is_admin  = ! empty(Input::get('is_admin'));
+		$user->is_admin  = Input::get('is_admin') ? TRUE : FALSE;
 
 		$user->save();
 
@@ -97,8 +97,8 @@ class UserController extends \BaseController {
 		$user->phone     = Input::get('phone');
 		$user->charge    = Input::get('charge');
 		$user->user_type = Input::get('user_type');
-		$user->is_admin  = ! empty(Input::get('is_admin'));
-		if( ! empty(Input::get('password'))):
+		$user->is_admin  = Input::get('is_admin') ? TRUE : FALSE;
+		if( Input::get('password') != ""):
 			$user->password  = Hash::make(Input::get('password'));
 		endif;
 

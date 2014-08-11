@@ -10,7 +10,14 @@ class CommitmentController extends \BaseController {
 	public function index()
 	{
 	  //
-	  $commitments = Commitment::all();
+	  $commitments = Commitment::join('users AS u1', 'u1.id', '=', 'commitments.government_user')
+      ->join('users AS u2', 'u2.id', '=', 'commitments.society_user')
+	    ->select(
+	    	'commitments.title', 
+	    	'commitments.plan', 
+	    	'u1.name AS government_user',
+	    	'u2.name AS society_user')
+	    ->get();
 	   return View::make('admin.commitments')
 	     ->with('commitments', $commitments);
 	}

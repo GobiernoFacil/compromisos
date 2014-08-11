@@ -22,10 +22,10 @@
     <tbody>
       @foreach ($commitments as $commitment)
       <tr>
-        <td>{{$commitment->username}}</td>
-        <td>{{$commitment->name}}</td>
-        <td>{{$commitment->phone}}</td>
-        <td>{{$commitment->charge}}</td>
+        <td>{{$commitment->title}}</td>
+        <td>{{$commitment->plan}}</td>
+        <td>{{$commitment->government_user}}</td>
+        <td>{{$commitment->society_user}}</td>
         <td>
           <!-- update link -->
           {{link_to('commitment/' . $commitment->id . '/edit', 'editar')}}
