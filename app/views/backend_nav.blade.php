@@ -12,8 +12,8 @@
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li class="active">{{link_to('admin', 'admin')}}</li>
-            <li>{{link_to('admin/compromisos', 'compromisos')}}</li>
-            <li>{{link_to('admin/usuarios', 'usuarios')}}</li>
+            <li>{{link_to('commitment', 'compromisos')}}</li>
+            <li>{{link_to('user', 'usuarios')}}</li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li></li>
