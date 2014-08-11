@@ -1,7 +1,9 @@
 <?php
 
 class CommitmentController extends \BaseController {
-
+	public function __construct(){
+		 $this->beforeFilter('auth');
+	}
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -10,8 +12,8 @@ class CommitmentController extends \BaseController {
 	public function index()
 	{
 	  //
-	  $commitments = Commitment::join('users AS u1', 'u1.id', '=', 'commitments.government_user')
-      ->join('users AS u2', 'u2.id', '=', 'commitments.society_user')
+	  $commitments = Commitment::leftjoin('users AS u1', 'u1.id', '=', 'commitments.government_user')
+      ->leftjoin('users AS u2', 'u2.id', '=', 'commitments.society_user')
 	    ->select(
 	    	'commitments.title', 
 	    	'commitments.plan', 

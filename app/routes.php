@@ -22,29 +22,12 @@ Route::get('compromisos', function(){
   return 'aquí irán los compromisos';
 });
 
-// THE LOGIN PAGE
-// * login form
-Route::get('login', function(){
-  return View::make('admin.login');
-});
-// * user validation
-Route::post('login', function(){
-  if(Auth::attempt(Input::only('username', 'password'))){
-    return Redirect::intended('admin');
-  }
-  else{
-    return Redirect::back()
-      ->withInput()
-      ->with('error', "los datos no coinciden");
-  }
-});
+// THE LOGIN
+Route::controller('login', 'LoginController');
 
 // * logout
-Route::get('logout', function(){
-  Auth::logout();
-  return Redirect::to('/')
-    ->with('message', 'chau :D');
-});
+Route::get('logout', 'LoginController@logout');
+
 
 // THE ADMIN SECTION
 // * menu: users, commitments, logout
