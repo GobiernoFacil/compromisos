@@ -4,12 +4,10 @@
 @include('backend_nav')
 
 <div class="container">
-<!-- users menu -->
-<ul>
-  <li>{{link_to('user/create', 'agregar usuario')}}</li>
-</ul>
+<h1>Usuarios <small>{{link_to('user/create', 'agregar usuario')}}</small></h1>
+
 <!-- users table -->
-  <table>
+  <table class="table">
     <thead>
       <tr>
         <th>user/email</th>
