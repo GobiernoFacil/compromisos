@@ -1,15 +1,24 @@
 @extends('backend')
 
 @section('content')
-  {{Form::open(['url' => 'admin/usuarios'])}}
-    <p>
-      <label for="username">Correo: </label>
-      <input type="text" name="username" id="username">
-    </p>
-    <p>
-      <label for="password">Password: </label>
-      <input type="password" name="password" id="password">
-    </p>
+@include('backend_nav')
+<div class="container">
+	<h1 class="title"> Agregar Usuario</h1>
+  {{Form::open(['url' => 'admin/usuarios',
+  'class' => 'form-horizontal'
+  ])}}
+  	<div class="form-group">
+      <label for="username" class="col-sm-2 control-label">Correo: </label>
+	  <div class="col-sm-8">
+      	<input type="text" name="username"  class="form-control" id="username">
+      </div>
+    </div>
+  	<div class="form-group">
+      <label for="password"  class="col-sm-2 control-label">Password: </label>
+	  <div class="col-sm-8">
+      <input type="password" name="password" class="form-control" id="password">
+	  </div>
+    </div>
     <p>
       <label for="name">Nombre: </label>
       <input type="text" name="name" id="name">
@@ -33,4 +42,5 @@
 
     <p><input type="submit" value="guardar"></p>
   {{Form::close()}}
+</div>
 @stop
