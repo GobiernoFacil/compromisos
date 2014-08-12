@@ -46,15 +46,18 @@ class CreateUsers extends Migration {
     });
 
     // CREATE THE EVENTS TABLE
-    Schema::create('events', function($table){
+    Schema::create('objectives', function($table){
       $table->increments('id');
       $table->integer('step_id');
+      $table->integer('step_num');
+      $table->integer('event_num');
       $table->enum('status', ['a', 'b', 'c', 'd']);
-      $table->text('description');
-      $table->string('agent');
-      $table->string('agent_url');
-      $table->text('advance_description');
-      $table->text('finish_description');
+      $table->text('description')->nullable();
+      $table->string('url')->nullable();
+      $table->string('agent')->nullable();
+      $table->string('agent_url')->nullable();
+      $table->text('advance_description')->nullable();
+      $table->text('finish_description')->nullable();
       $table->timestamps();
     });
 
@@ -72,7 +75,7 @@ class CreateUsers extends Migration {
     Schema::drop('users');
     Schema::drop('commitments');
     Schema::drop('steps');
-    Schema::drop('events');
+    Schema::drop('objectives');
   }
 
 }

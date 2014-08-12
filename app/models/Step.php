@@ -9,6 +9,6 @@ class Step extends Eloquent{
   }
 
   public function events(){
-    $this->hasMany('Event');
+    $this->hasMany('Objective');
   }
 }

@@ -57,7 +57,6 @@ class CommitmentController extends \BaseController {
 	  $Commitment->save();
 
 	  // CREATE THE FOUR STEPS
-	  $steps = [];
 	  for($i = 1; $i <= 4; $i++ ){
 	  	$step = new Step([
 	  		'commitment_id' => $Commitment->id,
@@ -66,7 +65,18 @@ class CommitmentController extends \BaseController {
 	  	]);
 
 	  	$step->save();
-	  	$steps[] = $step;
+
+	  	// CREATE THREE EVENTS FOR EVERY STEP
+	  	$events_num = $step->step_num == 4 ? 1 : 3;
+	  	for($j = 0; $j < $events_num; $j++){
+	  		$objective = new Objective([
+	  			'step_id'   => $step->id,
+	  			'step_num'  => $step->step_num,
+	  			'event_num' => $j + 1,
+	  			'status'    => 'a'
+	  		]);
+	  		$objective->save();
+	  	}
 	  }
 
 	  return Redirect::to('commitment');
