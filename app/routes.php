@@ -14,7 +14,7 @@
 // THE LANDING PAGE
 Route::get('/', function()
 {
-  return 'howdy!';
+  return View::make('compromisos.compromisos');
 });
 
 // THE BOARD
