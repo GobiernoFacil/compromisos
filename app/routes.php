@@ -43,19 +43,6 @@ Route::resource('user', 'UserController');
 //
 Route::resource('commitment', 'CommitmentController');
 
-
-// * commitments list
-Route::get('admin/compromisos', function(){
-  $commitments = Commitment::all();
-  return View::make('admin.commitments')
-    ->with('commitments', $commitments);
-});
-
-// * add commitment
-Route::get('admin/compromisos/agregar', function(){
-  return "aquí va el formulario para agregar compromiso";
-});
-
 // * add step
 Route::get('admin/avance/agregar', function(){
   return "aquí va el formulario para agregar un avance";
@@ -66,10 +53,6 @@ Route::get('admin/evento/agregar', function(){
   return "aquí va el formulario para agregar un evento";
 });
 
-// * save new commitment
-Route::post('admin/compromisos', function(){
-  return "aquí va lo de salvar un nuevo compromiso";
-});
 
 // * save new step
 Route::post('admin/avance', function(){
@@ -81,11 +64,6 @@ Route::post('admin/evento', function(){
   return "aquí va lo de salvar un nuevo evento";
 });
 
-// * update commitment form
-Route::get('admin/compromiso/{id}', function($id){
-  return "aquí va el formulario para editar un compromiso existente";
-})->where('id', '[1-9]+');
-
 // * update step form
 Route::get('admin/avance/{id}', function($id){
   return "aquí va el formulario para editar un avance existente";
@@ -96,11 +74,6 @@ Route::get('admin/evento/{id}', function($id){
   return "aquí va el formulario para editar un evento existente";
 })->where('id', '[1-9]+');
 
-// * update commitment
-Route::put('admin/compromiso/{id}', function($id){
-  return "aquí se actualiza un compromiso";
-})->where('id', '[1-9]+');
-
 // * update step
 Route::put('admin/avance/{id}', function($id){
   return "aquí se actualiza un avance";
@@ -109,11 +82,6 @@ Route::put('admin/avance/{id}', function($id){
 // * update event
 Route::put('admin/evento/{id}', function($id){
   return "aquí se actualiza un evento";
-})->where('id', '[1-9]+');
-
-// * delete commitment
-Route::delete('admin/compromiso/{id}', function($id){
-  return "aquí se le da matarili a un compromiso";
 })->where('id', '[1-9]+');
 
 // * delete step

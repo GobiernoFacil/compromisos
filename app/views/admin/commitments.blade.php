@@ -37,6 +37,9 @@
             <input type="submit" value="eliminar">
 
             {{Form::close()}}
+            @foreach($commitment->steps AS $step)
+            <p>{{$step->id}}</p>
+            @endforeach
         </td>
       </tr>
       @endforeach
