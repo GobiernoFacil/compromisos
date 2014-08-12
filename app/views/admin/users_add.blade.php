@@ -16,31 +16,50 @@
   	<div class="form-group">
       <label for="password"  class="col-sm-2 control-label">Password: </label>
 	  <div class="col-sm-8">
-      <input type="password" name="password" class="form-control" id="password">
+     	 <input type="password" name="password" class="form-control" id="password">
 	  </div>
     </div>
-    <p>
-      <label for="name">Nombre: </label>
-      <input type="text" name="name" id="name">
-    </p>
-    <p>
-      <label for="charge">Cargo: </label>
-      <input type="text" name="charge" id="charge">
-    </p>
-    <p>
-      <label for="phone">Teléfono: </label>
-      <input type="text" name="phone" id="phone">
-    </p>
-    <p>
-      <label for="user_type">Tipo: </label>
-      <input type="radio" name="user_type" checked value="society">ciudadano
-      <input type="radio" name="user_type" value="government">servidor público
-    </p>
-    <p>
-      <label>Es admin: <input type="checkbox" name="is_admin" value="1"></label>
-    </p>
-
-    <p><input type="submit" value="guardar"></p>
+  	<div class="form-group">
+      <label for="name" class="col-sm-2 control-label">Nombre: </label>
+	  <div class="col-sm-8">
+      	<input type="text" class="form-control"  name="name" id="name">
+	  </div>
+    </div>
+    <!--cargo-->
+  	<div class="form-group">
+      <label for="charge" class="col-sm-2 control-label">Cargo: </label>
+	  <div class="col-sm-8">
+      	<input type="text" name="charge" class="form-control" id="charge">
+	  </div>
+  	</div>
+    <!--Teléfono-->
+  	<div class="form-group">
+      <label for="phone" class="col-sm-2 control-label">Teléfono: </label>
+	  <div class="col-sm-8">
+      	<input type="text" name="phone" class="form-control" id="phone">
+	  </div>    
+  	</div>
+    <!--Tipo-->
+  	<div class="form-group">
+      <label for="user_type" class="col-sm-2 control-label">Tipo: </label>
+	  <div class="col-sm-8">
+      	<input type="radio" name="user_type" checked value="society">ciudadano
+      	<input type="radio" name="user_type" value="government">servidor público
+	  </div>
+  	</div>
+    <!--admin-->
+  	<div class="form-group">
+      <label for="is_admin" class="col-sm-2 control-label">Es admin:</label> 
+	  <div class="col-sm-8">
+    	  <input type="checkbox" name="is_admin" value="1">
+	  </div>
+  	</div>
+    <!--guardar-->
+    <div class="form-group">
+	  <div class="col-sm-8 col-sm-offset-2">
+		  <input type="submit" class="btn btn-lg btn-primary" value="guardar">
+	  </div>
+    </div>
   {{Form::close()}}
 </div>
 @stop

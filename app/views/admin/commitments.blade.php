@@ -4,12 +4,10 @@
 @include('backend_nav')
 
 <div class="container">
-<!-- users menu -->
-<ul>
-  <li>{{link_to('commitment/create', 'agregar compromiso')}}</li>
-</ul>
+<h1>Compromisos <small>{{link_to('commitment/create', 'agregar compromiso')}}</small></h1>
+
 <!-- users table -->
-  <table>
+  <table class="table">
     <thead>
       <tr>
         <th>Nombre</th>
