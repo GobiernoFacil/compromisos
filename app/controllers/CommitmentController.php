@@ -104,6 +104,15 @@ class CommitmentController extends \BaseController {
 	public function edit($id)
 	{
 		//
+		$commitment       = Commitment::find($id);
+		$government_users = User::where('user_type', 'government')->lists('name','id');
+	  $society_users    = User::where('user_type', 'society')->lists('name','id');
+		return View::make('admin.commitments_update')
+		  ->with([
+		  	  'commitment'       => $commitment,
+		  	  'government_users' => $government_users,
+		  	  'society_users'    => $society_users
+		  	]);
 	}
 
 
