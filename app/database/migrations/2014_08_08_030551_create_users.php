@@ -39,16 +39,21 @@ class CreateUsers extends Migration {
     // CREATE THE STEPS TABLE
     Schema::create('steps', function($table){
       $table->increments('id');
-      $table->integer('commitment_id');
+      $table->unsignedInteger('commitment_id');
       $table->date('ends');
       $table->enum('step_num', ['1','2','3','4']);
       $table->timestamps();
+
+      $table->foreign('commitment_id')
+        ->references('id')
+        ->on('commitments')
+        ->onDelete('cascade');
     });
 
     // CREATE THE EVENTS TABLE
     Schema::create('objectives', function($table){
       $table->increments('id');
-      $table->integer('step_id');
+      $table->unsignedInteger('step_id');
       $table->integer('step_num');
       $table->integer('event_num');
       $table->enum('status', ['a', 'b', 'c', 'd']);
@@ -59,6 +64,11 @@ class CreateUsers extends Migration {
       $table->text('advance_description')->nullable();
       $table->text('finish_description')->nullable();
       $table->timestamps();
+
+      $table->foreign('step_id')
+        ->references('id')
+        ->on('steps')
+        ->onDelete('cascade');
     });
 
   

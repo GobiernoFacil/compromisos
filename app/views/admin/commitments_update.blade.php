@@ -44,8 +44,14 @@
     <h4>Paso {{$step->step_num}}</h4>
     <p>
       <label>fecha límite</label>
-      <input type="text" name="step-{{$step->step_num}}">
+      <input type="text" name="step-{{$step->step_num}}" value="{{$step->ends}}">
     </p>
+    <h5>Eventos</h5>
+    <ul>
+      @foreach($step->objectives AS $objective)
+      <li>{{link_to('objective/' . $objective->id . '/edit', 'editar evento')}}</li>
+      @endforeach
+    </ul>
    </fieldset>
    @endforeach
    <!--submit-->

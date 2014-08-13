@@ -8,7 +8,7 @@ class Step extends Eloquent{
     return $this->belongsTo('Commitment');
   }
 
-  public function events(){
-    $this->hasMany('Objective');
+  public function objectives(){
+    return $this->hasMany('Objective');
   }
 }

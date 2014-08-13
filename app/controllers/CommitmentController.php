@@ -72,7 +72,7 @@ class CommitmentController extends \BaseController {
 	  		$objective = new Objective([
 	  			'step_id'   => $step->id,
 	  			'step_num'  => $step->step_num,
-	  			'event_num' => $j + 1,
+	  			'event_num' => $j,
 	  			'status'    => 'a'
 	  		]);
 	  		$objective->save();
@@ -104,7 +104,7 @@ class CommitmentController extends \BaseController {
 	public function edit($id)
 	{
 		//
-		$commitment       = Commitment::find($id);
+		$commitment       = Commitment::with('steps.objectives')->find($id);
 		$government_users = User::where('user_type', 'government')->lists('name','id');
 	  $society_users    = User::where('user_type', 'society')->lists('name','id');
 		return View::make('admin.commitments_update')
@@ -137,6 +137,9 @@ class CommitmentController extends \BaseController {
 	public function destroy($id)
 	{
 		//
+		$commitment = Commitment::find($id);
+		$commitment->delete();
+		return Redirect::to('commitment');
 	}
 
 
