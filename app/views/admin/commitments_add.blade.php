@@ -11,14 +11,14 @@
   <div class="form-group">
       <label for="title" class="col-sm-2 control-label">Título: </label>
 	  <div class="col-sm-8">
-      	<input type="text" name="title"  class="form-control" id="title">
+        <textarea name="title"  class="form-control" id="title"></textarea>
 	  </div>
   </div>
   <!--Plan-->
   <div class="form-group">
       <label for="plan" class="col-sm-2 control-label">Plan: </label>
 	  <div class="col-sm-8">
-      	<input type="text" name="plan"  class="form-control" id="plan">
+        <textarea name="plan"  class="form-control" id="plan"></textarea>
 	  </div>
   </div>
   <!--Usuario de Gobierno-->
