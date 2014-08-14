@@ -2,7 +2,7 @@
 
 class Step extends Eloquent{
 
-  protected $fillable = ['commitment_id', 'ends', 'step_num'];
+  protected $fillable = ['commitment_id', 'ends', 'description', 'step_num'];
   
   public function commitment(){
     return $this->belongsTo('Commitment');

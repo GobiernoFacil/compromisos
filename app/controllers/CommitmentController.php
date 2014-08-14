@@ -138,7 +138,9 @@ class CommitmentController extends \BaseController {
       Step::where([
         'commitment_id' => $commitment->id, 
         'step_num' => $i
-      ])->update(['ends' => Input::get('step-' . $i)]);
+      ])->update(['ends' => Input::get('step-' . $i), 
+      	'description' => Input::get('step-description-' . $i)
+      ]);
     }
 
 		return Redirect::to('commitment');
