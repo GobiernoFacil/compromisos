@@ -4,8 +4,10 @@
 @include('backend_nav')
 <div class="container">
 	<h1>Crear compromiso</h1>
-  {{Form::open(['url' => 'commitment',
-  'class'=>'form-horizontal'
+  {{Form::open([
+    'url'    => 'commitment/' . $commitment->id,
+    'method' => 'PUT',
+    'class'  =>'form-horizontal'
   ])}}
   <!--título-->
   <div class="form-group">

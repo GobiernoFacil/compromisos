@@ -59,9 +59,9 @@ class CommitmentController extends \BaseController {
 	  // CREATE THE FOUR STEPS
 	  for($i = 1; $i <= 4; $i++ ){
 	  	$step = new Step([
-	  		'commitment_id' => $Commitment->id,
-	  		'ends' => date('Y-m-d'),
-	  		'step_num' => $i
+	  	  'commitment_id' => $Commitment->id,
+	      'ends' => date('Y-m-d'),
+	  	  'step_num' => $i
 	  	]);
 
 	  	$step->save();
@@ -72,7 +72,7 @@ class CommitmentController extends \BaseController {
 	  		$objective = new Objective([
 	  			'step_id'   => $step->id,
 	  			'step_num'  => $step->step_num,
-	  			'event_num' => $j,
+	  			'event_num' => $j + 1,
 	  			'status'    => 'a'
 	  		]);
 	  		$objective->save();
@@ -125,6 +125,23 @@ class CommitmentController extends \BaseController {
 	public function update($id)
 	{
 		//
+		$commitment = Commitment::find($id);
+		$commitment->title = Input::get('title');
+		$commitment->plan = Input::get('plan');
+		$commitment->government_user = Input::get('government_user');
+		$commitment->society_user = Input::get('society_user');
+
+		$commitment->save();
+
+    // SAVE THE DATES FOR EACH STEP
+    for($i = 1; $i <= 4; $i++){
+      Step::where([
+        'commitment_id' => $commitment->id, 
+        'step_num' => $i
+      ])->update(['ends' => Input::get('step-' . $i)]);
+    }
+
+		return Redirect::to('commitment');
 	}
 
 

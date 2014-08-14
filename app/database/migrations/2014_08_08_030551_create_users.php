@@ -31,8 +31,12 @@ class CreateUsers extends Migration {
       $table->increments('id');
       $table->string('title');
       $table->string('plan');
-      $table->integer('government_user')->default(0);
-      $table->integer('society_user')->default(0);
+      $table->integer('government_user')
+        ->default(0)
+        ->nullable();
+      $table->integer('society_user')
+        ->default(0)
+        ->nullable();
       $table->timestamps();
     });
 
@@ -83,9 +87,9 @@ class CreateUsers extends Migration {
   {
     // REMOVE ALL THE TABLES
     Schema::drop('users');
-    Schema::drop('commitments');
-    Schema::drop('steps');
     Schema::drop('objectives');
+    Schema::drop('steps');
+    Schema::drop('commitments');
   }
 
 }
