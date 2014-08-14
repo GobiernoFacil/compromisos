@@ -50,7 +50,7 @@ class CreateUsers extends Migration {
       $table->date('ends');
       $table->enum('step_num', ['1','2','3','4']);
       $table->timestamps();
-      $table->text('description');
+      $table->text('description')->nullable();
 
       $table->foreign('commitment_id')
         ->references('id')
