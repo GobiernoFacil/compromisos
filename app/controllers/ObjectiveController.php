@@ -11,7 +11,8 @@ class ObjectiveController extends \BaseController {
 	public function edit($id)
 	{
 		//
-		return "hola n____n";
+		$objective = Objective::find($id);
+		return View::make('admin.objectives_update')->with('objective', $objective);
 	}
 
 
@@ -24,6 +25,11 @@ class ObjectiveController extends \BaseController {
 	public function update($id)
 	{
 		//
+		$objective = Objective::find($id);
+		$objective->fill(Input::all());
+		$objective->save();
+
+		return Redirect::to('commitment/' . $objective->step->commitment->id . '/edit');
 	}
 
 
