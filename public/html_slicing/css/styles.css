@@ -1109,7 +1109,34 @@ a.objetivo {
   #footer ul.logos li {
     margin: 10px 20px; } }
 
-@media (max-width: 767px) { }
+@media (max-width: 767px) {
+  section.mobile {
+    display: none; }
+  .list-title div {
+    display: none; }
+  .list-title .col-sm-3 {
+    display: block; }
+  .list-title h3 {
+    text-align: center; }
+  .detalle p.row, .detalle h4, .detalle .comentarios_link {
+    display: none; }
+  .list-key section div:nth-child(1):before, .list-key section div:nth-child(2):before, .list-key section div:nth-child(3):before, .list-key section div:nth-child(4):before {
+    color: #b3b3b3;
+    font: 500 13px 'Roboto';
+    line-height: 2.5;
+    margin-left: 5px; }
+  .list-key section div:nth-child(1):before {
+    content: "PRIMER AVANCE: 27 de octubre de 2014"; }
+  .list-key section div:nth-child(2):before {
+    content: "SEGUNDO AVANCE: 8 de marzo de 2015"; }
+  .list-key section div:nth-child(3):before {
+    content: "TERCER AVANCE: 22 de julio de 2015"; }
+  .list-key section div:nth-child(4):before {
+    content: "RESULTADO FINAL"; }
+  .cumplimiento ul li .detalle {
+    width: 120px; }
+    .cumplimiento ul li .detalle p {
+      font-size: 11px; } }
 
 @media (min-width: 768px) and (max-width: 991px) {
   .list-title h3 small {
