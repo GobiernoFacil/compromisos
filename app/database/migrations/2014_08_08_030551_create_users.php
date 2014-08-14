@@ -31,6 +31,9 @@ class CreateUsers extends Migration {
       $table->increments('id');
       $table->string('title');
       $table->string('plan');
+      $table->text('description');
+      $table->text('characteristics');
+      $table->text('status');
       $table->integer('government_user')
         ->default(0)
         ->nullable();
