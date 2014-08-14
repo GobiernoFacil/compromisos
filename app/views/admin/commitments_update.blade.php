@@ -45,10 +45,6 @@
    <fieldset>
     <h4>Paso {{$step->step_num}}</h4>
     <p>
-      <label>Descripción</label>
-      <input type="text" name="step-description-{{$step->step_num}}" value="{{$step->description}}">
-    </p>
-    <p>
       <label>fecha límite</label>
       <input type="text" name="step-{{$step->step_num}}" value="{{$step->ends}}">
     </p>
