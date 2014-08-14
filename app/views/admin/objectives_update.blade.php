@@ -8,7 +8,11 @@
     'route'  =>['objective.update', $objective->id],
     'method' => 'PUT'
   ])}}
-  
+  <!--TITLE-->
+  <p>
+    {{Form::label('title', 'Título: ')}}
+    {{Form::textarea('title')}}
+  </p>  
   <!--DESCRIPTION-->
   <p>
     {{Form::label('description', 'descripción: ')}}

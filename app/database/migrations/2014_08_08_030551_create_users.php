@@ -57,7 +57,7 @@ class CreateUsers extends Migration {
         ->onDelete('cascade');
     });
 
-    // CREATE THE EVENTS TABLE
+    // CREATE THE OBJECTIVES TABLE
     Schema::create('objectives', function($table){
       $table->increments('id');
       $table->unsignedInteger('step_id');
@@ -71,6 +71,7 @@ class CreateUsers extends Migration {
       $table->text('advance_description')->nullable();
       $table->text('finish_description')->nullable();
       $table->timestamps();
+      $table->text('title')->nullable();
 
       $table->foreign('step_id')
         ->references('id')
