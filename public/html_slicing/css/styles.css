@@ -1109,6 +1109,18 @@ a.objetivo {
   #footer ul.logos li {
     margin: 10px 20px; } }
 
+@media (max-width: 767px) { }
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .list-title h3 small {
+    font-size: 10px; }
+  .ct p, .resultado_link a {
+    font-size: 13px; } }
+
+@media (min-width: 992px) { }
+
+@media (min-width: 1200px) { }
+
 /* =Print
 ----------------------------------------------- */
 @media print { }
