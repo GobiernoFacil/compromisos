@@ -4,8 +4,10 @@
 @include('backend_nav')
 <div class="container">
 	<h1>Crear compromiso</h1>
-  {{Form::open(['url' => 'commitment',
-  'class'=>'form-horizontal'
+  {{Form::open([
+    'url'   => 'commitment',
+    'class' =>'form-horizontal',
+    'files' => TRUE
   ])}}
   <!--título-->
   <div class="form-group">
@@ -18,7 +20,7 @@
   <div class="form-group">
       <label for="plan" class="col-sm-2 control-label">Plan: </label>
 	  <div class="col-sm-8">
-        <textarea name="plan"  class="form-control" id="plan"></textarea>
+        {{Form::file('plan')}}
 	  </div>
   </div>
   <!--Descripción-->
