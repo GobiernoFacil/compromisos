@@ -791,6 +791,11 @@ input:focus, select:focus, textarea:focus {
   background: #f5f5f5 url(../img/colours.png) repeat-x center top;
   padding: 90px 0 30px 0; }
 
+#about {
+  padding: 50px 0 60px; }
+  #about ul {
+    padding-left: 30px; }
+
 /* = elementos del tablero
 --------------------*/
 .guia {
