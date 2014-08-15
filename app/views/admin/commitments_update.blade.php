@@ -7,6 +7,7 @@
   {{Form::open([
     'url'    => 'commitment/' . $commitment->id,
     'method' => 'PUT',
+    'files'  => TRUE,
     'class'  =>'form-horizontal'
   ])}}
   <!--título-->
@@ -20,7 +21,10 @@
   <div class="form-group">
       <label for="plan" class="col-sm-2 control-label">Plan: </label>
 	  <div class="col-sm-8">
-      	<input type="text" name="plan"  class="form-control" id="plan" value="{{$commitment->plan}}">
+      	{{Form::file('plan')}}
+        @if(!empty($commitment->plan))
+        <a href="/files/{{$commitment->plan}}" download>descargar</a>
+        @endif
 	  </div>
   </div>
   <!--Usuario de Gobierno-->

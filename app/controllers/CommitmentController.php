@@ -1,6 +1,9 @@
 <?php
 
 class CommitmentController extends \BaseController {
+
+	const FILES_DIR = './public/files';
+
 	public function __construct(){
 		 $this->beforeFilter('auth');
 	}
@@ -53,15 +56,22 @@ class CommitmentController extends \BaseController {
 	public function store()
 	{
 	  //
-	  $Commitment = new Commitment(Input::all());
-	  $Commitment->save();
+	  $commitment = new Commitment(Input::all());
+
+	  if(Input::hasFile('plan')){
+	  	$name = uniqid() . '.' . Input::file('plan')->getClientOriginalExtension();
+	  	Input::file('plan')->move(self::FILES_DIR, $name);
+	  	$commitment->plan = $name;
+	  }
+
+	  $commitment->save();
 
 	  // CREATE THE FOUR STEPS
 	  for($i = 1; $i <= 4; $i++ ){
 	  	$step = new Step([
-	  	  'commitment_id' => $Commitment->id,
-	      'ends' => date('Y-m-d'),
-	  	  'step_num' => $i
+	  	  'commitment_id' => $commitment->id,
+	      'ends'          => date('Y-m-d'),
+	  	  'step_num'      => $i
 	  	]);
 
 	  	$step->save();
@@ -127,9 +137,17 @@ class CommitmentController extends \BaseController {
 		//
 		$commitment = Commitment::find($id);
 		$commitment->title = Input::get('title');
-		$commitment->plan = Input::get('plan');
 		$commitment->government_user = Input::get('government_user');
 		$commitment->society_user = Input::get('society_user');
+
+		// update the new file if exist, and remove the previous file
+		if(Input::hasFile('plan')){
+			@unlink(self::FILES_DIR . '/' . $commitment->plan);
+
+	  	$name = uniqid() . '.' . Input::file('plan')->getClientOriginalExtension();
+	  	Input::file('plan')->move(self::FILES_DIR, $name);
+	  	$commitment->plan = $name;
+	  }
 
 		$commitment->save();
 
@@ -155,6 +173,11 @@ class CommitmentController extends \BaseController {
 	{
 		//
 		$commitment = Commitment::find($id);
+
+		if( ! empty($commitment->plan) ){
+			@unlink(self::FILES_DIR . '/' . $commitment->plan);
+	  }
+
 		$commitment->delete();
 		return Redirect::to('commitment');
 	}

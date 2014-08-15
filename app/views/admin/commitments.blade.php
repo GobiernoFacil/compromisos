@@ -21,7 +21,11 @@
       @foreach ($commitments as $commitment)
       <tr>
         <td>{{$commitment->title}}</td>
-        <td>{{$commitment->plan}}</td>
+        <td>
+          @if(!empty($commitment->plan))
+            <a href="/files/{{$commitment->plan}}" download>descargar</a>
+          @endif
+        </td>
         <td>{{$commitment->government_user}}</td>
         <td>{{$commitment->society_user}}</td>
         <td>
