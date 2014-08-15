@@ -3,7 +3,22 @@
 @section('content')
 @include('backend_nav')
 <div class="container">
-	<h1>Crear compromiso</h1>
+	<div class="row">
+		<div class="col-lg-12">
+		 <ol class="breadcrumb">
+                            <li>
+                                <i class="fa fa-dashboard"></i>  <a href="/commitment">Dashboard</a>
+                            </li>
+                            <li class="active">
+                                <i class="fa fa-edit"></i> Crear Compromiso
+                            </li>
+                        </ol>
+		</div>
+	</div>
+<div class="bs-docs-featurette">
+	<h1 class="bs-docs-featurette-title">Crear compromiso</h1>
+	<hr class="half-rule">
+
   {{Form::open([
     'url'   => 'commitment',
     'class' =>'form-horizontal',
@@ -65,5 +80,7 @@
   	</div>
   </div>
   {{Form::close()}}
+   </div>
+
 </div>
 @stop

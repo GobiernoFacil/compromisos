@@ -24,6 +24,11 @@ Route::controller('login', 'LoginController');
 // * logout
 Route::get('logout', 'LoginController@logout');
 
+// THE ADMIN SECTION
+// * menu: users, commitments, logout
+Route::get('dashboard', function(){
+  return View::make('admin.dashboard');
+});
 
 // THE USER LOGIC
 // 

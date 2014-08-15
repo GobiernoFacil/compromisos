@@ -11,8 +11,9 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li {{ Request::is( 'commitment') ? 'class="active"' : '' }}>{{link_to('commitment', 'compromisos')}}</li>
-            <li {{ Request::is( 'user') ? 'class="active"' : '' }}>{{link_to('user', 'usuarios')}}</li>
+            <li {{ Request::is( 'dashboard') ? 'class="active"' : '' }}>{{link_to('dashboard', 'Dashboard')}}</li>
+            <li {{ Request::is( 'commitment') ? 'class="active"' : '' }}>{{link_to('commitment', 'Compromisos')}}</li>
+            <li {{ Request::is( 'user') ? 'class="active"' : '' }}>{{link_to('user', 'Usuarios')}}</li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li></li>

@@ -11,7 +11,7 @@ class LoginController extends \BaseController{
 
   public function postIndex(){
     if(Auth::attempt(Input::only('username', 'password'))){
-      return Redirect::intended('commitment');
+      return Redirect::intended('dashboard');
     }
     else{
       return Redirect::back()
