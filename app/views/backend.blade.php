@@ -8,6 +8,7 @@
 	<meta name="viewport" content="width=device-width">
 	<link rel="stylesheet" href="/css/admin/bootstrap.min.css">
 	<link rel="stylesheet" href="/css/admin/docs.min.css">
+	<link rel="stylesheet" href="/css/admin/dev.css">
 </head>
 <body>
   @yield('content')

@@ -10,12 +10,12 @@
   ])}}
   <!--TITLE-->
   <p>
-    {{Form::label('title', 'Título: ')}}
+    {{Form::label('title', 'Actividad: ')}}
     {{Form::textarea('title')}}
   </p>  
   <!--DESCRIPTION-->
   <p>
-    {{Form::label('description', 'descripción: ')}}
+    {{Form::label('description', 'Objetivo: ')}}
     {{Form::textarea('description')}}
   </p>
 
@@ -27,13 +27,13 @@
 
   <!--AGENT-->
   <p>
-    {{Form::label('agent', 'Agente: ')}}
+    {{Form::label('agent', 'Responsable: ')}}
     {{Form::text('agent')}}
   </p>
 
   <!--AGENT'S URL-->
   <p>
-    {{Form::label('agent_url', 'Agente URL: ')}}
+    {{Form::label('agent_url', 'Responsable URL: ')}}
     {{Form::text('agent_url')}}
   </p>
 
