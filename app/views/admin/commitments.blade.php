@@ -4,7 +4,16 @@
 @include('backend_nav')
 
 <div class="container">
-<h1>Compromisos <small>{{link_to('commitment/create', 'agregar compromiso')}}</small></h1>
+	<div class="row">
+	<div class="col-lg-12">
+		<h1 class="page-header">Tablero de control público de seguimiento del PA15.</h1>
+        <p class="lead">	El objetivo del tablero de control es servir como una herramienta de seguimiento 
+        de la implementación de los 26 compromisos que componen el Plan de Acción 2013-2015 de la Alianza para el Gobierno Abierto.</p>
+	</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-12">
+				<h2 class="page-header">Compromisos <small>{{link_to('commitment/create', 'agregar compromiso')}}</small></h2>
 
 <!-- users table -->
   <table class="table">
@@ -87,5 +96,6 @@
       @endforeach
     </tbody>
   </table>
+  </div></div>
 </div>
 @stop
