@@ -1,0 +1,13 @@
+{
+  "name": "Plataforma de control público de seguimiento",
+  "version": "1.0",
+  "dependencies": {
+    "jquery": "latest",
+    "underscore": "latest",
+    "backbone": "latest",
+    "text": "~2.0.12",
+    "requirejs": "~2.1.14",
+    "r.js": "~2.1.14",
+    "tinymce": "~4.1.3"
+  }
+}
