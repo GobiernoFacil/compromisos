@@ -11,7 +11,6 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li {{ Request::is( 'admin') ? 'class="active"' : '' }}>{{link_to('admin', 'admin')}}</li>
             <li {{ Request::is( 'commitment') ? 'class="active"' : '' }}>{{link_to('commitment', 'compromisos')}}</li>
             <li {{ Request::is( 'user') ? 'class="active"' : '' }}>{{link_to('user', 'usuarios')}}</li>
           </ul>

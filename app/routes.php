@@ -12,11 +12,7 @@
 */
 
 // THE LANDING PAGE
-Route::get('/', function()
-{
-  return View::make('compromisos.compromisos');
-});
-
+Route::resource('/', 'CommitmentFrontController');
 // THE BOARD
 Route::get('compromisos', function(){
   return 'aquí irán los compromisos';
@@ -28,11 +24,6 @@ Route::controller('login', 'LoginController');
 // * logout
 Route::get('logout', 'LoginController@logout');
 
-// THE ADMIN SECTION
-// * menu: users, commitments, logout
-Route::get('admin', function(){
-  return View::make('admin.admin');
-});
 
 // THE USER LOGIC
 // 

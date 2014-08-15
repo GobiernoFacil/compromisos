@@ -1,0 +1,47 @@
+.navbar>.container   a.navbar-brand {
+      background: url(/img/logo.png) no-repeat 50%;
+      height: 47px;
+      width: 40px;
+      margin: 0 30px;
+      display: block;
+      border: 0;
+      text-indent: -999em;
+      overflow: hidden;
+      background-repeat: no-repeat;
+      text-align: left;
+      direction: ltr; }
+      
+      
+.commitment_steps {
+	background: #f2f2f2;
+	color: #999;
+}
+
+.step { width: 25%;}
+	.step .objective {
+		float: left;
+		width: 31%;
+		margin: 1%;
+		height: 20px;
+	}
+	
+/*colores*/
+.completado {
+  background: #00a76f;
+  color: #00a76f; }
+  .completado:hover {
+    background: #089364; }
+
+.proceso {
+  background: #ffe460;
+  color: #ffe460; }
+  .proceso:hover {
+    background: #e9cf52; }
+
+.sin_avance {
+  background: #e6e6e6;
+  color: #e6e6e6;
+  border: 1px solid #e6e6e6; }
+  .sin_avance:hover {
+    background: #cccccc; 
+     color: #cccccc; }
