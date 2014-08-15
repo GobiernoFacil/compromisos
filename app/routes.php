@@ -12,11 +12,7 @@
 */
 
 // THE LANDING PAGE
-Route::get('/', function()
-{
-  return View::make('compromisos.compromisos');
-});
-
+Route::resource('/', 'CommitmentFrontController');
 // THE BOARD
 Route::get('compromisos', function(){
   return 'aquí irán los compromisos';
