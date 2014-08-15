@@ -3,13 +3,16 @@
 @section('content')
 @include('backend_nav')
 <div class="container">
-	<h1>Crear compromiso</h1>
+	
   {{Form::open([
     'url'    => 'commitment/' . $commitment->id,
     'method' => 'PUT',
     'files'  => TRUE,
     'class'  =>'form-horizontal'
   ])}}
+  <div class="bs-docs-featurette">
+	<h1 class="bs-docs-featurette-title">Editar compromiso</h1>
+	<hr class="half-rule">
   <!--título-->
   <div class="form-group">
     <label for="title" class="col-sm-2 control-label">Título: </label>
@@ -41,24 +44,71 @@
       {{Form::select('society_user', $society_users, $commitment->society_user, ['class'=>'form-control'])}}
 	  </div>
    </div>
+	</div>
 
    <!-- maromas nuevas -->
    @foreach($commitment->steps AS $step)
    <!-- aquí se edita la fecha límite para cada paso y se 
    generan los links para editar cada sección de los pasos -->
    <fieldset>
-    <h4>Paso {{$step->step_num}}</h4>
-    <p>
-      <label>fecha límite</label>
-      <input type="text" name="step-{{$step->step_num}}" value="{{$step->ends}}">
-    </p>
-    <h5>Eventos</h5>
-    <ul>
+   <h3 class="text-center">
+   	<?php  switch ($step->step_num):
+	   case 1:
+	       echo "<p>Primer Avance</p>";
+	       break;
+	   case 2:
+	       echo "<p>Segundo Avance</p>";
+	       break;
+	   case 3:
+	       echo "<p>Tercer Avance</p>";
+	       break;
+	   case 4:
+	       echo "<p>Resultado Final</p>";
+	       break;
+	   default:
+	endswitch;?>
+  </h3>
+    <div class="form-group">
+      <label for="step-{{$step->step_num}}" class="col-sm-2 control-label">Fecha límite</label>
+      <div class="col-sm-8">
+	      <input type="text" name="step-{{$step->step_num}}" class="form-control" value="{{$step->ends}}">
+      </div>
+    </div>
+      <?php $r=1;?>
       @foreach($step->objectives AS $objective)
-      <li>{{link_to('objective/' . $objective->id . '/edit', 'editar evento')}}</li>
+      <div class="form-group">
+      	<label class="col-sm-2 control-label">Actividad {{$r++}}:</label>
+      
+	  	<div class="col-sm-8">
+	  		@if ($objective->title)
+      		<h5>{{ $objective->title }}</h5>
+      		<?php  switch ($objective->status):
+				    case 'a':
+				        $status = "sin_avance";
+				        $status_t = " Sin avance";
+				        break;
+				    case 'b':
+				        $status = "proceso";
+				        $status_t = "En proceso";
+				        break;
+				    case 'c':
+				        $status = "completado";
+				        $status_t = "Completado";
+				        break;
+				    default:
+				        $status = "sin_avance";
+				        $status_t = " Sin avance";
+				 endswitch;?>
+      		<p><span class="{{$status}}"> </span> {{$status_t}} | {{link_to('objective/' . $objective->id . '/edit', 'Editar Actividad')}}</p>
+      		@else 
+      			<h5>{{link_to('objective/' . $objective->id . '/edit', 'Agregar Actividad')}}</h5>
+      		
+      		@endif
+	  	</div>
+      </div>
       @endforeach
-    </ul>
    </fieldset>
+   <hr class="half-rule">
    @endforeach
    <!--submit-->
   <div class="form-group">
