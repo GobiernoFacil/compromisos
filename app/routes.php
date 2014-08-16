@@ -14,8 +14,8 @@
 // THE LANDING PAGE
 Route::resource('/', 'CommitmentFrontController');
 // THE BOARD
-Route::get('compromisos', function(){
-  return 'aquí irán los compromisos';
+Route::get('about', function(){
+  	   return View::make('compromisos.about');
 });
 
 // THE LOGIN
