@@ -13,5 +13,7 @@
 </head>
 <body>
   @yield('content')
+  <!-- the development JS -->
+  <script data-main="/js/admin.main" src="/js/bower_components/requirejs/require.js"></script>
 </body>
 </html>
