@@ -3,16 +3,33 @@
 @section('content')
 @include('backend_nav')
 <div class="container">
+  <!--breadcrumb-->
+	<div class="row">
+		<div class="col-lg-12">
+			<ol class="breadcrumb">
+             	<li>
+             		<i class="fa fa-dashboard"></i>  <a href="/dashboard">Dashboard</a>
+                </li>
+                <li>
+             		<i class="fa fa-tasks"></i>  <a href="/commitment">Compromisos</a>
+                </li>
+                <li class="active">
+                    <i class="fa fa-edit"></i>Editar Compromiso
+                </li>
+            </ol>
+		</div>
+	</div>
 	
+<div class="row">
+		<div class="col-lg-12">
   {{Form::open([
     'url'    => 'commitment/' . $commitment->id,
     'method' => 'PUT',
     'files'  => TRUE,
     'class'  =>'form-horizontal'
   ])}}
-  <div class="bs-docs-featurette">
-	<h1 class="bs-docs-featurette-title">Editar compromiso</h1>
-	<hr class="half-rule">
+  			<h1 class="page-header text-center">Editar compromiso</h1>	
+
   <!--título-->
   <div class="form-group">
     <label for="title" class="col-sm-2 control-label">Título: </label>
@@ -44,7 +61,7 @@
       {{Form::select('society_user', $society_users, $commitment->society_user, ['class'=>'form-control'])}}
 	  </div>
    </div>
-	</div>
+	
 
    <!-- maromas nuevas -->
    @foreach($commitment->steps AS $step)
@@ -54,13 +71,13 @@
    <h3 class="text-center">
    	<?php  switch ($step->step_num):
 	   case 1:
-	       echo "<p>Primer Avance</p>";
+	       echo "<p>Primer Meta</p>";
 	       break;
 	   case 2:
-	       echo "<p>Segundo Avance</p>";
+	       echo "<p>Segunda Meta</p>";
 	       break;
 	   case 3:
-	       echo "<p>Tercer Avance</p>";
+	       echo "<p>Tercer Meta</p>";
 	       break;
 	   case 4:
 	       echo "<p>Resultado Final</p>";
@@ -108,7 +125,6 @@
       </div>
       @endforeach
    </fieldset>
-   <hr class="half-rule">
    @endforeach
    <!--submit-->
   <div class="form-group">
@@ -117,5 +133,9 @@
   	</div>
   </div>
   {{Form::close()}}
+  			<hr class="half-rule">
+
+</div>
+</div>
 </div>
 @stop

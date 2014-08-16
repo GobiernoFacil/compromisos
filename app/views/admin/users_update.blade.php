@@ -3,7 +3,27 @@
 @section('content')
 @include('backend_nav')
 <div class="container">
-	<h1>Editar Usuario:<small>{{$user->username}}</small></h1>
+	<!--breadcrumb-->
+	<div class="row">
+		<div class="col-lg-12">
+			<ol class="breadcrumb">
+             	<li>
+             		<i class="fa fa-dashboard"></i>  <a href="/dashboard">Dashboard</a>
+                </li>
+                <li>
+             		<i class="fa fa-user"></i>  <a href="/user">Usuarios</a>
+                </li>
+                <li class="active">
+                    <i class="fa fa-edit"></i> Editar Usuario: <small>{{$user->username}}</small>
+                </li>
+            </ol>
+		</div>
+	</div>
+	 <div class="row">
+ 	<div class="col-lg-12">
+
+	<h1 class="page-header text-center"> Editar Usuario <small>({{$user->username}})</small></h1>
+	
   {{Form::open([
     'url'    => 'user/' . $user->id,
     'method' => 'PUT',
@@ -66,5 +86,7 @@
       </div>
     </div>
   {{Form::close()}}
+ 	</div>
+	 </div>
 </div>
 @stop

@@ -3,17 +3,33 @@
 @section('content')
 @include('backend_nav')
 <?php  switch ($objective->step_num):
-	case 1: $step_num = "Primer Avance"; break;
-   case 2:        $step_num = "Segundo Avance";break;
-   case 3:        $step_num = "Tercer Avance";break;
+	case 1: $step_num = "Primer Meta"; break;
+   case 2:        $step_num = "Segunda Meta";break;
+   case 3:        $step_num = "Tercer Meta";break;
    case 4:        $step_num = "Resultado Final";break;
    default:        $step_num ="Resultado Final";break;
 endswitch;?>
 <div class="container">
- <div class="bs-docs-featurette">
-	<h1 class="bs-docs-featurette-title">Editar Actividad {{$objective->event_num}} <small>({{$step_num}})</small></h1>
- </div>
-	<hr class="half-rule">
+<!--breadcrumb-->
+	<div class="row">
+		<div class="col-lg-12">
+			<ol class="breadcrumb">
+             	<li>
+             		<i class="fa fa-dashboard"></i>  <a href="/dashboard">Dashboard</a>
+                </li>
+                <li>
+             		<i class="fa fa-tasks"></i>  <a href="/commitment">Compromisos</a>
+                </li>
+                <li class="active">
+                    <i class="fa fa-edit"></i> Editar Actividad {{$objective->event_num}} ({{$step_num}})
+                </li>
+            </ol>
+		</div>
+	</div>
+ <div class="row">
+ 	<div class="col-lg-12">
+
+	<h1 class="page-header text-center">Editar Actividad {{$objective->event_num}} <small>({{$step_num}})</small></h1>
   {{Form::model($objective, [
     'route'  =>['objective.update', $objective->id],
     'method' => 'PUT',
@@ -76,5 +92,7 @@ endswitch;?>
   </div>
   
   {{Form::close()}}
+   </div>
+ </div>
 </div>
 @stop
