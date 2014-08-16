@@ -47,6 +47,27 @@
         @endif
 	  </div>
   </div>
+    <!--Descripción-->
+  <div class="form-group">
+      <label for="description" class="col-sm-2 control-label">Descripción: </label>
+	  <div class="col-sm-8">
+        <textarea name="description"  class="form-control" id="description"> {{$commitment->description}}</textarea>
+	  </div>
+  </div>
+  <!--Características-->
+  <div class="form-group">
+      <label for="characteristics" class="col-sm-2 control-label">Características: </label>
+	  <div class="col-sm-8">
+        <textarea name="characteristics"  class="form-control" id="characteristics">{{$commitment->characteristics}}</textarea>
+	  </div>
+  </div>
+  <!--Estado-->
+  <div class="form-group">
+      <label for="status" class="col-sm-2 control-label">Estado: </label>
+	  <div class="col-sm-8">
+        <textarea name="status"  class="form-control" id="status">{{$commitment->status}}</textarea>
+	  </div>
+  </div>
   <!--Usuario de Gobierno-->
   <div class="form-group">
       <label for="government_user" class="col-sm-2 control-label">Usuario de gobierno</label>
