@@ -45,3 +45,11 @@
   .sin_avance:hover {
     background: #cccccc; 
      color: #cccccc; }
+     
+/* alianza*/
+.navbar { margin-bottom: 0;}
+#alianza {
+  background: #f5f5f5 url(/img/colours.png) repeat-x center top;
+  padding: 20px 0 0; 
+  margin-bottom: 20px;
+ }

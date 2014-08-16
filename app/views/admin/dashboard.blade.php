@@ -21,14 +21,14 @@
                                         <i class="fa fa-tasks fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge">03</div>
+                                        <div class="huge">{{count($commitments)}}</div>
                                         <div>Compromisos</div>
                                     </div>
                                 </div>
                             </div>
-                            <a href="/commitment">
+                            <a href="{{ (count($users) == 0 ) ? '/commitment/create' : '/commitment'}}">
                                 <div class="panel-footer">
-                                    <span class="pull-left">Ver Compromisos</span>
+                                    <span class="pull-left">{{ (count($users) == 0 ) ? 'Crear Compromisos' : 'Ver Compromisos'}}</span>                                  
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                     <div class="clearfix"></div>
                                 </div>
@@ -43,14 +43,14 @@
                                         <i class="fa fa-user fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge">13</div>
+                                        <div class="huge">{{count($users)}}</div>
                                         <div>Usuarios</div>
                                     </div>
                                 </div>
                             </div>
-                            <a href="/user">
+                            <a href="{{ (count($users) == 0 ) ? '/user/create' : '/user'}}">
                                 <div class="panel-footer">
-                                    <span class="pull-left">Ver Usuarios</span>
+                                    <span class="pull-left">{{ (count($users) == 0 ) ? 'Crear Usuario' : 'Ver Usuarios'}}</span>                                  
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                     <div class="clearfix"></div>
                                 </div>
