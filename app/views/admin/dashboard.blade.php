@@ -1,4 +1,4 @@
-@extends('backend')
+@extends('backend', ['title' => 'Dashboard | Tablero de control público de seguimiento del PA15.'])
 
 <!-- the menu -->
 @section('content')

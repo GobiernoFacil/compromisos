@@ -1,4 +1,4 @@
-@extends('backend')
+@extends('backend', ['title' => 'Compromisos | Tablero de control público de seguimiento del PA15.'])
 
 @section('content')
 @include('backend_nav')
