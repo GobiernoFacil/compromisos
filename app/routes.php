@@ -24,7 +24,6 @@ Route::controller('login', 'LoginController');
 // * logout
 Route::get('logout', 'LoginController@logout');
 
-
 // THE USER LOGIC
 // 
 Route::resource('user', 'UserController');

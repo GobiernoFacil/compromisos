@@ -21,6 +21,7 @@ class CreateUsers extends Migration {
       $table->string('charge');
       $table->string('phone');
       $table->enum('user_type', ['government', 'society']);
+      $table->string('remember_token')->nullable();
       $table->text('remember_token')->nullable();
       $table->boolean('is_admin');
       $table->timestamps();
