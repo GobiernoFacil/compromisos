@@ -13,6 +13,8 @@ class UserController extends \BaseController {
 	public function index()
 	{
 	  //
+	  if(! Auth::user()->is_admin ) return Redirect::to('user/' . Auth::user()->id . '/edit');
+	  
 	  $users = User::all();
 	  return View::make('admin.users')
 	  ->with('users', $users);
@@ -27,6 +29,8 @@ class UserController extends \BaseController {
 	public function create()
 	{
 		//
+		if(! Auth::user()->is_admin ) return Redirect::to('user/' . Auth::user()->id . '/edit');
+
 		return View::make('admin.users_add');
 	}
 
@@ -38,6 +42,8 @@ class UserController extends \BaseController {
 	 */
 	public function store()
 	{
+		if(! Auth::user()->is_admin ) return Redirect::to('user/' . Auth::user()->id . '/edit');
+
 	  $user = Input::all();
 	  $user['password'] = Hash::make($user['password']);
 	  $user['is_admin'] = ! empty($user['is_admin']);
@@ -79,6 +85,7 @@ class UserController extends \BaseController {
 	public function edit($id)
 	{
 		//
+		$id = Auth::user()->is_admin ? (int)$id : Auth::user()->id;
 		$user = User::find($id);
 		return View::make('admin.users_update')->with('user', $user);
 	}
@@ -93,14 +100,19 @@ class UserController extends \BaseController {
 	public function update($id)
 	{
 		//
+		$id = Auth::user()->is_admin ? (int)$id : Auth::user()->id;
 		$user = User::find($id);
 
 		$user->username  = Input::get('username');
 		$user->name      = Input::get('name');
 		$user->phone     = Input::get('phone');
 		$user->charge    = Input::get('charge');
-		$user->user_type = Input::get('user_type');
-		$user->is_admin  = Input::get('is_admin') ? TRUE : FALSE;
+		
+		if(Auth::user()->is_admin){
+			$user->user_type = Input::get('user_type');
+		  $user->is_admin  = Input::get('is_admin') ? TRUE : FALSE;
+		}
+
 		if( Input::get('password') != ""):
 			$user->password  = Hash::make(Input::get('password'));
 		endif;
@@ -119,6 +131,8 @@ class UserController extends \BaseController {
 	public function destroy($id)
 	{
 		//
+		if(! Auth::user()->is_admin ) return Redirect::to('user/' . Auth::user()->id . '/edit');
+
 		$user = User::find($id);
 		$user->delete();
 		return Redirect::to('user');

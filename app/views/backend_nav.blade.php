@@ -13,11 +13,17 @@
           <ul class="nav navbar-nav">
             <li {{ Request::is( 'dashboard') ? 'class="active"' : '' }}>{{link_to('dashboard', 'Dashboard')}}</li>
             <li {{ Request::is( 'commitment') ? 'class="active"' : '' }}>{{link_to('commitment', 'Compromisos')}}</li>
-            <li {{ Request::is( 'user') ? 'class="active"' : '' }}>{{link_to('user', 'Usuarios')}}</li>
+            <li {{ Request::is( 'user') ? 'class="active"' : '' }}>
+            @if(Auth::user()->is_admin)
+              {{link_to('user', 'Usuarios')}}
+            @else
+              {{link_to('user/' . Auth::user()->id . '/edit', 'Mi perfil')}}
+            @endif
+            </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li></li>
-            <li ><a>Hola Arturo</a></li>
+            <li ><a>Hola {{Auth::user()->name}}</a></li>
             <li class="active">{{link_to('logout', 'salir')}}</li>
           </ul>
         </div><!--/.nav-collapse -->
