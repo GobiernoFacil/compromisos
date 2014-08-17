@@ -1,19 +1,17 @@
-@extends('backend')
+@extends('backend', ['title' => 'Compromisos | Tablero de control público de seguimiento del PA15.'])
 
 @section('content')
 @include('backend_nav')
 
 <div class="container">
-	<div class="row">
-	<div class="col-lg-12">
-		<h1 class="page-header">Tablero de control público de seguimiento del PA15.</h1>
-        <p class="lead">	El objetivo del tablero de control es servir como una herramienta de seguimiento 
-        de la implementación de los 26 compromisos que componen el Plan de Acción 2013-2015 de la Alianza para el Gobierno Abierto.</p>
-	</div>
+	<div class="bs-docs-featurette bs-titles-pg">
+		<h1 class="bs-docs-featurette-title">Compromisos <small>{{link_to('commitment/create', 'Crear Compromiso', array('class'=>'btn btn-primary'))}}</small></h1>
+		<p class="lead"> Los compromisos cuentan con planes de trabajo con tres metas semestrales para su cumplimiento. Cada meta contiene actividades específicas a realizarse en periodos de 6 meses para cumplirlas, las cuales tienen indicadores, medios de verificación y responsables puntuales.</p>
+
+		
 	</div>
 	<div class="row">
 		<div class="col-lg-12">
-				<h2 class="page-header">Compromisos <small>{{link_to('commitment/create', 'agregar compromiso')}}</small></h2>
 
 <!-- users table -->
   <table class="table">

@@ -1,9 +1,27 @@
-@extends('backend')
+@extends('backend', ['title' => 'Crear Compromiso | Tablero de control público de seguimiento del PA15.'])
 
 @section('content')
 @include('backend_nav')
 <div class="container">
-	<h1>Crear compromiso</h1>
+	<!--breadcrumb-->
+	<div class="row">
+		<div class="col-lg-12">
+			<ol class="breadcrumb">
+             	<li>
+             		<i class="fa fa-dashboard"></i>  <a href="/dashboard">Dashboard</a>
+                </li>
+                <li>
+             		<i class="fa fa-tasks"></i>  <a href="/commitment">Compromisos</a>
+                </li>
+                <li class="active">
+                    <i class="fa fa-edit"></i>Crear Compromiso
+                </li>
+            </ol>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-12">
+			<h1 class="page-header text-center">Crear compromiso</h1>
   {{Form::open([
     'url'   => 'commitment',
     'class' =>'form-horizontal',
@@ -65,5 +83,7 @@
   	</div>
   </div>
   {{Form::close()}}
+   </div>
+	</div>
 </div>
 @stop

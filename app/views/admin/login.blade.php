@@ -1,4 +1,4 @@
-@extends('backend')
+@extends('backend', ['title' => 'Login | Tablero de control público de seguimiento del PA15.'])
 
 <!-- THE LOGIN FORM -->
 @section('content')

@@ -1,6 +1,21 @@
-@extends('frontend')
+@extends('frontend', ['title' => 'Tablero de control público de seguimiento del Plan de Acción 2013-2015 México'])
 @section('content')
 @include('frontend_nav')
+<section id="alianza">
+	<div class="container">
+		<div class="row">
+			<h2 class="title">Tablero</h2>
+			<div class="col-md-5">
+			<p class="guia"> <b class="cuadro completado"></b> <span>Completado</span> 
+			<b class="cuadro proceso"></b> <span>En Proceso</span> <b class="cuadro sin_avance"></b> <span>Sin Avance</span>  </p>
+			</div>
+			<div class="col-md-2 col-md-offset-5">
+				<p>{{link_to('about', 'Acerca del tablero')}}</p>
+			</div>
+		</div>
+	</div>
+</section>
+
 <section id="tablero">
 	<div class="container">
 		<div class="row list-title">
@@ -92,7 +107,7 @@
 		<!-- info responsable-->
 		<div id="responsable-{{$commitment->id}}" class="row list-responsable">
 			<div class="col-sm-4 col-sm-offset-1 ct">
-				<p>Plataforma virtual la información sobre las Normas Oficiales Mexicanas Vigentes.
+				<p>{{Str::words($commitment->description, 20)}}
 					<a href="#">Consulta el plan de trabajo</a>
 				</p> 
 				
@@ -101,18 +116,18 @@
 				<h5>Responsable</h5>
 				<p class="vcard">
 					<span class="fn">{{$commitment->government_user}}</span>
-					<span class="organization-unit">Director General de Normas</span>
-					<span class="tel">t. <span class="value">56 7893 4568</span></span>
-					<a href="mailto:aulisesmarina@economia.gob.mx">aulisesmarina@economia.gob.mx</a>
+					<span class="organization-unit">{{$commitment->government_charge}}</span>
+					<span class="tel">t. <span class="value">{{$commitment->government_phone}}</span></span>
+					<a href="mailto:{{$commitment->government_username}}">{{$commitment->government_username}}</a>
 				</p>
 			</div>
 			<div class="col-sm-3 ct">
 				<h5>Responsable de la Organización de la Sociedad Civil</h5>
 				<p class="vcard">
 					<span class="fn">{{$commitment->society_user}}</span>
-					<span class="organization-unit">Coordinador de Finanzas Públicas</span>
-					<span class="tel">t. <span class="value">56 7893 4568</span></span>
-					<a href="mailto:aulisesmarina@economia.gob.mx">aulisesmarina@economia.gob.mx</a>
+					<span class="organization-unit">{{$commitment->society_charge}}</span>
+					<span class="tel">t. <span class="value">{{$commitment->society_phone}}</span></span>
+					<a href="mailto:{{$commitment->society_username}}">{{$commitment->society_username}}</a>
 				</p>
 			</div>
 		</div>
