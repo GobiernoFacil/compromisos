@@ -5,7 +5,11 @@
 
 <div class="container">
 	<div class="bs-docs-featurette bs-titles-pg">
-		<h1 class="bs-docs-featurette-title">Compromisos <small>{{link_to('commitment/create', 'Crear Compromiso', array('class'=>'btn btn-primary'))}}</small></h1>
+		<h1 class="bs-docs-featurette-title">Compromisos
+      @if(Auth::user()->is_admin) 
+      <small>{{link_to('commitment/create', 'Crear Compromiso', array('class'=>'btn btn-primary'))}}</small>
+      @endif
+    </h1>
 		<p class="lead"> Los compromisos cuentan con planes de trabajo con tres metas semestrales para su cumplimiento. Cada meta contiene actividades específicas a realizarse en periodos de 6 meses para cumplirlas, las cuales tienen indicadores, medios de verificación y responsables puntuales.</p>
 
 		

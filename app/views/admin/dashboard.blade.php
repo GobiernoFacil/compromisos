@@ -43,18 +43,31 @@
                                         <i class="fa fa-user fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
+                                      @if(Auth::user()->is_admin)
                                         <div class="huge">{{count($users)}}</div>
                                         <div>Usuarios</div>
+                                      @endif
                                     </div>
                                 </div>
                             </div>
+                            @if(Auth::user()->is_admin)
                             <a href="{{ (count($users) == 0 ) ? '/user/create' : '/user'}}">
-                                <div class="panel-footer">
-                                    <span class="pull-left">{{ (count($users) == 0 ) ? 'Crear Usuario' : 'Ver Usuarios'}}</span>                                  
-                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                    <div class="clearfix"></div>
-                                </div>
+                              <div class="panel-footer">
+                                <span class="pull-left">{{ (count($users) == 0 ) ? 'Crear Usuario' : 'Ver Usuarios'}}</span>                                  
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                              </div>
                             </a>
+                            @else
+                            <a href="{{'user/' . Auth::user()->id . '/edit'}}">
+                              <div class="panel-footer">
+                                <span class="pull-left">Editar mi perfil</span>                                  
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                              </div>
+                            </a>
+                            @endif
+
                         </div>
                     </div>
                 </div>

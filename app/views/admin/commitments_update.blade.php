@@ -109,7 +109,7 @@
     <div class="form-group">
       <label for="step-{{$step->step_num}}" class="col-sm-2 control-label">Fecha límite</label>
       <div class="col-sm-8">
-	      <input type="text" name="step-{{$step->step_num}}" class="form-control" value="{{$step->ends}}">
+	      <input type="text" id="step-{{$step->step_num}}" name="step-{{$step->step_num}}" class="form-control" value="{{$step->ends}}">
       </div>
     </div>
       <?php $r=1;?>

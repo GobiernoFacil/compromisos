@@ -10,6 +10,7 @@
 	<link rel="stylesheet" href="/css/admin/docs.min.css">
 	<link rel="stylesheet" href="/css/admin/font-awesome.min.css">
 	<link rel="stylesheet" href="/css/admin/dev.css">
+  <link rel="stylesheet" href="/js/bower_components/pikaday/css/pikaday.css">
 </head>
 <body>
   @yield('content')
