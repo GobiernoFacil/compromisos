@@ -39,17 +39,23 @@ define(function(require){
     initialize : function(){
       // SET THE FORM HELPERS IF REQUIRED
       // tinyMCE
-      if(this.$('#description').length){
-        tinymce.init({
-          selector:'#description',
-          menu : {
-            edit   : {title : 'Edit'  , items : 'undo redo | cut copy paste pastetext | selectall'},
-            insert : {title : 'Insert', items : 'link media | template hr'},
-            view   : {title : 'View'  , items : 'visualaid'},
-            table  : {title : 'Table' , items : 'inserttable tableprops deletetable | cell row column'}
-          }
-        });
+      var defaultMenu = {
+        edit   : {title : 'Edit'  , items : 'undo redo | cut copy paste pastetext | selectall'},
+        insert : {title : 'Insert', items : 'link media | template hr'},
+        view   : {title : 'View'  , items : 'visualaid'},
+        table  : {title : 'Table' , items : 'inserttable tableprops deletetable | cell row column'}
       }
+
+      if(this.$('#description').length){
+        
+        tinymce.init({
+          selector:'textarea',
+          menu : defaultMenu
+        });
+
+
+      }
+
       // Pikaday
       // TROPOCALIZACIÓN!!!!!!!
       var tropical = {

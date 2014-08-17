@@ -31,7 +31,7 @@
   <div class="form-group">
       <label for="title" class="col-sm-2 control-label">Título: </label>
 	  <div class="col-sm-8">
-        <textarea name="title"  class="form-control" id="title"></textarea>
+      <input type="text" name="title"  class="form-control" id="title">
 	  </div>
   </div>
   <!--Plan-->

@@ -68,6 +68,9 @@
         <textarea name="status"  class="form-control" id="status">{{$commitment->status}}</textarea>
 	  </div>
   </div>
+
+
+  @if(Auth::user()->is_admin)
   <!--Usuario de Gobierno-->
   <div class="form-group">
       <label for="government_user" class="col-sm-2 control-label">Usuario de gobierno</label>
@@ -82,6 +85,7 @@
       {{Form::select('society_user', $society_users, $commitment->society_user, ['class'=>'form-control'])}}
 	  </div>
    </div>
+   @endif
 	
 
    <!-- maromas nuevas -->

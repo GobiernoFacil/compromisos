@@ -43,6 +43,8 @@
           <!-- update link -->
           {{link_to('commitment/' . $commitment->id . '/edit', 'editar')}}
 
+
+          @if(Auth::user()->is_admin)
           <!-- delete form -->
             {{Form::open([
               'url' => 'commitment/' . $commitment->id, 
@@ -51,7 +53,11 @@
 
             <input type="submit" class="btn btn-xs btn-danger" value="eliminar">
 
-            {{Form::close()}}             
+            {{Form::close()}}   
+         @endif 
+
+
+
         </td>
       </tr>
       <tr class="commitment_steps">

@@ -17,6 +17,12 @@ class CommitmentController extends \BaseController {
 	  //
 	  $commitments = Commitment::leftjoin('users AS u1', 'u1.id', '=', 'commitments.government_user')
       ->leftjoin('users AS u2', 'u2.id', '=', 'commitments.society_user')
+      ->where(function($query){
+      	if(! Auth::user()->is_admin){
+      		$query->where('government_user', Auth::user()->id)
+      	    ->orWhere('society_user', Auth::user()->id);
+      	}
+      })
 	    ->select(
 	    	'commitments.id',
 	    	'commitments.title', 
