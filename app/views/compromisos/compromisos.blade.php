@@ -1,6 +1,21 @@
-@extends('frontend')
+@extends('frontend', ['title' => 'Tablero de control público de seguimiento del Plan de Acción 2013-2015 México'])
 @section('content')
 @include('frontend_nav')
+<section id="alianza">
+	<div class="container">
+		<div class="row">
+			<h2 class="title">Tablero</h2>
+			<div class="col-md-5">
+			<p class="guia"> <b class="cuadro completado"></b> <span>Completado</span> 
+			<b class="cuadro proceso"></b> <span>En Proceso</span> <b class="cuadro sin_avance"></b> <span>Sin Avance</span>  </p>
+			</div>
+			<div class="col-md-2 col-md-offset-5">
+				<p>{{link_to('about', 'Acerca del tablero')}}</p>
+			</div>
+		</div>
+	</div>
+</section>
+
 <section id="tablero">
 	<div class="container">
 		<div class="row list-title">

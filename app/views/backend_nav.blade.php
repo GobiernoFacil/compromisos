@@ -7,7 +7,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Tablero de control público de seguimiento del PA15 </a>
+          {{link_to('dashboard', 'Tablero de control público de seguimiento del PA15', array('class'=>'navbar-brand'))}}
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">

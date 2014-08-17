@@ -2,7 +2,7 @@
 <html lang="es-ES">
 	<head>
 		<meta charset="UTF-8" />
-		<title>Tablero de control público de seguimiento del Plan de Acción 2013-2015 México</title>
+		<title>{{$title}}</title>
 		<link rel="shortcut icon" href="/img/logo.png" />
 		<!--[if lt IE 9]>
 		<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
