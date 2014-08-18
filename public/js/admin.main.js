@@ -14,7 +14,8 @@ require.config({
     underscore : "bower_components/underscore/underscore",
     text       : "bower_components/text/text",
     tinymce    : "bower_components/tinymce/tinymce",
-    pikaday    : "bower_components/pikaday/pikaday"
+    pikaday    : "bower_components/pikaday/pikaday",
+    qtip2      : "libs/jquery.qtip"
   },
   shim : {
     underscore :{

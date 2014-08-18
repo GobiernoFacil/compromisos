@@ -35,20 +35,27 @@ endswitch;?>
     'method' => 'PUT',
     'class'  =>'form-horizontal'
   ])}}
-  <!--TITLE-->
+
+
+  @if($objective->step_num != 4)
+  <!--TITLE / ACTIVITY-->
   <div class="form-group">
     {{Form::label('title', 'Actividad: ', array('class'=>'col-sm-2 control-label'))}}
 	<div class="col-sm-8">
 	    {{Form::textarea('title', $objective->title,array('class'=>'form-control'))}}
 	</div>
   </div>  
-  <!--DESCRIPTION-->
+  <!--DESCRIPTION/OBJECTIVE-->
   <div class="form-group">
     {{Form::label('description', 'Objetivo: ', array('class'=>'col-sm-2 control-label'))}}
 	<div class="col-sm-8">
     {{Form::textarea('description', $objective->description,array('class'=>'form-control'))}}
     </div>  
-  </div>  
+  </div> 
+  @endif 
+
+
+  @if($objective->step_num == 4)
   <!--URL-->
   <div class="form-group">
     {{Form::label('url', 'url: ', array('class'=>'col-sm-2 control-label'))}}
@@ -56,6 +63,10 @@ endswitch;?>
     {{Form::text('url', $objective->url, array('class'=>'form-control'))}}
 	</div>
   </div>
+  @endif
+
+
+  @if($objective->step_num != 4)
   <!--AGENT-->
   <div class="form-group">
     {{Form::label('agent', 'Responsable: ', array('class'=>'col-sm-2 control-label'))}}
@@ -77,6 +88,9 @@ endswitch;?>
     {{Form::textarea('advance_description', $objective->advance_description, array('class'=>'form-control'))}}
 	</div>
   </div>
+  @endif
+
+
   <!--FINISH DESCRIPTION-->
   <div class="form-group">
     {{Form::label('finish_description', 'Descripción final: ', array('class'=>'col-sm-2 control-label'))}}
@@ -84,6 +98,8 @@ endswitch;?>
     {{Form::textarea('finish_description', $objective->finish_description, array('class'=>'form-control'))}}
 	</div>
   </div>
+
+
   <!-- SUBMIT -->
   <div class="form-group">
 	<div class="col-sm-8 col-sm-offset-2">

@@ -21,8 +21,10 @@
                                         <i class="fa fa-tasks fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
+                                        @if(Auth::user()->is_admin)
                                         <div class="huge">{{count($commitments)}}</div>
                                         <div>Compromisos</div>
+                                        @endif
                                     </div>
                                 </div>
                             </div>

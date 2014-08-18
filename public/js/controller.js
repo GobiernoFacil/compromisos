@@ -12,7 +12,8 @@ define(function(require){
   //
   var Backbone = require('backbone'),
       tinyMCE  = require('tinymce'),
-      Pikaday  = require('pikaday');
+      Pikaday  = require('pikaday'),
+      qtip2    = require('qtip2');
 
   //
   // I N I T I A L I Z E   T H E   B A C K B O N E   V I E W
@@ -88,6 +89,20 @@ define(function(require){
             i18n     : tropical
           });
       }
+
+      //qTip2
+      this.$('#url').qtip({
+        content : {
+          text : "El URL para mostrar el resultado final"
+        },
+        position : {
+          at : 'bottom left'
+        },
+
+        style : {
+          classes: 'qtip-bootstrap'
+        }
+      });
 
     }
   });

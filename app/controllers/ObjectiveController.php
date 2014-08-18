@@ -40,6 +40,18 @@ class ObjectiveController extends \BaseController {
 			Auth::user()->id == $objective->step->commitment->society_user){
 
 		  $objective->fill(Input::all());
+
+		  // set the objective status
+		  if($objective->finish_description != ""){
+		  	$objective->status = 'c';
+		  }
+		  elseif($objective->advance_description != ""){
+		  	$objective->status = 'b';
+		  }
+		  else{
+		  	$objective->status = 'a';
+		  }
+
 		  $objective->save();
 
 		  return Redirect::to('commitment/' . $objective->step->commitment->id . '/edit');
