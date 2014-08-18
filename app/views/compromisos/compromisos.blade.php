@@ -108,7 +108,11 @@
 		<div id="responsable-{{$commitment->id}}" class="row list-responsable">
 			<div class="col-sm-4 col-sm-offset-1 ct">
 				<p>{{Str::words($commitment->description, 20)}}
-					<a href="#">Consulta el plan de trabajo</a>
+					@if(!empty($commitment->plan))
+					<a href="/files/{{$commitment->plan}}" download>Consulta el plan de trabajo</a>
+					@else
+					<a href>El plan de trabajo no fue agregado</a>
+					@endif
 				</p> 
 				
 			</div>
