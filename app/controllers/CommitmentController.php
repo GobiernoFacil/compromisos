@@ -44,6 +44,8 @@ class CommitmentController extends \BaseController {
 	public function create()
 	{
 	  //
+	  if(! Auth::user()->is_admin ) return Redirect::to('commitment');
+
 	  $government_users = User::where('user_type', 'government')->lists('name','id');
 	  $society_users = User::where('user_type', 'society')->lists('name','id');
 	  return View::make('admin.commitments_add')
@@ -62,6 +64,8 @@ class CommitmentController extends \BaseController {
 	public function store()
 	{
 	  //
+	  if(! Auth::user()->is_admin ) return Redirect::to('commitment');
+
 	  $commitment = new Commitment(Input::all());
 
 	  if(Input::hasFile('plan')){
@@ -121,14 +125,24 @@ class CommitmentController extends \BaseController {
 	{
 		//
 		$commitment       = Commitment::with('steps.objectives')->find($id);
-		$government_users = User::where('user_type', 'government')->lists('name','id');
-	  $society_users    = User::where('user_type', 'society')->lists('name','id');
-		return View::make('admin.commitments_update')
-		  ->with([
+
+		if(Auth::user()->is_admin || 
+			Auth::user()->id == $commitment->government_user || 
+			Auth::user()->id == $commitment->society_user){
+
+		  $government_users = User::where('user_type', 'government')->lists('name','id');
+	    $society_users    = User::where('user_type', 'society')->lists('name','id');
+		  return View::make('admin.commitments_update')
+		    ->with([
 		  	  'commitment'       => $commitment,
 		  	  'government_users' => $government_users,
 		  	  'society_users'    => $society_users
-		  	]);
+		  ]);
+
+		}
+		else{
+			return Redirect::to('commitment');
+		}
 	}
 
 
@@ -142,30 +156,39 @@ class CommitmentController extends \BaseController {
 	{
 		//
 		$commitment = Commitment::find($id);
-		$commitment->title = Input::get('title');
-		$commitment->government_user = Input::get('government_user');
-		$commitment->society_user = Input::get('society_user');
 
-		// update the new file if exist, and remove the previous file
-		if(Input::hasFile('plan')){
-			@unlink(self::FILES_DIR . '/' . $commitment->plan);
+		if(Auth::user()->is_admin || 
+			Auth::user()->id == $commitment->government_user || 
+			Auth::user()->id == $commitment->society_user){
 
-	  	$name = uniqid() . '.' . Input::file('plan')->getClientOriginalExtension();
-	  	Input::file('plan')->move(self::FILES_DIR, $name);
-	  	$commitment->plan = $name;
-	  }
+		  $commitment->title = Input::get('title');
+		  $commitment->government_user = Input::get('government_user');
+		  $commitment->society_user = Input::get('society_user');
 
-		$commitment->save();
+		  // update the new file if exist, and remove the previous file
+		  if(Input::hasFile('plan')){
+			  @unlink(self::FILES_DIR . '/' . $commitment->plan);
 
-    // SAVE THE DATES FOR EACH STEP
-    for($i = 1; $i <= 4; $i++){
-      Step::where([
-        'commitment_id' => $commitment->id, 
-        'step_num' => $i
-      ])->update(['ends' => Input::get('step-' . $i)]);
-    }
+	  	  $name = uniqid() . '.' . Input::file('plan')->getClientOriginalExtension();
+	  	  Input::file('plan')->move(self::FILES_DIR, $name);
+	  	  $commitment->plan = $name;
+	    }
 
-		return Redirect::to('commitment');
+		  $commitment->save();
+
+      // SAVE THE DATES FOR EACH STEP
+      for($i = 1; $i <= 4; $i++){
+        Step::where([
+          'commitment_id' => $commitment->id, 
+          'step_num' => $i
+        ])->update(['ends' => Input::get('step-' . $i)]);
+      }
+
+		  return Redirect::to('commitment');
+		}
+		else{
+			return Redirect::to('commitment');
+		}
 	}
 
 
@@ -178,6 +201,8 @@ class CommitmentController extends \BaseController {
 	public function destroy($id)
 	{
 		//
+		if(! Auth::user()->is_admin ) return Redirect::to('commitment');
+		
 		$commitment = Commitment::find($id);
 
 		if( ! empty($commitment->plan) ){

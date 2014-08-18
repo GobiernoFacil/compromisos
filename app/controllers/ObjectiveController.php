@@ -12,7 +12,15 @@ class ObjectiveController extends \BaseController {
 	{
 		//
 		$objective = Objective::find($id);
-		return View::make('admin.objectives_update')->with('objective', $objective);
+
+		if(Auth::user()->is_admin || 
+			Auth::user()->id == $objective->step->commitment->government_user || 
+			Auth::user()->id == $objective->step->commitment->society_user){
+			return View::make('admin.objectives_update')->with('objective', $objective);
+	  }
+	  else{
+	  	return Redirect::to('commitment');
+	  }
 	}
 
 
@@ -26,10 +34,19 @@ class ObjectiveController extends \BaseController {
 	{
 		//
 		$objective = Objective::find($id);
-		$objective->fill(Input::all());
-		$objective->save();
 
-		return Redirect::to('commitment/' . $objective->step->commitment->id . '/edit');
+		if(Auth::user()->is_admin || 
+			Auth::user()->id == $objective->step->commitment->government_user || 
+			Auth::user()->id == $objective->step->commitment->society_user){
+
+		  $objective->fill(Input::all());
+		  $objective->save();
+
+		  return Redirect::to('commitment/' . $objective->step->commitment->id . '/edit');
+	  }
+	  else{
+	  	return Redirect::to('commitment');
+	  }
 	}
 
 
