@@ -11,7 +11,7 @@ define(function(require){
   // L O A D   T H E   A S S E T S   A N D   L I B R A R I E S
   //
   var Backbone = require('backbone'),
-      tinyMCE  = require('tinymce'),
+      // tinyMCE  = require('tinymce'),
       Pikaday  = require('pikaday'),
       qtip2    = require('qtip2');
 
@@ -40,6 +40,7 @@ define(function(require){
     initialize : function(){
       // SET THE FORM HELPERS IF REQUIRED
       // tinyMCE
+      /*
       var defaultMenu = {
         edit   : {title : 'Edit'  , items : 'undo redo | cut copy paste pastetext | selectall'},
         insert : {title : 'Insert', items : 'link media | template hr'},
@@ -47,15 +48,14 @@ define(function(require){
         table  : {title : 'Table' , items : 'inserttable tableprops deletetable | cell row column'}
       }
 
-      if(this.$('#description').length){
+      if(this.$('.has-editor').length){
         
         tinymce.init({
-          selector:'textarea',
+          selector:'.has-editor',
           menu : defaultMenu
         });
-
-
       }
+      */
 
       // Pikaday
       // TROPOCALIZACIÓN!!!!!!!
@@ -91,17 +91,19 @@ define(function(require){
       }
 
       //qTip2
-      this.$('#url').qtip({
-        content : {
-          text : "El URL para mostrar el resultado final"
-        },
-        position : {
-          at : 'bottom left'
-        },
-
-        style : {
-          classes: 'qtip-bootstrap'
-        }
+      var that = this; // lazy hack
+      this.$('.has-tooltip').each(function(index){
+        that.$(this).qtip({
+          content : {
+            text : that.$(this).next().html()
+          },
+          position : {
+            at : 'bottom left'
+          },
+          style : {
+            classes: 'qtip-bootstrap'
+          }
+        });
       });
 
     }

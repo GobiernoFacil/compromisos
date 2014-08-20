@@ -66,11 +66,15 @@ class CreateUsers extends Migration {
       $table->integer('event_num');
       $table->enum('status', ['a', 'b', 'c', 'd']);
       $table->text('description')->nullable();
+      $table->text('description_excerpt')->nullable();
+      $table->string('mir_url')->nullable();
+      $table->string('mir_file')->nullable();
       $table->string('url')->nullable();
       $table->string('agent')->nullable();
       $table->string('agent_url')->nullable();
       $table->text('advance_description')->nullable();
       $table->text('finish_description')->nullable();
+      $table->text('comments')->nullable();
       $table->timestamps();
       $table->text('title')->nullable();
 

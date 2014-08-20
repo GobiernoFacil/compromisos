@@ -9,6 +9,11 @@
    case 4:        $step_num = "Resultado Final";break;
    default:        $step_num ="Resultado Final";break;
 endswitch;?>
+<!-- 
+
+  * - -   N A V I G A T I O N   C O N T E N T   - - *
+
+  -->
 <div class="container">
 <!--breadcrumb-->
 	<div class="row">
@@ -21,7 +26,13 @@ endswitch;?>
              		<i class="fa fa-tasks"></i>  <a href="/commitment">Compromisos</a>
                 </li>
                 <li class="active">
-                    <i class="fa fa-edit"></i> Editar Actividad {{$objective->event_num}} ({{$step_num}})
+                    <i class="fa fa-edit"></i> 
+                    Editar 
+                    @if($objective->step_num == 4) 
+                      {{$step_num}}
+                    @else
+                      Actividad {{$objective->event_num}} ({{$step_num}})
+                    @endif
                 </li>
             </ol>
 		</div>
@@ -29,10 +40,25 @@ endswitch;?>
  <div class="row">
  	<div class="col-lg-12">
 
-	<h1 class="page-header text-center">Editar Actividad {{$objective->event_num}} <small>({{$step_num}})</small></h1>
+	<h1 class="page-header text-center">
+    Editar 
+    @if($objective->step_num == 4) 
+      {{$step_num}}
+    @else
+      Actividad {{$objective->event_num}} <small>({{$step_num}})</small>
+    @endif
+  </h1>
+
+  <!-- 
+
+  * - -   F O R M   C O N T E N T   - - *
+
+  -->
+
   {{Form::model($objective, [
     'route'  =>['objective.update', $objective->id],
     'method' => 'PUT',
+    'files'  => TRUE,
     'class'  =>'form-horizontal'
   ])}}
 
@@ -41,15 +67,18 @@ endswitch;?>
   <!--TITLE / ACTIVITY-->
   <div class="form-group">
     {{Form::label('title', 'Actividad: ', array('class'=>'col-sm-2 control-label'))}}
-	<div class="col-sm-8">
-	    {{Form::textarea('title', $objective->title,array('class'=>'form-control'))}}
-	</div>
+	  <div class="col-sm-8">
+	    {{Form::textarea('title', $objective->title,array('class'=>'form-control has-editor has-tooltip'))}}
+      <p class="hidden">Breve descripción de la actividad (500 caracteres máximo)</p>
+	  </div>
   </div>  
+
   <!--DESCRIPTION/OBJECTIVE-->
   <div class="form-group">
     {{Form::label('description', 'Objetivo: ', array('class'=>'col-sm-2 control-label'))}}
-	<div class="col-sm-8">
-    {{Form::textarea('description', $objective->description,array('class'=>'form-control'))}}
+	  <div class="col-sm-8">
+      {{Form::textarea('description', $objective->description,array('class'=>'form-control has-editor has-tooltip'))}}
+      <p class="hidden">Breve descripción del objetivo de la actividad (500 caracteres máximo)</p>
     </div>  
   </div> 
   @endif 
@@ -58,10 +87,12 @@ endswitch;?>
   @if($objective->step_num == 4)
   <!--URL-->
   <div class="form-group">
-    {{Form::label('url', 'url: ', array('class'=>'col-sm-2 control-label'))}}
-	<div class="col-sm-8">
-    {{Form::text('url', $objective->url, array('class'=>'form-control'))}}
-	</div>
+    {{Form::label('url', 'url / frase: ', array('class'=>'col-sm-2 control-label'))}}
+	  <div class="col-sm-8">
+      {{Form::text('url', $objective->url, array('class'=>'form-control has-tooltip'))}}
+      <p class="hidden">El URL para mostrar el resultado final o una frase que resuma
+      el resultado obtenido</p>
+	  </div>
   </div>
   @endif
 
@@ -70,23 +101,57 @@ endswitch;?>
   <!--AGENT-->
   <div class="form-group">
     {{Form::label('agent', 'Responsable: ', array('class'=>'col-sm-2 control-label'))}}
-	<div class="col-sm-8">
-    {{Form::text('agent', $objective->agent, array('class'=>'form-control'))}}
-	</div>
+	  <div class="col-sm-8">
+      {{Form::text('agent', $objective->agent, array('class'=>'form-control has-tooltip'))}}
+      <p class="hidden">Responsable/dependencia/OSC que aparecerá en el tablero. 
+      Los nombres de los administradores de cada compromiso también aparecen, no es necesario
+      poner sus nombres de nuevo</p>
+	  </div>
   </div>
+
   <!--AGENT'S URL-->
   <div class="form-group">
     {{Form::label('agent_url', 'Responsable URL: ', array('class'=>'col-sm-2 control-label'))}}
-	<div class="col-sm-8">
-    {{Form::text('agent_url', $objective->agent_url, array('class'=>'form-control'))}}
-	</div>
+	  <div class="col-sm-8">
+      {{Form::text('agent_url', $objective->agent_url, array('class'=>'form-control'))}}
+	  </div>
   </div>
+
+  <!--MIR URL-->
+  <div class="form-group">
+    {{Form::label('mir_url', 'URL de verificación: ', array('class'=>'col-sm-2 control-label'))}}
+    <div class="col-sm-8">
+      {{Form::text('mir_url', $objective->mir_url, array('class'=>'form-control has-tooltip'))}}
+      <p class="hidden">El sitio donde se puede verificar el avance de la actividad. Si se define el URL y el
+        archivo, el URL tiene precedencia; no es posible mostrar ambos en el tablero.</p>
+    </div>
+  </div>
+
+  <!--MIR FILE-->
+  <div class="form-group">
+      <label for="mir_file" class="col-sm-2 control-label">Archivo de verificación: </label>
+    <div class="col-sm-8">
+        {{Form::file('mir_file')}}
+    </div>
+  </div>
+
+  <!--OTHER COMMENTS-->
+  <div class="form-group">
+    {{Form::label('comments', 'Otros comentarios: ', array('class'=>'col-sm-2 control-label'))}}
+    <div class="col-sm-8">
+      {{Form::textarea('comments', $objective->comments, array('class'=>'form-control has-tooltip'))}}
+      <p class="hidden">Este texto sirve para extender la explicación del estatus del objetivo</p>
+    </div>
+  </div>
+
   <!--ADVANCE DESCRIPTION-->
   <div class="form-group">
     {{Form::label('advance_description', 'Descripción del avance: ', array('class'=>'col-sm-2 control-label'))}}
-	<div class="col-sm-8">
-    {{Form::textarea('advance_description', $objective->advance_description, array('class'=>'form-control'))}}
-	</div>
+	  <div class="col-sm-8">
+      {{Form::textarea('advance_description', $objective->advance_description, array('class'=>'form-control has-tooltip'))}}
+      <p class="hidden">Al llenar este campo la actividad pasa de "sin iniciar" a "en proceso". 
+      (500 caracteres máximo)</p>
+	  </div>
   </div>
   @endif
 
@@ -95,7 +160,15 @@ endswitch;?>
   <div class="form-group">
     {{Form::label('finish_description', 'Descripción final: ', array('class'=>'col-sm-2 control-label'))}}
 	<div class="col-sm-8">
-    {{Form::textarea('finish_description', $objective->finish_description, array('class'=>'form-control'))}}
+    {{Form::textarea('finish_description', $objective->finish_description, array('class'=>'form-control has-tooltip'))}}
+
+    @if($objective->step_num == 4)
+    <p class="hidden">Un pequeño resumen de 500 caracteres máximo con la descripción del
+      resultado final.</p>
+    @else
+    <p class="hidden">Al llenar este campo das por concluida esta actividad. 
+      (500 caracteres máximo)</p>
+    @endif
 	</div>
   </div>
 

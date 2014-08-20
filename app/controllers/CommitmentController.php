@@ -2,9 +2,11 @@
 
 class CommitmentController extends \BaseController {
 
+	// THE PATH TO THE FILE UPLOAD
 	const FILES_DIR = './public/files';
 
 	public function __construct(){
+		// REQUIRES LOGIN ACCESS
 		 $this->beforeFilter('auth');
 	}
 	/**
@@ -14,10 +16,11 @@ class CommitmentController extends \BaseController {
 	 */
 	public function index()
 	{
-	  //
+	  // GET THE COMMITMENTS DATA FOR THE ADMIN LIST
 	  $commitments = Commitment::leftjoin('users AS u1', 'u1.id', '=', 'commitments.government_user')
       ->leftjoin('users AS u2', 'u2.id', '=', 'commitments.society_user')
       ->where(function($query){
+      	// IF NOT THE ADMIN, JUST SHOW THE COMMITMENTS THAT BELONGS TO THE USER
       	if(! Auth::user()->is_admin){
       		$query->where('government_user', Auth::user()->id)
       	    ->orWhere('society_user', Auth::user()->id);
@@ -31,6 +34,7 @@ class CommitmentController extends \BaseController {
 	    	'u2.name AS society_user')
 	    ->with('steps')
 	    ->get();
+
 	   return View::make('admin.commitments')
 	     ->with('commitments', $commitments);
 	}
@@ -43,7 +47,7 @@ class CommitmentController extends \BaseController {
 	 */
 	public function create()
 	{
-	  //
+	  // ONLY THE ADMIN CAN CREATE COMMITMENTS
 	  if(! Auth::user()->is_admin ) return Redirect::to('commitment');
 
 	  $government_users = User::where('user_type', 'government')->lists('name','id');
@@ -63,11 +67,12 @@ class CommitmentController extends \BaseController {
 	 */
 	public function store()
 	{
-	  //
+	  // ONLY THE ADMIN CAN CREATE COMMITMENTS
 	  if(! Auth::user()->is_admin ) return Redirect::to('commitment');
 
 	  $commitment = new Commitment(Input::all());
 
+	  // SAVE DESCRIPTION FILE; DELETE PREVIOUS FILE IF EXIST
 	  if(Input::hasFile('plan')){
 	  	$name = uniqid() . '.' . Input::file('plan')->getClientOriginalExtension();
 	  	Input::file('plan')->move(self::FILES_DIR, $name);
@@ -77,10 +82,17 @@ class CommitmentController extends \BaseController {
 	  $commitment->save();
 
 	  // CREATE THE FOUR STEPS
+	  // the default dates
+	  $dates = [
+	    mktime(0,0,0,10,27,2014),
+	    mktime(0,0,0,3,8,2015),
+	    mktime(0,0,0,7,22,2015),
+	    mktime(0,0,0,12,31,2015),
+	  ];
 	  for($i = 1; $i <= 4; $i++ ){
 	  	$step = new Step([
 	  	  'commitment_id' => $commitment->id,
-	      'ends'          => date('Y-m-d'),
+	      'ends'          => date('Y-m-d', $dates[$i-1]),
 	  	  'step_num'      => $i
 	  	]);
 
