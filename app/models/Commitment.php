@@ -6,4 +6,8 @@ class Commitment extends Eloquent{
   public function steps(){
     return $this->hasMany('Step');
   }
+
+  public function users(){
+    return $this->belongsToMany('User');
+  }
 }

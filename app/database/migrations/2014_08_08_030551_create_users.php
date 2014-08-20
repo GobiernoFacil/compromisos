@@ -22,7 +22,6 @@ class CreateUsers extends Migration {
       $table->string('phone');
       $table->enum('user_type', ['government', 'society']);
       $table->string('remember_token')->nullable();
-      $table->text('remember_token')->nullable();
       $table->boolean('is_admin');
       $table->timestamps();
     });
@@ -35,13 +34,25 @@ class CreateUsers extends Migration {
       $table->text('description');
       $table->text('characteristics');
       $table->text('status');
-      $table->integer('government_user')
-        ->default(0)
-        ->nullable();
-      $table->integer('society_user')
-        ->default(0)
-        ->nullable();
       $table->timestamps();
+    });
+
+    // CREATE THE USERS - COMMITMENTS TABLE
+    Schema::create('user_commitment', function($table){
+      $table->increments('id');
+      $table->unsignedInteger('user_id');
+      $table->unsignedInteger('commitment_id');
+      $table->timestamps();
+
+      $table->foreign('commitment_id')
+        ->references('id')
+        ->on('commitments')
+        ->onDelete('cascade');
+
+      $table->foreign('user_id')
+        ->references('id')
+        ->on('users')
+        ->onDelete('cascade');
     });
 
     // CREATE THE STEPS TABLE

@@ -24,7 +24,9 @@ define(function(require){
     // D E F I N E   T H E   E V E N T S
     // 
     events : {
-   
+      'click #add-gu'      : 'add_user',
+      'click #add-eu'      : 'add_user',
+      'click .remove-user' : 'remove_user'
     },
 
 
@@ -40,6 +42,7 @@ define(function(require){
     initialize : function(){
       // SET THE FORM HELPERS IF REQUIRED
       // tinyMCE
+      // to the fridge, because there are to many holes in the design
       /*
       var defaultMenu = {
         edit   : {title : 'Edit'  , items : 'undo redo | cut copy paste pastetext | selectall'},
@@ -98,14 +101,29 @@ define(function(require){
             text : that.$(this).next().html()
           },
           position : {
-            at : 'bottom left'
+            at : 'top right'
           },
           style : {
             classes: 'qtip-bootstrap'
           }
         });
       });
+    },
 
+    add_user : function(e){
+      e.preventDefault();
+      var ref    = this.$(e.currentTarget).parent().parent(),
+          select = ref.prev().clone(),
+          anchor = '<a style="text-align:right" href="#" class="col-sm-2 remove-user">descartar usuario</a>';
+
+          select.children('label').replaceWith(anchor);
+      
+      ref.before(select);
+    },
+
+    remove_user : function(e){
+      e.preventDefault();
+      this.$(e.currentTarget).parent().remove();
     }
   });
 
