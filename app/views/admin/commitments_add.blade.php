@@ -81,35 +81,21 @@
 	  </div>
   </div>
 
-  <!--Usuarios de Gobierno-->
+  <!--Usuarios-->
   <div class="form-group">
-    <label for="government_user" class="col-sm-2 control-label">Usuario de gobierno</label>
+    <label for="user" class="col-sm-2 control-label">Usuarios</label>
 	  <div class="col-sm-8">
-      {{Form::select('government_user[]', $government_users, FALSE, ['class'=>'form-control government-user'])}}
+      {{Form::select('users[]', $users, FALSE, ['class'=>'form-control commitment-user'])}}
 	  </div>
   </div>
   <!-- necesito pensar en algo que use menos divs!!!!!!  x_____x -->
   <div class="form-group">
     <span class="col-sm-2"></span>
     <div class="col-sm-8">
-      <a href="#" id="add-gu">Agregar otro usuario de gobierno</a>
+      <a href="#" id="add-user">Agregar otro usuario</a>
     </div>
   </div>
 
-   <!--Usuarios externos-->
-  <div class="form-group">
-      <label for="society_user" class="col-sm-2 control-label">Usuario externo</label>
-	  <div class="col-sm-8">
-      {{Form::select('society_user[]', $society_users, FALSE, ['class'=>'form-control'])}}
-	  </div>
-   </div>
-    <!-- necesito pensar en algo que use menos divs!!!!!!  x_____x -->
-  <div class="form-group">
-    <span class="col-sm-2"></span>
-    <div class="col-sm-8">
-      <a href="#" id="add-eu">Agregar otro usuario de externo</a>
-    </div>
-  </div>
 
    <!--submit-->
   <div class="form-group">

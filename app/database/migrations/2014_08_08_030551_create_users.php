@@ -38,11 +38,10 @@ class CreateUsers extends Migration {
     });
 
     // CREATE THE USERS - COMMITMENTS TABLE
-    Schema::create('user_commitment', function($table){
+    Schema::create('commitment_user', function($table){
       $table->increments('id');
       $table->unsignedInteger('user_id');
       $table->unsignedInteger('commitment_id');
-      $table->timestamps();
 
       $table->foreign('commitment_id')
         ->references('id')

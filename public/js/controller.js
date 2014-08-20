@@ -24,8 +24,7 @@ define(function(require){
     // D E F I N E   T H E   E V E N T S
     // 
     events : {
-      'click #add-gu'      : 'add_user',
-      'click #add-eu'      : 'add_user',
+      'click #add-user'      : 'add_user',
       'click .remove-user' : 'remove_user'
     },
 

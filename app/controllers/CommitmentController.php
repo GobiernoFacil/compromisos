@@ -17,23 +17,7 @@ class CommitmentController extends \BaseController {
 	public function index()
 	{
 	  // GET THE COMMITMENTS DATA FOR THE ADMIN LIST
-	  $commitments = Commitment::leftjoin('users AS u1', 'u1.id', '=', 'commitments.government_user')
-      ->leftjoin('users AS u2', 'u2.id', '=', 'commitments.society_user')
-      ->where(function($query){
-      	// IF NOT THE ADMIN, JUST SHOW THE COMMITMENTS THAT BELONGS TO THE USER
-      	if(! Auth::user()->is_admin){
-      		$query->where('government_user', Auth::user()->id)
-      	    ->orWhere('society_user', Auth::user()->id);
-      	}
-      })
-	    ->select(
-	    	'commitments.id',
-	    	'commitments.title', 
-	    	'commitments.plan', 
-	    	'u1.name AS government_user',
-	    	'u2.name AS society_user')
-	    ->with('steps')
-	    ->get();
+	  $commitments = Commitment::all();
 
 	   return View::make('admin.commitments')
 	     ->with('commitments', $commitments);
@@ -50,13 +34,9 @@ class CommitmentController extends \BaseController {
 	  // ONLY THE ADMIN CAN CREATE COMMITMENTS
 	  if(! Auth::user()->is_admin ) return Redirect::to('commitment');
 
-	  $government_users = User::where('user_type', 'government')->lists('name','id');
-	  $society_users = User::where('user_type', 'society')->lists('name','id');
+	  $users = User::all()->lists('name','id');
 	  return View::make('admin.commitments_add')
-	    ->with([
-	    	'government_users' => $government_users,
-	    	'society_users' => $society_users
-	      ]);
+	    ->with(['users' => $users]);
 	}
 
 
@@ -78,9 +58,18 @@ class CommitmentController extends \BaseController {
 	  	Input::file('plan')->move(self::FILES_DIR, $name);
 	  	$commitment->plan = $name;
 	  }
-
+	  
 	  $commitment->save();
 
+	  // UPDATE THE USERS
+	  $users_array = array_unique(Input::get('users'));
+	  foreach($users_array AS $key => $value){
+	  	DB::table('user_commitment')->insert([
+	  		'user_id' => $value,
+	  		'commitment_id' => $commitment->id
+	  	]);
+	  }
+	  
 	  // CREATE THE FOUR STEPS
 	  // the default dates
 	  $dates = [

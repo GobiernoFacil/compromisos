@@ -10,7 +10,9 @@
       <small>{{link_to('commitment/create', 'Crear Compromiso', array('class'=>'btn btn-primary'))}}</small>
       @endif
     </h1>
-		<p class="lead"> Los compromisos cuentan con planes de trabajo con tres metas semestrales para su cumplimiento. Cada meta contiene actividades específicas a realizarse en periodos de 6 meses para cumplirlas, las cuales tienen indicadores, medios de verificación y responsables puntuales.</p>
+		<p class="lead"> Los compromisos cuentan con planes de trabajo con tres metas semestrales para su cumplimiento. 
+      Cada meta contiene actividades específicas a realizarse en periodos de 6 meses para cumplirlas, las 
+      cuales tienen indicadores, medios de verificación y responsables puntuales.</p>
 
 		
 	</div>
@@ -23,22 +25,39 @@
       <tr>
         <th>Nombre</th>
         <th>plan</th>
-        <th>funcionario</th>
-        <th>agente externo</th>
+        <th>Usuarios</th>
         <th>*</th>
       </tr>
     </thead>
     <tbody>
       @foreach ($commitments as $commitment)
       <tr>
+        <!-- TITLE -->
         <td>{{$commitment->title}}</td>
+
+        <!-- PLAN -->
         <td>
           @if(!empty($commitment->plan))
             <a href="/files/{{$commitment->plan}}" download>descargar</a>
           @endif
         </td>
-        <td>{{$commitment->government_user}}</td>
-        <td>{{$commitment->society_user}}</td>
+
+        <!-- USERS LIST -->
+        <td>
+          <ul>
+          @foreach($commitment->users as $user)
+            <li>
+              {{
+                link_to('user/' . $user->id . '/edit', 
+                $user->name, 
+                ['class' => $user->user_type])
+              }}
+            </li>
+          @endforeach
+          </ul>
+        </td>
+
+        <!-- ADMIN OPTIONS -->
         <td>
           <!-- update link -->
           {{link_to('commitment/' . $commitment->id . '/edit', 'editar')}}
@@ -60,6 +79,8 @@
 
         </td>
       </tr>
+
+      <!-- STATUS BAR -->
       <tr class="commitment_steps">
 	       @foreach($commitment->steps AS $step)
             <td class="step"> 
