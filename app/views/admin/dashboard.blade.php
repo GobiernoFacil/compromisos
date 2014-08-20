@@ -13,7 +13,7 @@
 
 	<div class="row">
                     
-                    <div class="col-lg-3 col-md-6 col-lg-offset-3 col-md-offset-6">
+                    <div class="col-lg-3 col-md-6 col-lg-offset-3 col-md-offset-0">
                         <div class="panel">
                             <div class="panel-heading">
                                 <div class="row">
