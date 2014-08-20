@@ -3,6 +3,13 @@
 @section('content')
 @include('backend_nav')
 <div class="container">
+
+  <!-- 
+
+  * - -   N A V I G A T I O N   C O N T E N T   - - *
+
+  -->
+
   <!--breadcrumb-->
 	<div class="row">
 		<div class="col-lg-12">
@@ -22,11 +29,19 @@
 	
 <div class="row">
 		<div class="col-lg-12">
+
+<!-- 
+
+* - -   F O R M   C O N T E N T   - - *
+
+-->
+
   {{Form::open([
     'url'    => 'commitment/' . $commitment->id,
     'method' => 'PUT',
     'files'  => TRUE,
-    'class'  =>'form-horizontal'
+    'class'  =>'form-horizontal',
+    'id'     => 'update-commitment-form'
   ])}}
   			<h1 class="page-header text-center">Editar compromiso</h1>	
 
@@ -71,20 +86,33 @@
 
 
   @if(Auth::user()->is_admin)
-  <!--Usuario de Gobierno-->
+  <!--Usuarios-->
+  <?php $index = 0; ?>
+  @foreach($commitment->users AS $user)
+    <div class="form-group">
+      @if($index)
+        <!-- if this isn't the first element, add a remove tag -->
+        <a style="text-align:right" href="#" class="col-sm-2 remove-user">descartar usuario</a> 
+      @else
+        <!-- if is the first user on the list, add the label -->
+        <label for="users[]" class="col-sm-2 control-label remove-user-label">Usuarios</label>
+      @endif
+	    <div class="col-sm-8">
+        {{Form::select('users[]', $users, $user->id, ['class'=>'form-control'])}}
+	    </div>
+    </div>
+    <?php $index++; ?>
+  @endforeach
+
+
+
+   <!-- necesito pensar en algo que use menos divs!!!!!!  x_____x -->
   <div class="form-group">
-      <label for="government_user" class="col-sm-2 control-label">Usuario de gobierno</label>
-	  <div class="col-sm-8">
-      {{Form::select('government_user', $government_users, $commitment->government_user, ['class'=>'form-control'])}}
-	  </div>
-   </div>
-   <!--Usuario externo-->
-  <div class="form-group">
-      <label for="society_user" class="col-sm-2 control-label">Usuario externo</label>
-	  <div class="col-sm-8">
-      {{Form::select('society_user', $society_users, $commitment->society_user, ['class'=>'form-control'])}}
-	  </div>
-   </div>
+    <span class="col-sm-2"></span>
+    <div class="col-sm-8">
+      <a href="#" id="add-user">Agregar otro usuario</a>
+    </div>
+  </div>
    @endif
 	
 

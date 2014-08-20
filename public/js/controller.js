@@ -12,6 +12,7 @@ define(function(require){
   //
   var Backbone = require('backbone'),
       // tinyMCE  = require('tinymce'),
+      moment   = require('moment'),
       Pikaday  = require('pikaday'),
       qtip2    = require('qtip2');
 
@@ -24,7 +25,7 @@ define(function(require){
     // D E F I N E   T H E   E V E N T S
     // 
     events : {
-      'click #add-user'      : 'add_user',
+      'click #add-user'    : 'add_user',
       'click .remove-user' : 'remove_user'
     },
 
@@ -68,7 +69,6 @@ define(function(require){
           weekdays      : ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'],
           weekdaysShort : ['Dom','Lun','Mar','Mie','Jue','Vie','Sab']
       };
-
       if(this.$('#step-1').length){
         var d1 = new Pikaday({
             field    : document.getElementById('step-1'),

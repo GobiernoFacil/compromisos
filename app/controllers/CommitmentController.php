@@ -64,7 +64,7 @@ class CommitmentController extends \BaseController {
 	  // UPDATE THE USERS
 	  $users_array = array_unique(Input::get('users'));
 	  foreach($users_array AS $key => $value){
-	  	DB::table('user_commitment')->insert([
+	  	DB::table('commitment_user')->insert([
 	  		'user_id' => $value,
 	  		'commitment_id' => $commitment->id
 	  	]);
@@ -125,19 +125,16 @@ class CommitmentController extends \BaseController {
 	public function edit($id)
 	{
 		//
-		$commitment       = Commitment::with('steps.objectives')->find($id);
+		$commitment = Commitment::with('steps.objectives')->find($id);
 
-		if(Auth::user()->is_admin || 
-			Auth::user()->id == $commitment->government_user || 
-			Auth::user()->id == $commitment->society_user){
 
-		  $government_users = User::where('user_type', 'government')->lists('name','id');
-	    $society_users    = User::where('user_type', 'society')->lists('name','id');
+		if(Auth::user()->is_admin || $commitment->users->find(Auth::user()->id)){
+
+		  $users = User::all()->lists('name','id');
 		  return View::make('admin.commitments_update')
 		    ->with([
-		  	  'commitment'       => $commitment,
-		  	  'government_users' => $government_users,
-		  	  'society_users'    => $society_users
+		  	  'commitment' => $commitment,
+		  	  'users'      => $users
 		  ]);
 
 		}
@@ -158,13 +155,9 @@ class CommitmentController extends \BaseController {
 		//
 		$commitment = Commitment::find($id);
 
-		if(Auth::user()->is_admin || 
-			Auth::user()->id == $commitment->government_user || 
-			Auth::user()->id == $commitment->society_user){
+		if(Auth::user()->is_admin || $commitment->users->find(Auth::user()->id)){
 
-		  $commitment->title = Input::get('title');
-		  $commitment->government_user = Input::get('government_user');
-		  $commitment->society_user = Input::get('society_user');
+		  $commitment->fill(Input::all());
 
 		  // update the new file if exist, and remove the previous file
 		  if(Input::hasFile('plan')){
@@ -177,6 +170,15 @@ class CommitmentController extends \BaseController {
 
 		  $commitment->save();
 
+		  // UPDATE THE USERS
+		  DB::table('commitment_user')->where('commitment_id', $commitment->id)->delete();
+	    $users_array = array_unique(Input::get('users'));
+	    foreach($users_array AS $key => $value){
+	  	  DB::table('commitment_user')->insert([
+	  		  'user_id' => $value,
+	  		  'commitment_id' => $commitment->id
+	  	  ]);
+	    }
       // SAVE THE DATES FOR EACH STEP
       for($i = 1; $i <= 4; $i++){
         Step::where([
