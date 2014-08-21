@@ -2,6 +2,9 @@
 
 class ObjectiveController extends \BaseController {
 
+	// THE PATH TO THE FILE UPLOAD
+	const FILES_DIR = './public/files';
+
 	/**
 	 * Show the form for editing the specified resource.
 	 *
@@ -13,9 +16,7 @@ class ObjectiveController extends \BaseController {
 		//
 		$objective = Objective::find($id);
 
-		if(Auth::user()->is_admin || 
-			Auth::user()->id == $objective->step->commitment->government_user || 
-			Auth::user()->id == $objective->step->commitment->society_user){
+		if(Auth::user()->is_admin || $objective->step->commitment->users->find(Auth::user()->id) ){
 			return View::make('admin.objectives_update')->with('objective', $objective);
 	  }
 	  else{
@@ -35,11 +36,16 @@ class ObjectiveController extends \BaseController {
 		//
 		$objective = Objective::find($id);
 
-		if(Auth::user()->is_admin || 
-			Auth::user()->id == $objective->step->commitment->government_user || 
-			Auth::user()->id == $objective->step->commitment->society_user){
+		if(Auth::user()->is_admin || $objective->step->commitment->users->find(Auth::user()->id) ){
 
 		  $objective->fill(Input::all());
+
+		 // SAVE VERIFICATION FILE; DELETE PREVIOUS FILE IF EXIST
+	  if(Input::hasFile('mir_file')){
+	  	$name = uniqid() . '.' . Input::file('mir_file')->getClientOriginalExtension();
+	  	Input::file('mir_file')->move(self::FILES_DIR, $name);
+	  	$objective->mir_file = $name;
+	  }
 
 		  // set the objective status
 		  if($objective->finish_description != ""){

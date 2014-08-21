@@ -132,6 +132,9 @@ endswitch;?>
       <label for="mir_file" class="col-sm-2 control-label">Archivo de verificación: </label>
     <div class="col-sm-8">
         {{Form::file('mir_file')}}
+        @if(!empty($objective->mir_file))
+        <a href="/files/{{$objective->mir_file}}" download>descargar</a>
+        @endif
     </div>
   </div>
 

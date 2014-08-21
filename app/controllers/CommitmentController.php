@@ -17,7 +17,12 @@ class CommitmentController extends \BaseController {
 	public function index()
 	{
 	  // GET THE COMMITMENTS DATA FOR THE ADMIN LIST
-	  $commitments = Commitment::all();
+	  if(Auth::user()->is_admin){
+	  	$commitments = Commitment::all();
+	  }
+	  else{
+	  	$commitments = Auth::user()->commitments;
+	  }
 
 	   return View::make('admin.commitments')
 	     ->with('commitments', $commitments);
@@ -170,15 +175,18 @@ class CommitmentController extends \BaseController {
 
 		  $commitment->save();
 
-		  // UPDATE THE USERS
-		  DB::table('commitment_user')->where('commitment_id', $commitment->id)->delete();
-	    $users_array = array_unique(Input::get('users'));
-	    foreach($users_array AS $key => $value){
-	  	  DB::table('commitment_user')->insert([
-	  		  'user_id' => $value,
-	  		  'commitment_id' => $commitment->id
-	  	  ]);
+		  // UPDATE THE USERS (only for admin)
+		  if(Auth::user()->is_admin){
+		    DB::table('commitment_user')->where('commitment_id', $commitment->id)->delete();
+	      $users_array = array_unique(Input::get('users'));
+	      foreach($users_array AS $key => $value){
+	  	    DB::table('commitment_user')->insert([
+	  		    'user_id' => $value,
+	  		    'commitment_id' => $commitment->id
+	  	    ]);
+	      }
 	    }
+
       // SAVE THE DATES FOR EACH STEP
       for($i = 1; $i <= 4; $i++){
         Step::where([
