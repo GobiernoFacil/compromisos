@@ -7,7 +7,10 @@
     backbone   : "./bower_components/backbone/backbone",
     underscore : "./bower_components/underscore/underscore",
     text       : "./bower_components/text/text",
-    requireLib    : './bower_components/requirejs/require'
+    pikaday    : "./bower_components/pikaday/pikaday",
+    moment     : "./bower_components/moment/moment",
+    qtip2      : "./libs/jquery.qtip",
+    requireLib : './bower_components/requirejs/require'
   },
   shim : {
     underscore :{
