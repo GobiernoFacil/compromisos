@@ -52,6 +52,7 @@
                 $user->name, 
                 ['class' => $user->user_type])
               }}
+              ({{$user->user_type == 'government' ? '<span class="text-success">Funcionario público</span>':'<span class="text-warning">OSC</span>'}}{{$user->is_admin ? '/ <strong class="text-muted">Administrador</strong>':''}})
             </li>
           @endforeach
           </ul>
