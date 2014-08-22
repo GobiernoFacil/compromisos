@@ -3,7 +3,7 @@
 class ObjectiveController extends \BaseController {
 
 	// THE PATH TO THE FILE UPLOAD
-	const FILES_DIR = './public/files';
+	const FILES_DIR = './files';
 
 	/**
 	 * Show the form for editing the specified resource.
