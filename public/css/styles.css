@@ -858,8 +858,15 @@ input:focus, select:focus, textarea:focus {
       padding-bottom: 20px; }
       .list-key .id .plus a {
         color: white;
+        cursor: pointer;
         font-size: 26px;
         font-weight: 300; }
+        .list-key .id .plus a.show:after {
+          content: "+"; }
+        .list-key .id .plus a.hide:after {
+          content: "-"; }
+        .list-key .id .plus a:hover {
+          color: #f2f2f2; }
 
 .list-responsable {
   background: #ccc;

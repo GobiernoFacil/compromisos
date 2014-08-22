@@ -43,13 +43,13 @@
 			<div class="col-xs-3 col-sm-1 id">
 				<h4>{{$commitment->id}}</h4>
 				<div class="plus">
-					<a href="#" title="responsable-{{$commitment->id}}">+</a>
+					<a class="show" title="responsable-{{$commitment->id}}"></a>
 				</div>
 			</div>
 			<div class="col-xs-9 col-sm-3 ct">
 				<p>{{$commitment->title}}</p>
 			</div>
-			<section class="mobile">
+			<section class="mobile responsable-{{$commitment->id}}">
 				@foreach($commitment->steps AS $step)
 					<div class="col-xs-12  col-sm-2 ct">
 						<ul {{ ($step->step_num == '4') ? '' : 'class="cumplimiento"'}}>
@@ -87,10 +87,23 @@
 							 		    	<p>{{$objective->title}}</p>
 							 		    	<h4></h4>
 							 		    	<p class="row"><span class="col-md-6">{{$objective->description}}</span>
-							 		 			<span class="col-md-6"> <a href="#" class="medios">Consulta el Avance</a></span>
+							 		    		@if ($objective->mir_file)
+							 		 				<span class="col-md-6"> <a href="/files/{{$objective->mir_file}}" class="medios">Consulta el Avance</a></span>
+							 		    		@else
+							 		    			@if ($objective->mir_url)
+							 		    				<?php $url = $objective->mir_url;?>
+							 		    				@if (!preg_match("~^(?:f|ht)tps?://~i", $url)) 
+							 								<?php $url = "http://" . $url;?>
+							 		 					@endif
+							 							<span class="col-md-6"> <a href="{{$url}}" class="medios">Consulta el Avance</a></span>
+							 		    			@endif
+							 		    		@endif
 							 		 		</p>
 							 		 		<p>Responsable: <a href="{{$objective->agent_url}}">{{$objective->agent}}</a></p>
-							 		 		<p>	<a href="#" class="comentarios_link">Otros comentarios</a></p>
+							 		 		<p>	<a class="comentarios_link" title="co-{{$step->step_num}}-{{$objective->id}}">
+							 		 			Otros comentarios</a><br/>
+							 		 			<span class="comentarios_objetivo co-{{$step->step_num}}-{{$objective->id}}">{{$objective->comments}}</span>
+							 		 		</p>
 							 		    	</div>								 		
 							 		    </li>
 							 		</ul>
@@ -111,28 +124,36 @@
 					@if(!empty($commitment->plan))
 					<a href="/files/{{$commitment->plan}}" download>Consulta el plan de trabajo</a>
 					@else
-					<a href>El plan de trabajo no fue agregado</a>
+					<a>El plan de trabajo no fue agregado</a>
 					@endif
 				</p> 
 				
 			</div>
 			<div class="col-sm-3 col-sm-offset-1 ct">
 				<h5>Responsable</h5>
-				<p class="vcard">
-					<span class="fn">{{$commitment->government_user}}</span>
-					<span class="organization-unit">{{$commitment->government_charge}}</span>
-					<span class="tel">t. <span class="value">{{$commitment->government_phone}}</span></span>
-					<a href="mailto:{{$commitment->government_username}}">{{$commitment->government_username}}</a>
-				</p>
+				@foreach($commitment->users as $user)
+				  @if ($user->user_type == 'government')
+				  <p class="vcard">
+				    	<span class="fn">{{$user->name}}</span>
+				    	<span class="organization-unit">{{$user->charge}}</span>
+				    	<span class="tel">t. <span class="value">{{$user->phone}}</span></span>
+				    	<a href="mailto:{{$commitment->government_username}}">{{$user->username}}</a>
+				  </p>
+				  @endif
+				@endforeach
 			</div>
 			<div class="col-sm-3 ct">
 				<h5>Responsable de la Organización de la Sociedad Civil</h5>
-				<p class="vcard">
-					<span class="fn">{{$commitment->society_user}}</span>
-					<span class="organization-unit">{{$commitment->society_charge}}</span>
-					<span class="tel">t. <span class="value">{{$commitment->society_phone}}</span></span>
-					<a href="mailto:{{$commitment->society_username}}">{{$commitment->society_username}}</a>
-				</p>
+				@foreach($commitment->users as $user)
+				  @if ($user->user_type == 'society')
+				  <p class="vcard">
+				    	<span class="fn">{{$user->name}}</span>
+				    	<span class="organization-unit">{{$user->charge}}</span>
+				    	<span class="tel">t. <span class="value">{{$user->phone}}</span></span>
+				    	<a href="mailto:{{$commitment->government_username}}">{{$user->username}}</a>
+				  </p>
+				  @endif
+				@endforeach
 			</div>
 		</div>
 		@endforeach
