@@ -150,29 +150,42 @@
       	<label class="col-sm-2 control-label">Actividad {{$r++}}:</label>
       
 	  	<div class="col-sm-8">
-	  		@if ($objective->title)
-      		<h5>{{ $objective->title }}</h5>
-      		<?php  switch ($objective->status):
-				    case 'a':
-				        $status = "sin_avance";
-				        $status_t = " Sin avance";
-				        break;
-				    case 'b':
-				        $status = "proceso";
-				        $status_t = "En proceso";
-				        break;
-				    case 'c':
-				        $status = "completado";
-				        $status_t = "Completado";
-				        break;
-				    default:
-				        $status = "sin_avance";
-				        $status_t = " Sin avance";
-				 endswitch;?>
-      		<p><span class="{{$status}}"> </span> {{$status_t}} | {{link_to('objective/' . $objective->id . '/edit', 'Editar Actividad')}}</p>
+	  		@if ($objective->step_num != 4)	  		 
+	  			@if ($objective->title)
+      			<h5>{{ $objective->title }}</h5>
+      			<?php  switch ($objective->status):
+					    case 'a':
+					        $status = "sin_avance";
+					        $status_t = " Sin avance";
+					        break;
+					    case 'b':
+					        $status = "proceso";
+					        $status_t = "En proceso";
+					        break;
+					    case 'c':
+					        $status = "completado";
+					        $status_t = "Completado";
+					        break;
+					    default:
+					        $status = "sin_avance";
+					        $status_t = " Sin avance";
+					 endswitch;?>
+      			<p><span class="{{$status}}"> </span> {{$status_t}} | {{link_to('objective/' . $objective->id . '/edit', 'Editar Actividad')}}</p>
+      			@else 
+      				<h5>{{link_to('objective/' . $objective->id . '/edit', 'Agregar Actividad')}}</h5>
+      			
+      			@endif
       		@else 
-      			<h5>{{link_to('objective/' . $objective->id . '/edit', 'Agregar Actividad')}}</h5>
-      		
+      			@if ($objective->url)	
+      				<?php $url_objective = $objective->url;?>
+					@if (!preg_match("~^(?:f|ht)tps?://~i", $url_objective)) 
+					    <?php $url_objective = "http://" . $url_objective;?>
+					@endif
+      				<h5>Enlace: <a href="{{$url_objective}}">{{$url_objective}}</a> </h5> 
+      				<p>| {{link_to('objective/' . $objective->id . '/edit', 'Editar Resultado')}}</p>
+      			@else 
+      				<h5>{{link_to('objective/' . $objective->id . '/edit', 'Agregar Resultado')}}</h5>
+      			@endif
       		@endif
 	  	</div>
       </div>

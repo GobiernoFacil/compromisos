@@ -26,19 +26,27 @@
 	}
 	
 /*colores*/
-.completado {
+.completado,
+.completado:visited  {
   background: #00a76f;
   color: #00a76f; }
+  
+}
   .completado:hover {
-    background: #089364; }
+    background: #089364; 
+    color: #089364;}
 
-.proceso {
+.proceso,
+.proceso:visited {
   background: #ffe460;
   color: #ffe460; }
   .proceso:hover {
-    background: #e9cf52; }
+    background: #e9cf52; 
+	color: #e9cf52;
+  }
 
-.sin_avance {
+.sin_avance,
+.sin_avance:visited {
   background: #e6e6e6;
   color: #e6e6e6;
   border: 1px solid #e6e6e6; }

@@ -70,7 +70,13 @@
 							 endswitch;?>
 							 <li {{ ($step->step_num == '4') ? 'class="resultado_link"' : ''}}> 
 							 	@if ($step->step_num == '4')
-							 	<a></a>
+							 		@if ($objective->url)	
+							 			<?php $url_objective = $objective->url;?>
+							 			@if (!preg_match("~^(?:f|ht)tps?://~i", $url_objective)) 
+							 				<?php $url_objective = "http://" . $url_objective;?>
+							 				<a href="{{$url_objective}}">{{$url_objective}}</a>
+							 			@endif
+							 		@endif	
 							 		@if ($objective->finish_description)
 							 		<ul class="resultado">
 									    <li><div class="contenido">
