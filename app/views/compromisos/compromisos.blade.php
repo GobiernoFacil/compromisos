@@ -41,7 +41,7 @@
 		<!-- comienza compromiso-->
 		<div class="row list-key">
 			<div class="col-xs-3 col-sm-1 id">
-				<h4>{{$commitment->id}}</h4>
+				<h4>{{$commitment->commitment_num == 0 ? "" : $commitment->commitment_num}}</h4>
 				<div class="plus">
 					<a class="show" title="responsable-{{$commitment->id}}"></a>
 				</div>

@@ -33,7 +33,7 @@
       @foreach ($commitments as $commitment)
       <tr>
         <!-- TITLE -->
-        <td>{{$commitment->title}}</td>
+        <td><strong>{{$commitment->commitment_num == 0 ? '' : $commitment->commitment_num .'.'}}</strong> {{$commitment->title}}</td>
 
         <!-- PLAN -->
         <td>

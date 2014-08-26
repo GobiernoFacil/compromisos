@@ -43,8 +43,16 @@
     'class'  =>'form-horizontal',
     'id'     => 'update-commitment-form'
   ])}}
-  			<h1 class="page-header text-center">Editar compromiso</h1>	
-
+  <h1 class="page-header text-center">Editar compromiso</h1>	
+  
+  <!--# de compromiso-->
+  <div class="form-group">
+    <label for="commitment_num" class="col-sm-2 control-label">Número de Compromiso: </label>
+	  <div class="col-sm-8">
+      <input type="text" name="commitment_num"  class="form-control" id="commitment_num" value="{{$commitment->commitment_num}}">
+	  </div>
+  </div>
+  
   <!--título-->
   <div class="form-group">
     <label for="title" class="col-sm-2 control-label">Título: </label>

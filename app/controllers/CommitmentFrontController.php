@@ -11,8 +11,8 @@ class CommitmentFrontController extends \BaseController {
 	{
 	  //
 	  
-	    
-	   $commitments = Commitment::all();
+	   // ordena compromisos por número de compromiso 
+	   $commitments = Commitment::orderBy('commitment_num', "ASC")->get();
 
 	   return View::make('compromisos.compromisos')
 	     ->with('commitments', $commitments);
