@@ -29,6 +29,7 @@ class CreateUsers extends Migration {
     // CREATE COMMITMENTS TABLE
     Schema::create('commitments', function($table){
       $table->increments('id');
+      $table->integer('commitment_num');
       $table->string('title');
       $table->string('plan')->nullable();
       $table->text('description');
