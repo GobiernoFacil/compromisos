@@ -75,7 +75,7 @@ endswitch;?>
 
   <!--DESCRIPTION/OBJECTIVE-->
   <div class="form-group">
-    {{Form::label('description', 'Objetivo: ', array('class'=>'col-sm-2 control-label'))}}
+    {{Form::label('description', 'Indicador: ', array('class'=>'col-sm-2 control-label'))}}
 	  <div class="col-sm-8">
       {{Form::textarea('description', $objective->description,array('class'=>'form-control has-editor has-tooltip'))}}
       <p class="hidden">Breve descripción del objetivo de la actividad (500 caracteres máximo)</p>
