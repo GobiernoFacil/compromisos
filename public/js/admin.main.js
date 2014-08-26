@@ -13,7 +13,7 @@ require.config({
     backbone   : "bower_components/backbone/backbone",
     underscore : "bower_components/underscore/underscore",
     text       : "bower_components/text/text",
-    tinymce    : "bower_components/tinymce/tinymce",
+    //tinymce    : "bower_components/tinymce/tinymce",
     pikaday    : "bower_components/pikaday/pikaday",
     moment     : "bower_components/moment/moment",
     qtip2      : "libs/jquery.qtip"
