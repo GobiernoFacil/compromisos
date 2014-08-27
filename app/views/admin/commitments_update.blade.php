@@ -158,7 +158,7 @@
       	<label class="col-sm-2 control-label">Actividad {{$r++}}:</label>
       
 	  	<div class="col-sm-8">
-	  		@if ($objective->step_num != 4)	  		 
+	  		@if ($objective->step_num != 4)	
 	  			@if ($objective->title)
       			<h5>{{ $objective->title }}</h5>
       			<?php  switch ($objective->status):
@@ -178,11 +178,17 @@
 					        $status = "sin_avance";
 					        $status_t = " Sin avance";
 					 endswitch;?>
-      			<p><span class="{{$status}}"> </span> {{$status_t}} | {{link_to('objective/' . $objective->id . '/edit', 'Editar Actividad')}}</p>
+      			<p><span class="{{$status}}"> </span> {{$status_t}} | {{link_to('objective/' . $objective->id . '/edit', 'Editar Información de Actividad')}} | 
+	      			      					<input type="submit" form="delete-objective-{{$objective->id}}" class="btn btn-xs btn-default text-danger" value="Eliminar Actividad">
+
+      			</p>
       			@else 
-      				<h5>{{link_to('objective/' . $objective->id . '/edit', 'Agregar Actividad')}}</h5>
-      			
+      				{{link_to('objective/' . $objective->id . '/edit', 'Agregar información de Actividad')}} / 
+      				@if ($objective->event_num != 1)
+      					<input type="submit" form="delete-objective-{{$objective->id}}" class="btn btn-xs btn-default text-danger" value="Eliminar Actividad">
+	  				@endif
       			@endif
+      			
       		@else 
       			@if ($objective->url)	
       				<?php $url_objective = $objective->url;?>
@@ -190,16 +196,22 @@
 					    <?php $url_objective = "http://" . $url_objective;?>
 					@endif
       				<h5>Enlace: <a href="{{$url_objective}}">{{$url_objective}}</a> </h5> 
-      				<p>| {{link_to('objective/' . $objective->id . '/edit', 'Editar Resultado')}}</p>
+      				<p>| {{link_to('objective/' . $objective->id . '/edit', 'Editar Información de  Resultado')}}</p>
       			@else 
-      				<h5>{{link_to('objective/' . $objective->id . '/edit', 'Agregar Resultado')}}</h5>
+      				<h5>{{link_to('objective/' . $objective->id . '/edit', 'Agregar Información de Resultado')}}</h5>
       			@endif
       		@endif
 	  	</div>
       </div>
       @endforeach
+      <div class="col-sm-8 col-sm-offset-2">
+      	<p>
+      	<input type="submit" form="add-objective-{{$step->id}}" class="btn btn-xs btn-success"/ value="Agregar otra Actividad a meta"></p>
+      </div>
+      <div class="clearfix"></div>
    </fieldset>
    @endforeach
+  <hr class="half-rule">
    <!--submit-->
   <div class="form-group">
   	<div class="col-sm-8 col-sm-offset-2">
@@ -207,9 +219,50 @@
   	</div>
   </div>
   {{Form::close()}}
-  			<hr class="half-rule">
+  <hr class="half-rule">
 
 </div>
 </div>
 </div>
+
+  
+
+   @foreach($commitment->steps AS $step)
+   	<?php $o = 0;?>
+   	@foreach($step->objectives AS $objective)
+<!-- 
+
+* - -   F O R M   T O   D E L E T E   O B J E C T I V E S   - - *
+
+--> 
+   		{{Form::open([
+		'url'    => 'objective/' . $objective->id,
+		'method' => 'DELETE',
+		'id'	=> 'delete-objective-'.$objective->id
+		])}}
+		{{Form::close()}}
+   	
+   	<?php $o++;?>
+ 	@endforeach
+<!-- 
+
+* - -   F O R M S   T O  A D D  O B J E C T I V E S   - - *
+
+-->
+ 	@if ($objective->step_num != 4)	
+
+ 		{{Form::open([
+		'url'    => 'objective',
+		'method' => 'POST',
+		'id'	=> 'add-objective-'.$step->id
+		])}}
+			<input type="hidden" name="step_id" value="{{$step->id}}">
+			<input type="hidden" name="step_num" value="{{$objective->step_num}}">
+			<input type="hidden" name="event_num" value="{{$o}}">
+		{{Form::close()}}
+	@endif
+
+ @endforeach
 @stop
+
+

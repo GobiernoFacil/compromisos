@@ -92,17 +92,14 @@ class CommitmentController extends \BaseController {
 
 	  	$step->save();
 
-	  	// CREATE THREE EVENTS FOR EVERY STEP
-	  	$events_num = $step->step_num == 4 ? 1 : 3;
-	  	for($j = 0; $j < $events_num; $j++){
-	  		$objective = new Objective([
+	  	// CREATE ONE EVENT FOR EVERY STEP
+	  	$objective = new Objective([
 	  			'step_id'   => $step->id,
 	  			'step_num'  => $step->step_num,
-	  			'event_num' => $j + 1,
+	  			'event_num' => 1,
 	  			'status'    => 'a'
-	  		]);
-	  		$objective->save();
-	  	}
+	  	]);
+	  	$objective->save();
 	  }
 
 	  return Redirect::to('commitment');

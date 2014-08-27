@@ -24,7 +24,28 @@ class ObjectiveController extends \BaseController {
 	  }
 	}
 
-
+	/**
+	 * Store a newly created resource in storage.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function store()
+	{
+		// CREATE ONE EVENT FOR EVERY STEP
+	  	$objective = new Objective([
+	  			'step_id'   => Input::get('step_id'),
+	  			'step_num'  => Input::get('step_num'),
+	  			'event_num' => Input::get('event_num') + 1,
+	  			'status'    => 'a'
+	  	]);
+	  	$objective->save();
+	  	
+	  	return Redirect::back();
+	}
+	
+	
+	
 	/**
 	 * Update the specified resource in storage.
 	 *
@@ -66,6 +87,18 @@ class ObjectiveController extends \BaseController {
 	  	return Redirect::to('commitment');
 	  }
 	}
-
+	
+	/**
+	 * Remove the specified resource from storage.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function destroy($id)
+	{
+		$objective = Objective::find($id);
+		$objective->delete();
+	  	return Redirect::back();
+	}
 
 }
