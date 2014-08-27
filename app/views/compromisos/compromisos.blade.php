@@ -107,7 +107,7 @@
 							 		 		</p>
 							 		 		<p>Responsable: <a href="{{$objective->agent_url}}">{{$objective->agent}}</a></p>
 							 		 		<p>	<a class="comentarios_link" title="co-{{$step->step_num}}-{{$objective->id}}">
-							 		 			Otros comentarios</a><br/>
+							 		 			Comentarios</a><br/>
 							 		 			<span class="comentarios_objetivo co-{{$step->step_num}}-{{$objective->id}}">{{$objective->comments}}</span>
 							 		 		</p>
 							 		    	</div>								 		
