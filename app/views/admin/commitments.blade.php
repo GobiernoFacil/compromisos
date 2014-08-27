@@ -23,9 +23,9 @@
   <table class="table">
     <thead>
       <tr>
-        <th>Nombre</th>
-        <th>plan</th>
-        <th>Usuarios</th>
+        <th>Compromiso</th>
+        <th>Plan</th>
+        <th>Responsables</th>
         <th>*</th>
       </tr>
     </thead>

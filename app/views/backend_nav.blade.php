@@ -11,7 +11,7 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li {{ Request::is( 'dashboard') ? 'class="active"' : '' }}>{{link_to('dashboard', 'Dashboard')}}</li>
+            <li {{ Request::is( 'dashboard') ? 'class="active"' : '' }}>{{link_to('dashboard', 'Tablero de Seguimiento')}}</li>
             <li {{ Request::is( 'commitment') ? 'class="active"' : '' }}>{{link_to('commitment', 'Compromisos')}}</li>
             <li {{ Request::is( 'user') ? 'class="active"' : '' }}>
             @if(Auth::user()->is_admin)
