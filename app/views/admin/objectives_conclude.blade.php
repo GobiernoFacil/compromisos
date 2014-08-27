@@ -1,4 +1,4 @@
-@extends('backend', ['title' => 'Editar Actividad | Tablero de control público de seguimiento del PA15.'])
+@extends('backend', ['title' => 'Finalizar Actividad | Tablero de control público de seguimiento del PA15.'])
 
 @section('content')
 @include('backend_nav')
@@ -27,7 +27,7 @@ endswitch;?>
                 </li>
                 <li class="active">
                     <i class="fa fa-edit"></i> 
-                    Editar 
+                    Finalizar 
                     @if($objective->step_num == 4) 
                       {{$step_num}}
                     @else
@@ -41,7 +41,7 @@ endswitch;?>
  	<div class="col-lg-12">
 
 	<h1 class="page-header text-center">
-    Editar 
+    Finalizar 
     @if($objective->step_num == 4) 
       {{$step_num}}
     @else
@@ -68,78 +68,69 @@ endswitch;?>
   <div class="form-group">
     {{Form::label('title', 'Actividad: ', array('class'=>'col-sm-2 control-label'))}}
 	  <div class="col-sm-8">
-	    {{Form::textarea('title', $objective->title,array('class'=>'form-control has-editor has-tooltip'))}}
-      <p class="hidden">Breve descripción de la actividad (500 caracteres máximo)</p>
+	  	{{$objective->title}}
 	  </div>
   </div>  
 
   <!--DESCRIPTION/OBJECTIVE-->
   <div class="form-group">
     {{Form::label('description', 'Indicador: ', array('class'=>'col-sm-2 control-label'))}}
-	  <div class="col-sm-8">
-      {{Form::textarea('description', $objective->description,array('class'=>'form-control has-editor has-tooltip'))}}
-      <p class="hidden">Breve descripción del objetivo de la actividad (500 caracteres máximo)</p>
-    </div>  
+	<div class="col-sm-8">
+		{{$objective->description}}
+	</div>  
   </div> 
   @endif 
 
 
-  @if($objective->step_num == 4)
-  <!--URL-->
-  <div class="form-group">
-    {{Form::label('url', 'url / frase: ', array('class'=>'col-sm-2 control-label'))}}
-	  <div class="col-sm-8">
-      {{Form::text('url', $objective->url, array('class'=>'form-control has-tooltip'))}}
-      <p class="hidden">El URL para mostrar el resultado final o una frase que resuma
-      el resultado obtenido</p>
-	  </div>
-  </div>
-  @endif
-
 
   @if($objective->step_num != 4)
   <!--AGENT-->
-  <div class="form-group">
-    {{Form::label('agent', 'Responsable: ', array('class'=>'col-sm-2 control-label'))}}
-	  <div class="col-sm-8">
-      {{Form::text('agent', $objective->agent, array('class'=>'form-control has-tooltip'))}}
-      <p class="hidden">Responsable/dependencia/OSC que aparecerá en el tablero. 
-      Los nombres de los administradores de cada compromiso también aparecen, no es necesario
-      poner sus nombres de nuevo</p>
-	  </div>
-  </div>
-
+  	@if ($objective->agent)
+  	<div class="form-group">
+  	  {{Form::label('agent', 'Responsable: ', array('class'=>'col-sm-2 control-label'))}}
+  		  <div class="col-sm-8">
+  	    {{ $objective->agent}}
+  		  </div>
+  	</div>
+  	@endif
+  
   <!--AGENT'S URL-->
+  	@if ($objective->agent_url)
+  	<div class="form-group">
+  	  {{Form::label('agent_url', 'Responsable URL: ', array('class'=>'col-sm-2 control-label'))}}
+  		  <div class="col-sm-8">
+  	    {{$objective->agent_url}}
+  		  </div>
+  	</div>
+  	@endif
+  
+  <!--MIR URL-->
   <div class="form-group">
-    {{Form::label('agent_url', 'Responsable URL: ', array('class'=>'col-sm-2 control-label'))}}
-	  <div class="col-sm-8">
-      {{Form::text('agent_url', $objective->agent_url, array('class'=>'form-control'))}}
-	  </div>
-  </div>
-
-  <!--ADVANCE DESCRIPTION-->
-  <div class="form-group">
-    {{Form::label('advance_description', 'Descripción del avance: ', array('class'=>'col-sm-2 control-label'))}}
-	  <div class="col-sm-8">
-      {{Form::textarea('advance_description', $objective->advance_description, array('class'=>'form-control has-tooltip'))}}
-      <p class="hidden">Al llenar este campo la actividad pasa de "sin iniciar" a "en proceso". 
-      (500 caracteres máximo)</p>
-	  </div>
-  </div>
-
-  <!--OTHER COMMENTS-->
-  <div class="form-group">
-    {{Form::label('comments', 'Comentarios: ', array('class'=>'col-sm-2 control-label'))}}
+    {{Form::label('mir_url', 'URL de verificación: ', array('class'=>'col-sm-2 control-label'))}}
     <div class="col-sm-8">
-      {{Form::textarea('comments', $objective->comments, array('class'=>'form-control has-tooltip'))}}
-      <p class="hidden">Este texto sirve para extender la explicación del estatus del objetivo</p>
+      {{Form::text('mir_url', $objective->mir_url, array('class'=>'form-control has-tooltip'))}}
+      <p class="hidden">El sitio donde se puede verificar el avance de la actividad. Si se define el URL y el
+        archivo, el URL tiene precedencia; no es posible mostrar ambos en el tablero.</p>
+    </div>
+  </div>
+
+  <!--MIR FILE-->
+  <div class="form-group">
+      <label for="mir_file" class="col-sm-2 control-label">Archivo de verificación: </label>
+    <div class="col-sm-8">
+        {{Form::file('mir_file')}}
+        @if(!empty($objective->mir_file))
+        <a href="/files/{{$objective->mir_file}}" download>descargar</a>
+        @endif
     </div>
   </div>
 
 
+
+
   @endif
 
-@if($objective->step_num == 4)
+
   <!--FINISH DESCRIPTION-->
   <div class="form-group">
     {{Form::label('finish_description', 'Descripción final: ', array('class'=>'col-sm-2 control-label'))}}
@@ -155,14 +146,19 @@ endswitch;?>
     @endif
 	</div>
   </div>
-@endif
 
+    <!--OTHER COMMENTS-->
+  <div class="form-group">
+    {{Form::label('comments', 'Comentarios: ', array('class'=>'col-sm-2 control-label'))}}
+    <div class="col-sm-8">
+      {{Form::textarea('comments', $objective->comments, array('class'=>'form-control has-tooltip'))}}
+      <p class="hidden">Este texto sirve para extender la explicación del estatus del objetivo</p>
+    </div>
+  </div>
   <!-- SUBMIT -->
   <div class="form-group">
 	<div class="col-sm-8 col-sm-offset-2">
-    {{Form::submit('Editar', array('class'=>'btn btn-lg btn-primary'))}}
-    
-    {{ $objective->status == "b" ? link_to('objective/conclude/' . $objective->id, 'Finalizar Actividad >', array("class"=>"btn btn-lg btn-success")) : ""}}
+    {{Form::submit('Finalizar Actividad', array('class'=>'btn btn-lg btn-primary'))}}
 	</div>
   </div>
   

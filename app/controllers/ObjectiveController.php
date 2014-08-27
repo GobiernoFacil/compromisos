@@ -23,6 +23,25 @@ class ObjectiveController extends \BaseController {
 	  	return Redirect::to('commitment');
 	  }
 	}
+	
+	/**
+	 * Show the form for conclude the specified resource.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function conclude($id)
+	{
+		//
+		$objective = Objective::find($id);
+
+		if(Auth::user()->is_admin || $objective->step->commitment->users->find(Auth::user()->id) ){
+			return View::make('admin.objectives_conclude')->with('objective', $objective);
+		}
+		else{
+	  		return Redirect::to('commitment');
+	  	}
+	}
 
 	/**
 	 * Store a newly created resource in storage.

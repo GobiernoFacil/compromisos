@@ -178,14 +178,15 @@
 					        $status = "sin_avance";
 					        $status_t = " Sin avance";
 					 endswitch;?>
-      			<p><span class="{{$status}}"> </span> {{$status_t}} | {{link_to('objective/' . $objective->id . '/edit', 'Editar Información de Actividad')}} | 
-	      			      					<input type="submit" form="delete-objective-{{$objective->id}}" class="btn btn-xs btn-default text-danger" value="Eliminar Actividad">
-
+      			<p><span class="{{$status}}"> </span> {{$status_t}} | {{link_to('objective/' . $objective->id . '/edit', 'Editar Información de Actividad',array("class"=>"btn btn-xs btn-default"))}} | 
+		  			{{ $status == "proceso" ? link_to('objective/conclude/' . $objective->id, 'Finalizar Actividad', array("class"=>"btn btn-xs btn-primary")) : ""}}
+		  			{{ $status == "completado" ? link_to('objective/conclude/' . $objective->id, 'Editar Finalizar Actividad', array("class"=>"btn btn-xs btn-primary")) : ""}}
+		  			<input type="submit" form="delete-objective-{{$objective->id}}" class="btn btn-xs btn-danger" value="Eliminar Actividad">
       			</p>
       			@else 
-      				{{link_to('objective/' . $objective->id . '/edit', 'Agregar información de Actividad')}} / 
+      				{{link_to('objective/' . $objective->id . '/edit', 'Agregar información de Actividad', array("class"=>"btn btn-xs btn-default"))}} |
       				@if ($objective->event_num != 1)
-      					<input type="submit" form="delete-objective-{{$objective->id}}" class="btn btn-xs btn-default text-danger" value="Eliminar Actividad">
+      					<input type="submit" form="delete-objective-{{$objective->id}}" class="btn btn-xs btn-danger" value="Eliminar Actividad">
 	  				@endif
       			@endif
       			

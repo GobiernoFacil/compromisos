@@ -38,6 +38,7 @@ Route::resource('commitment', 'CommitmentController');
 // THE OBJECTIVE LOGIC
 //
 Route::resource('objective', 'ObjectiveController');
+Route::get('objective/conclude/{id}', 'ObjectiveController@conclude');
 
 // the 404 response x____x
 App::missing(function($exception){
