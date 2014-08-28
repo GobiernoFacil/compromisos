@@ -904,8 +904,20 @@ input:focus, select:focus, textarea:focus {
   list-style: none;
   height: 25px;
   line-height: 25px;
-  width: 31%;
-  margin-left: 1%; }
+  width: 100%;
+  margin-bottom: 1px; }
+  .cumplimiento li.two {
+    width: 49%;
+    margin-left: 1%; }
+  .cumplimiento li.three {
+    width: 32.3%;
+    margin-left: 1%; }
+  .cumplimiento li.four {
+    width: 24%;
+    margin-left: 1%; }
+  .cumplimiento li.five {
+    width: 19%;
+    margin-left: 1%; }
   .cumplimiento li:hover {
     cursor: pointer; }
     .cumplimiento li:hover ul {

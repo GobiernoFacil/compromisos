@@ -52,41 +52,51 @@
 			<section class="mobile responsable-{{$commitment->id}}">
 				@foreach($commitment->steps AS $step)
 					<div class="col-xs-12  col-sm-2 ct">
-						<ul {{ ($step->step_num == '4') ? '' : 'class="cumplimiento"'}}>
-							@foreach($step->objectives AS $objective)
-							
-							<?php  switch ($objective->status):
-							    case 'a':
-							        $status = "sin_avance";
-							        break;
-							    case 'b':
-							        $status = "proceso";
-							        break;
-							    case 'c':
-							        $status = "completado";
-							        break;
-							    default:
-							        $status = "sin_avance";
-							 endswitch;?>
-							 <li {{ ($step->step_num == '4') ? 'class="resultado_link"' : ''}}> 
-							 	@if ($step->step_num == '4')
-							 		@if ($objective->url)	
-							 			<?php $url_objective = $objective->url;?>
-							 			@if (!preg_match("~^(?:f|ht)tps?://~i", $url_objective)) 
-							 				<?php $url_objective = "http://" . $url_objective;?>
-							 				<a href="{{$url_objective}}">{{$url_objective}}</a>
-							 			@endif
-							 		@endif	
-							 		@if ($objective->finish_description)
-							 		<ul class="resultado">
-									    <li><div class="contenido">
-									    	<p>{{$objective->finish_description}} </p>
-									    </div>
-									    </li>
-									</ul>
-							 		@endif
-							 	@else
-							 	<a href="#" class="objetivo {{$status}}"></a>
+					<?php //contamos objetivos por avance 
+						$total_ob 	= iterator_count($step->objectives);
+						$ob 		= 0;
+					?>
+					@foreach($step->objectives AS $objective)	
+						@if ($step->step_num != '4') 
+							<?php  
+								switch ($objective->status):
+							    	case 'a':
+							    	    $status = "sin_avance";
+							    	    break;
+							    	case 'b':
+							    	    $status = "proceso";
+							    	    break;
+							    	case 'c':
+							    	    $status = "completado";
+							    	    break;
+							    	default:
+							    	    $status = "sin_avance";
+								endswitch;
+							 	$ob++;	?>
+							 <!-- con más tiempo corrijo el cálcuo X___x porque presiento que no va a funcionar visualmente ajustar al ancho -->
+							 @if ($ob == 1) 
+							 <ul class="cumplimiento clearfix">
+						     @endif
+						     	<?php 
+						     		// rústico el asunto mientras aprueban
+							     	switch ($total_ob) {
+								     	case $total_ob == 1: $class_link = ""; break;
+								     	case $total_ob == 2: $class_link = "two"; break;
+								     	case $total_ob == 3: $class_link = "three"; break;
+								     	case $total_ob == 4: $class_link = "four"; break;
+								  //   	case $total_ob == 13 && $ob == 11 : $class_link ="three"; break;
+								    // 	case $total_ob == 13 && $ob == 12 : $class_link ="three"; break;
+								     //	case $total_ob == 13 && $ob == 13 : $class_link ="three"; break;
+								     	case $total_ob >= 5: $class_link = "five"; break;
+								     	default:
+								     	 	$class_link = "";
+									 	 	break;
+							     	}
+						     	?>
+						    	 
+						    		
+						     	<li class="resultado_link {{$class_link}}"> 
+							 		<a href="#" class="objetivo {{$status}}"></a>
 							 		@if ($objective->title)
 							 		<ul>
 							 		    <li><div class="detalle">
@@ -114,10 +124,36 @@
 							 		    </li>
 							 		</ul>
 							 		@endif
-							 	@endif
-							 </li>
-							@endforeach
-						</ul>
+							 	</li>
+						     
+						     @if ($ob == $total_ob)
+							 </ul>
+						     @endif
+								 
+						@else
+						<!--- resultado final -->
+							<ul>
+								<li class="resultado_link">
+									@if ($objective->url)	
+							 			<?php $url_objective = $objective->url;?>
+							 			@if (!preg_match("~^(?:f|ht)tps?://~i", $url_objective)) 
+							 				<?php $url_objective = "http://" . $url_objective;?>
+							 				<a href="{{$url_objective}}">{{$url_objective}}</a>
+							 			@endif
+							 		@endif	
+							 		@if ($objective->finish_description)
+							 		<ul class="resultado">
+									    <li><div class="contenido">
+									    	<p>{{$objective->finish_description}} </p>
+									    </div>
+									    </li>
+									</ul>
+							 		@endif
+								</li>
+							</ul>
+						
+						@endif
+					@endforeach
 					</div>
 				@endforeach
 
