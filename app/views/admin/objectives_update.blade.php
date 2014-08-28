@@ -68,8 +68,12 @@ endswitch;?>
   <div class="form-group">
     {{Form::label('title', 'Actividad: ', array('class'=>'col-sm-2 control-label'))}}
 	  <div class="col-sm-8">
+	  @if(Auth::user()->user_type == "society")
+	  	{{$objective->title}}
+	  @else
 	    {{Form::textarea('title', $objective->title,array('class'=>'form-control has-editor has-tooltip'))}}
-      <p class="hidden">Breve descripción de la actividad (500 caracteres máximo)</p>
+		<p class="hidden">Breve descripción de la actividad (500 caracteres máximo)</p>
+	  @endif
 	  </div>
   </div>  
 
@@ -77,8 +81,13 @@ endswitch;?>
   <div class="form-group">
     {{Form::label('description', 'Indicador: ', array('class'=>'col-sm-2 control-label'))}}
 	  <div class="col-sm-8">
-      {{Form::textarea('description', $objective->description,array('class'=>'form-control has-editor has-tooltip'))}}
-      <p class="hidden">Breve descripción del objetivo de la actividad (500 caracteres máximo)</p>
+	  @if(Auth::user()->user_type == "society")
+	  	{{$objective->description}}
+	  @else
+	    {{Form::textarea('description', $objective->description,array('class'=>'form-control has-editor has-tooltip'))}}
+		<p class="hidden">Breve descripción del objetivo de la actividad (500 caracteres máximo)</p>
+	  @endif
+      
     </div>  
   </div> 
   @endif 
@@ -89,9 +98,13 @@ endswitch;?>
   <div class="form-group">
     {{Form::label('url', 'url / frase: ', array('class'=>'col-sm-2 control-label'))}}
 	  <div class="col-sm-8">
-      {{Form::text('url', $objective->url, array('class'=>'form-control has-tooltip'))}}
-      <p class="hidden">El URL para mostrar el resultado final o una frase que resuma
-      el resultado obtenido</p>
+		@if(Auth::user()->user_type == "society")
+			{{$objective->url}}
+		@else
+			{{Form::text('url', $objective->url, array('class'=>'form-control has-tooltip'))}}
+			<p class="hidden">El URL para mostrar el resultado final o una frase que resuma
+			el resultado obtenido</p>
+	  	@endif
 	  </div>
   </div>
   @endif
@@ -102,10 +115,14 @@ endswitch;?>
   <div class="form-group">
     {{Form::label('agent', 'Responsable: ', array('class'=>'col-sm-2 control-label'))}}
 	  <div class="col-sm-8">
-      {{Form::text('agent', $objective->agent, array('class'=>'form-control has-tooltip'))}}
-      <p class="hidden">Responsable/dependencia/OSC que aparecerá en el tablero. 
-      Los nombres de los administradores de cada compromiso también aparecen, no es necesario
-      poner sus nombres de nuevo</p>
+	  	@if(Auth::user()->user_type == "society")
+			{{$objective->agent}}
+		@else
+			{{Form::text('agent', $objective->agent, array('class'=>'form-control has-tooltip'))}}
+			<p class="hidden">Responsable/dependencia/OSC que aparecerá en el tablero. 
+				Los nombres de los administradores de cada compromiso también aparecen, no es necesario
+				poner sus nombres de nuevo</p>	  	
+      	@endif
 	  </div>
   </div>
 
@@ -113,7 +130,11 @@ endswitch;?>
   <div class="form-group">
     {{Form::label('agent_url', 'Responsable URL: ', array('class'=>'col-sm-2 control-label'))}}
 	  <div class="col-sm-8">
-      {{Form::text('agent_url', $objective->agent_url, array('class'=>'form-control'))}}
+	  	@if(Auth::user()->user_type == "society")
+			{{$objective->agent_url}}
+		@else
+	      {{Form::text('agent_url', $objective->agent_url, array('class'=>'form-control'))}}			
+	  	@endif
 	  </div>
   </div>
 
@@ -121,9 +142,13 @@ endswitch;?>
   <div class="form-group">
     {{Form::label('advance_description', 'Descripción del avance: ', array('class'=>'col-sm-2 control-label'))}}
 	  <div class="col-sm-8">
-      {{Form::textarea('advance_description', $objective->advance_description, array('class'=>'form-control has-tooltip'))}}
-      <p class="hidden">Al llenar este campo la actividad pasa de "sin iniciar" a "en proceso". 
-      (500 caracteres máximo)</p>
+	  	@if(Auth::user()->user_type == "society")
+			{{$objective->advance_description}}
+		@else
+	      {{Form::textarea('advance_description', $objective->advance_description, array('class'=>'form-control has-tooltip'))}}
+		  <p class="hidden">Al llenar este campo la actividad pasa de "sin iniciar" a "en proceso". 
+		  (500 caracteres máximo)</p>			
+	  	@endif
 	  </div>
   </div>
 

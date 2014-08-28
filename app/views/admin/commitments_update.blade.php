@@ -44,12 +44,15 @@
     'id'     => 'update-commitment-form'
   ])}}
   <h1 class="page-header text-center">Editar compromiso</h1>	
-  
   <!--# de compromiso-->
   <div class="form-group">
     <label for="commitment_num" class="col-sm-2 control-label">Número de Compromiso: </label>
 	  <div class="col-sm-8">
-      <input type="text" name="commitment_num"  class="form-control" id="commitment_num" value="{{$commitment->commitment_num}}">
+	   @if(Auth::user()->user_type == "society")
+  			{{$commitment->commitment_num}}
+  		@else
+      		<input type="text" name="commitment_num"  class="form-control" id="commitment_num" value="{{$commitment->commitment_num}}">
+	   @endif
 	  </div>
   </div>
   
@@ -57,38 +60,60 @@
   <div class="form-group">
     <label for="title" class="col-sm-2 control-label">Título: </label>
 	  <div class="col-sm-8">
-      <input type="text" name="title"  class="form-control" id="title" value="{{$commitment->title}}">
+	   @if(Auth::user()->user_type == "society")
+  			{{$commitment->title}}
+	   @else
+  			<input type="text" name="title"  class="form-control" id="title" value="{{$commitment->title}}">
+	  @endif
 	  </div>
   </div>
   <!--Plan-->
   <div class="form-group">
       <label for="plan" class="col-sm-2 control-label">Plan: </label>
 	  <div class="col-sm-8">
-      	{{Form::file('plan')}}
-        @if(!empty($commitment->plan))
-        <a href="/files/{{$commitment->plan}}" download>descargar</a>
-        @endif
+	  	 @if(Auth::user()->user_type == "society")
+	  	 	@if(!empty($commitment->plan))
+	  	 		<a href="/files/{{$commitment->plan}}" download>descargar</a>
+	  	 	@endif	   
+	  	 @else
+  			{{Form::file('plan')}}
+  			@if(!empty($commitment->plan))
+  			<a href="/files/{{$commitment->plan}}" download>descargar</a>
+  			@endif
+  		@endif
 	  </div>
   </div>
     <!--Descripción-->
   <div class="form-group">
       <label for="description" class="col-sm-2 control-label">Descripción: </label>
 	  <div class="col-sm-8">
+	  @if(Auth::user()->user_type == "society")
+  			{{$commitment->description}}
+	  @else
         <textarea name="description"  class="form-control" id="description"> {{$commitment->description}}</textarea>
+	  @endif
 	  </div>
   </div>
   <!--Características-->
   <div class="form-group">
       <label for="characteristics" class="col-sm-2 control-label">Características: </label>
 	  <div class="col-sm-8">
-        <textarea name="characteristics"  class="form-control" id="characteristics">{{$commitment->characteristics}}</textarea>
+	  	@if(Auth::user()->user_type == "society")
+  			{{$commitment->characteristics}}
+  		@else
+        	<textarea name="characteristics"  class="form-control" id="characteristics">{{$commitment->characteristics}}</textarea>
+		@endif
 	  </div>
   </div>
   <!--Estado-->
   <div class="form-group">
       <label for="status" class="col-sm-2 control-label">Estado: </label>
 	  <div class="col-sm-8">
-        <textarea name="status"  class="form-control" id="status">{{$commitment->status}}</textarea>
+	  	@if(Auth::user()->user_type == "society")
+  			{{$commitment->status}}
+  		@else
+       		<textarea name="status"  class="form-control" id="status">{{$commitment->status}}</textarea>
+		@endif
 	  </div>
   </div>
 
@@ -149,7 +174,11 @@
     <div class="form-group">
       <label for="step-{{$step->step_num}}" class="col-sm-2 control-label">Fecha límite</label>
       <div class="col-sm-8">
+      	@if(Auth::user()->user_type == "society")
+  			{{$step->ends}}
+  		@else
 	      <input type="text" id="step-{{$step->step_num}}" name="step-{{$step->step_num}}" class="form-control" value="{{$step->ends}}">
+		@endif
       </div>
     </div>
       <?php $r=1;?>
@@ -158,8 +187,10 @@
       	<label class="col-sm-2 control-label">Actividad {{$r++}}:</label>
       
 	  	<div class="col-sm-8">
-	  		@if ($objective->step_num != 4)	
+	  		@if ($objective->step_num != 4)
+	  			<!-- si no es resultado final -->	
 	  			@if ($objective->title)
+	  			<!-- si tiene título -->	
       			<h5>{{ $objective->title }}</h5>
       			<?php  switch ($objective->status):
 					    case 'a':
@@ -178,15 +209,25 @@
 					        $status = "sin_avance";
 					        $status_t = " Sin avance";
 					 endswitch;?>
-      			<p><span class="{{$status}}"> </span> {{$status_t}} | {{link_to('objective/' . $objective->id . '/edit', 'Editar Información de Actividad',array("class"=>"btn btn-xs btn-default"))}} | 
+				<!-- agrega enlaces para eliminar, editar y finalizar actividad-->
+      			<p><span class="{{$status}}"> </span> 
+      			
+      				{{$status_t}} | {{link_to('objective/' . $objective->id . '/edit', 'Editar Información de Actividad',array("class"=>"btn btn-xs btn-default"))}} | 
+		  			<!-- si ya está en proceso -->
 		  			{{ $status == "proceso" ? link_to('objective/conclude/' . $objective->id, 'Finalizar Actividad', array("class"=>"btn btn-xs btn-primary")) : ""}}
+		  			<!-- si ya está en completado -->
 		  			{{ $status == "completado" ? link_to('objective/conclude/' . $objective->id, 'Editar Finalizar Actividad', array("class"=>"btn btn-xs btn-primary")) : ""}}
+		  			@if(Auth::user()->user_type != "society") 
+		  			<!-- si el usuario no es OSC -->
 		  			<input type="submit" form="delete-objective-{{$objective->id}}" class="btn btn-xs btn-danger" value="Eliminar Actividad">
+		  			@endif
       			</p>
       			@else 
       				{{link_to('objective/' . $objective->id . '/edit', 'Agregar información de Actividad', array("class"=>"btn btn-xs btn-default"))}} |
-      				@if ($objective->event_num != 1)
+      				@if ($objective->event_num != 1 ) 
+      					@if (Auth::user()->user_type != "society")
       					<input type="submit" form="delete-objective-{{$objective->id}}" class="btn btn-xs btn-danger" value="Eliminar Actividad">
+	  					@endif
 	  				@endif
       			@endif
       			

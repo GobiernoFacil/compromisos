@@ -108,9 +108,13 @@ endswitch;?>
   <div class="form-group">
     {{Form::label('mir_url', 'URL de verificación: ', array('class'=>'col-sm-2 control-label'))}}
     <div class="col-sm-8">
-      {{Form::text('mir_url', $objective->mir_url, array('class'=>'form-control has-tooltip'))}}
+    	@if(Auth::user()->user_type == "society")
+			{{$objective->mir_url}}
+		@else
+	      {{Form::text('mir_url', $objective->mir_url, array('class'=>'form-control has-tooltip'))}}
       <p class="hidden">El sitio donde se puede verificar el avance de la actividad. Si se define el URL y el
         archivo, el URL tiene precedencia; no es posible mostrar ambos en el tablero.</p>
+        @endif
     </div>
   </div>
 
@@ -118,15 +122,18 @@ endswitch;?>
   <div class="form-group">
       <label for="mir_file" class="col-sm-2 control-label">Archivo de verificación: </label>
     <div class="col-sm-8">
-        {{Form::file('mir_file')}}
-        @if(!empty($objective->mir_file))
-        <a href="/files/{{$objective->mir_file}}" download>descargar</a>
-        @endif
+    	@if(Auth::user()->user_type == "society")
+			@if(!empty($objective->mir_file))
+		 <a href="/files/{{$objective->mir_file}}" download>descargar</a>
+		 @endif	
+		@else
+		  {{Form::file('mir_file')}}
+		 @if(!empty($objective->mir_file))
+		 <a href="/files/{{$objective->mir_file}}" download>descargar</a>
+		 @endif			
+	  	@endif        
     </div>
   </div>
-
-
-
 
   @endif
 
@@ -135,15 +142,19 @@ endswitch;?>
   <div class="form-group">
     {{Form::label('finish_description', 'Descripción final: ', array('class'=>'col-sm-2 control-label'))}}
 	<div class="col-sm-8">
-    {{Form::textarea('finish_description', $objective->finish_description, array('class'=>'form-control has-tooltip'))}}
-
-    @if($objective->step_num == 4)
-    <p class="hidden">Un pequeño resumen de 500 caracteres máximo con la descripción del
-      resultado final.</p>
-    @else
-    <p class="hidden">Al llenar este campo das por concluida esta actividad. 
-      (500 caracteres máximo)</p>
-    @endif
+		@if(Auth::user()->user_type == "society")
+			{{$objective->finish_description}}
+		@else
+			{{Form::textarea('finish_description', $objective->finish_description, array('class'=>'form-control has-tooltip'))}}
+	  	@endif
+	  	
+	  	@if($objective->step_num == 4)
+    		<p class="hidden">Un pequeño resumen de 500 caracteres máximo con la descripción del
+			resultado final.</p>
+		@else
+			<p class="hidden">Al llenar este campo das por concluida esta actividad. 
+			(500 caracteres máximo)</p>
+		@endif
 	</div>
   </div>
 
