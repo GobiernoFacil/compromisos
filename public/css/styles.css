@@ -975,7 +975,7 @@ input:focus, select:focus, textarea:focus {
     font-size: 9px; }
     .detalle p.row span {
       padding: 0; }
-  .detalle p .medios {
+  .detalle p .medios, .detalle p .medios:visited {
     background: #6e6c6c;
     border-bottom: 1px solid black;
     color: white;
@@ -983,7 +983,7 @@ input:focus, select:focus, textarea:focus {
     padding: 5px 2px;
     text-align: center;
     text-transform: uppercase; }
-    .detalle p .medios:hover {
+    .detalle p .medios:hover, .detalle p .medios:visited:hover {
       color: white;
       background: #4d4d4d; }
 
