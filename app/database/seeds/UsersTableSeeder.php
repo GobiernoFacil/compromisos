@@ -13,6 +13,36 @@ class UsersTableSeeder extends Seeder{
         'user_type' => 'government',
         'is_admin'  => TRUE
       ],
+      
+      [
+        'username'  => 'eduardo.vargas@presidencia.gob.mx',
+        'password'  =>  Hash::make('eduardo1234'),
+        'name'      => 'Eduardo Vargas',
+        'charge'    => 'Gobierno Abierto',
+        'phone'     => '5093 4800',
+        'user_type' => 'government',
+        'is_admin'  => TRUE
+      ],
+      
+      [
+        'username'  => 'gobierno.abierto@presidencia',
+        'password'  =>  Hash::make('abierto1234'),
+        'name'      => 'Gobierno Abierto',
+        'charge'    => 'Gobierno Abierto',
+        'phone'     => '5093 4800',
+        'user_type' => 'government',
+        'is_admin'  => TRUE
+      ],
+      
+      [
+        'username'  => 'ruizdeteresa@presidencia.gob.mx',
+        'password'  =>  Hash::make('ruiz1234'),
+        'name'      => 'Guillermo Ruiz de Teresa',
+        'charge'    => 'Gobierno Abierto',
+        'phone'     => '5093 4800',
+        'user_type' => 'government',
+        'is_admin'  => TRUE
+      ],
 
       // Tu gobierno en un solo punto | gob.mx
       [
