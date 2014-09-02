@@ -743,42 +743,116 @@ input:focus, select:focus, textarea:focus {
 
 /* =Main content and comment content
 -------------------------------------------------------------- */
+body {
+  background: #eee;
+  padding-top: 80px; }
+
 #header {
-  background-color: #000; }
-  #header h1 {
-    margin-top: 15px; }
-    #header h1 a {
-      background: url(../img/logo.png) no-repeat;
-      height: 40px;
-      width: 40px;
-      margin: 0 auto;
-      display: block;
-      border: 0;
-      text-indent: -999em;
-      overflow: hidden;
-      background-repeat: no-repeat;
-      text-align: left;
-      direction: ltr; }
+  -moz-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 8000;
+  background-color: #272e38;
+  color: #fff;
+  text-align: center; }
+  #header .container {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem; }
+  #header #logo {
+    display: block;
+    height: 35px;
+    line-height: 35px;
+    background: url(../img/logo.png) no-repeat left center;
+    text-align: left;
+    font-size: 11px;
+    text-transform: uppercase;
+    font-weight: lighter; }
+    #header #logo a {
+      color: #fff;
+      font: 100 16px/35px 'Lato', 'Helvetica', sans-serif;
+      padding-left: 50px;
+      text-transform: uppercase; }
+      #header #logo a strong {
+        font-weight: bold; }
   #header nav ul {
-    min-height: 70px;
+    float: right;
     margin: 0; }
     #header nav ul li {
-      margin-left: 20px;
-      display: inline; }
+      margin-left: 0.5rem;
+      font-size: 14px;
+      line-height: 35px;
+      font-weight: lighter;
+      display: inline;
+      text-align: left; }
+      #header nav ul li.current a {
+        background-color: #fff;
+        color: #272e38; }
     #header nav ul a {
-      color: white;
-      webkit-box-shadow: inset 0 -5px 0 0 #333;
-      -moz-box-shadow: inset 0 -5px 0 0 #333;
-      box-shadow: inset 0 -5px 0 0 #333;
-      font-size: 12px;
-      line-height: 70px;
-      padding: 0; }
+      color: #fff;
+      -webkit-border-radius: 6px;
+      -moz-border-radius: 6px;
+      -ms-border-radius: 6px;
+      border-radius: 6px;
+      padding: 0.5rem 0.66667rem;
+      border-bottom: 0;
+      font: 300 14px/35px 'Lato', 'Helvetica', sans-serif; }
+      #header nav ul a:hover {
+        background-color: #fff;
+        color: #272e38; }
+
+.main {
+  padding: 1rem 0;
+  background-image: url(../img/map-bg.png);
+  background-position: center -80px;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-color: #eee; }
+  .main .main-header {
+    padding-top: 2rem;
+    text-align: center; }
+    .main .main-header h1 {
+      display: inline-block;
+      padding: 1rem 2rem;
+      font: 700 48px 'Lato';
+      text-transform: uppercase;
+      background-color: #999;
+      color: #fff; }
+  .main .section-page {
+    padding-top: 4rem; }
+    .main .section-page article {
+      padding: 2rem 0 3rem;
+      margin-bottom: 0;
+      position: relative;
+      -moz-border-radius: 6px;
+      -webkit-border-radius: 6px;
+      border-radius: 6px;
+      background-color: #fff; }
+      .main .section-page article:before {
+        display: block;
+        content: '';
+        width: 4px;
+        height: 4rem;
+        background: #fff;
+        position: absolute;
+        top: -4rem;
+        left: 50%;
+        margin-left: -2px; }
+
+.stripe-divisor {
+  display: block;
+  width: 100%;
+  height: 10px;
+  background: url(../img/color-stripe.png) center center; }
 
 /* = Content
 --------------------*/
 #tablero {
-  background: #e5e5e5;
-  padding: 40px 0; }
+  padding: 0; }
 
 .title {
   text-transform: uppercase;
@@ -788,13 +862,21 @@ input:focus, select:focus, textarea:focus {
   font-weight: lighter; }
 
 #alianza {
-  background: #f5f5f5 url(../img/colours.png) repeat-x center top;
-  padding: 90px 0 30px 0; }
+  padding: 20px 0 30px 0; }
 
 #about {
   padding: 50px 0 60px; }
   #about ul {
     padding-left: 30px; }
+
+.post-entry {
+  font-family: "Lato", Helvetica, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #4f4f4f;
+  padding: 2rem 3rem 0; }
+  .post-entry li {
+    margin-left: 30px; }
 
 /* = elementos del tablero
 --------------------*/
@@ -1044,26 +1126,33 @@ a.objetivo {
 /* = Footer
 --------------------*/
 #footer {
-  background: #333 url(../img/colours.png) repeat-x center 115%;
-  text-align: center;
-  padding-top: 20px;
-  padding-bottom: 60px; }
+  padding: 2rem 0;
+  background: #4f4f4f;
+  text-align: center; }
   #footer ul.logos {
-    width: 80%;
+    width: 90%;
     margin: 0 auto; }
     #footer ul.logos li {
       display: inline-block;
       height: 80px;
-      margin: 10px; }
+      margin: 0.5rem 1rem; }
       #footer ul.logos li span {
         display: table;
         height: 100%; }
         #footer ul.logos li span span {
           display: table-cell;
           vertical-align: middle; }
+  #footer ul {
+    text-align: center; }
+    #footer ul li {
+      display: inline; }
+      #footer ul li a {
+        display: inline-block;
+        padding: 0.5rem;
+        color: #999; }
 
 /* logos --------------------*/
-.logo {
+.logo-sprite {
   display: block;
   border: 0;
   text-indent: -999em;
@@ -1073,65 +1162,71 @@ a.objetivo {
   direction: ltr; }
 
 .logo-sprite, .logo-article19, .logo-cidac, .logo-cultura-ecologica, .logo-fundar, .logo-gesoc, .logo-gobierno, .logo-ifai, .logo-imco, .logo-mexico-abierto, .logo-social-tic, .logo-transparencia-mexicana {
-  background: url('../img/logo-sd81e81bacc.png') no-repeat; }
-
-.logo-gobierno {
-  width: 153px;
-  height: 46px; }
-
-.logo-mexico-abierto {
-  background-position: 0 -412px;
-  width: 104px;
-  height: 28px; }
-
-.logo-ifai {
-  background-position: 0 -198px;
-  width: 82px;
-  height: 49px; }
-
-.logo-cultura-ecologica {
-  background-position: 0 -126px;
-  width: 70px;
-  height: 72px; }
-
-.logo-fundar {
-  background-position: 0 -46px;
-  width: 145px;
-  height: 36px; }
-
-.logo-imco {
-  background-position: 0 -82px;
-  width: 111px;
-  height: 44px; }
+  background: url('../img/logo-sf6b5f12f9b.png') no-repeat; }
 
 .logo-article19 {
-  background-position: 0 -462px;
-  width: 81px;
-  height: 41px; }
+  background-position: 0 -512px;
+  height: 41px;
+  width: 81px; }
 
 .logo-cidac {
-  background-position: 0 -361px;
-  width: 51px;
-  height: 51px; }
+  background-position: 0 -396px;
+  height: 51px;
+  width: 51px; }
+
+.logo-cultura-ecologica {
+  background-position: 0 -141px;
+  height: 72px;
+  width: 70px; }
+
+.logo-fundar {
+  background-position: 0 -51px;
+  height: 36px;
+  width: 145px; }
 
 .logo-gesoc {
-  background-position: 0 -283px;
-  width: 104px;
-  height: 78px; }
+  background-position: 0 -313px;
+  height: 78px;
+  width: 104px; }
 
-.logo-transparencia-mexicana {
-  background-position: 0 -247px;
-  width: 120px;
-  height: 36px; }
+.logo-gobierno {
+  background-position: 0 0;
+  height: 46px;
+  width: 153px; }
+
+.logo-ifai {
+  background-position: 0 -218px;
+  height: 49px;
+  width: 82px; }
+
+.logo-imco {
+  background-position: 0 -92px;
+  height: 44px;
+  width: 111px; }
+
+.logo-mexico-abierto {
+  background-position: 0 -452px;
+  height: 28px;
+  width: 104px; }
 
 .logo-social-tic {
-  background-position: 0 -440px;
-  width: 112px;
-  height: 22px; }
+  background-position: 0 -485px;
+  height: 22px;
+  width: 112px; }
+
+.logo-transparencia-mexicana {
+  background-position: 0 -272px;
+  height: 36px;
+  width: 120px; }
+
+.logo-sprite, .logo-article19, .logo-cidac, .logo-cultura-ecologica, .logo-fundar, .logo-gesoc, .logo-gobierno, .logo-ifai, .logo-imco, .logo-mexico-abierto, .logo-social-tic, .logo-transparencia-mexicana {
+  display: block;
+  text-align: left;
+  text-indent: -9999em; }
 
 @media (min-width: 55em) {
   #footer ul.logos li {
-    margin: 10px 20px; } }
+    margin: 0.5rem 1rem; } }
 
 @media (max-width: 767px) {
   section.mobile {
