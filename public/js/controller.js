@@ -30,7 +30,8 @@ define(function(require){
     events : {
       'click #add-user'            : 'add_user',
       'click .remove-user'         : 'remove_user',
-      'click #add-secret-agents a' : 'add_agent'
+      'click #add-secret-agents a' : 'add_agent',
+      'click .kill-switch'         : 'remove_agent'
     },
 
 
@@ -133,6 +134,11 @@ define(function(require){
       e.preventDefault();
       var double_o_7 = new Agent();
       this.$('#james-bond').append(double_o_7.render().el);
+    },
+
+    remove_agent : function(e){
+      e.preventDefault();
+      this.$(e.currentTarget).parent().remove();
     }
   });
 

@@ -125,6 +125,9 @@ endswitch;?>
 
 
 
+
+
+
   @if($objective->step_num != 4)
   <!--AGENT-->
   <div class="form-group">
@@ -132,17 +135,37 @@ endswitch;?>
     @if(Auth::user()->user_type == "society")
       <!-- muestra nomás la lista de chácharas  -->
       <div id="james-bond">
+        @foreach($objective->agents AS $agent)
+          <p>{{$agent->agent}} | {{$agent->agent_url}}</p>
+        @endforeach
       </div>
     
     @else
       <!-- permite editar esta lista y agregar chácharas -->
       <div id="james-bond">
+        @foreach($objective->agents AS $agent)
+          <section class="existing-agent"> <!-- this one dies when the kill switch is clicked -->
+            <!--AGENT-->
+            <label>Responsable:</label>
+            <input type="text" name="agent[]" value="{{$agent->agent}}">
+            <!--AGENT'S URL-->
+            <label>Responsable URL:</label>
+            <input type="text" name="agent_url[]" value="{{$agent->agent_url}}"> 
+            <!-- KILL SWITCH -->
+            <a href="#" class="kill-switch">eliminar maroma</a>
+          </section>
+        @endforeach
       </div>
+
       <fieldset id="add-secret-agents">
         <p><a href="#">agregar cháchara y cháchara URL</a></p>
       </fieldset>
     @endif
   </div>
+
+
+
+
 
 
 

@@ -85,6 +85,8 @@ class ObjectiveController extends \BaseController {
 		$urls   = Input::get('agent_url');
 		
 		if($agents_num){
+			// remove the previous agents. Yep, cheap trick.
+			$affectedRows = Agent::where('objective_id', $objective->id)->delete();
 			for($i = 0; $i < $agents_num; $i++ ){
 				if($agents[$i] != '' || $urls[$i] != ''){
 					$a = new Agent;
