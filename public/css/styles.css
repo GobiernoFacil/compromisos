@@ -818,10 +818,12 @@ body {
     .main .main-header h1 {
       display: inline-block;
       padding: 1rem 2rem;
-      font: 700 48px 'Lato';
+      font: 100 48px 'Lato';
       text-transform: uppercase;
       background-color: #999;
       color: #fff; }
+      .main .main-header h1 strong {
+        font-weight: bold; }
   .main .section-page {
     padding-top: 4rem; }
     .main .section-page article {
@@ -877,6 +879,20 @@ body {
   padding: 2rem 3rem 0; }
   .post-entry li {
     margin-left: 30px; }
+
+.form-signin {
+  text-align: center; }
+  .form-signin input {
+    border: 1px solid #ccc;
+    padding: 5px;
+    line-height: 25px; }
+    .form-signin input[type="submit"] {
+      background: #272e38;
+      border: 0;
+      color: #fff;
+      padding: 5px 15px; }
+      .form-signin input[type="submit"]:hover {
+        background: #4f4f4f; }
 
 /* = elementos del tablero
 --------------------*/
