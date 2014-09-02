@@ -153,8 +153,8 @@
 							 			<?php $url_objective = $objective->url;?>
 							 			@if (!preg_match("~^(?:f|ht)tps?://~i", $url_objective)) 
 							 				<?php $url_objective = "http://" . $url_objective;?>
-							 				<a href="{{$url_objective}}">{{$url_objective}}</a>
 							 			@endif
+							 			<a href="{{$url_objective}}">{{$url_objective}}</a>
 							 		@endif	
 							 		@if ($objective->finish_description)
 							 		<ul class="resultado">
