@@ -79,6 +79,24 @@ class ObjectiveController extends \BaseController {
 		//
 		$objective = Objective::find($id);
 
+		// THE NEWLY REVAMPED AGENTS CREATION DOKI DOKI
+		$agents_num = count( Input::get('agent') );
+		$agents = Input::get('agent');
+		$urls   = Input::get('agent_url');
+		
+		if($agents_num){
+			for($i = 0; $i < $agents_num; $i++ ){
+				if($agents[$i] != '' || $urls[$i] != ''){
+					$a = new Agent;
+					$a->objective_id = $objective->id;
+					$a->agent        = $agents[$i];
+					$a->agent_url    = $urls[$i];
+					$a->save();
+				}
+			}
+		}
+	  // THAT'S ALL FOLKS
+
 		if(Auth::user()->is_admin || $objective->step->commitment->users->find(Auth::user()->id) ){
 
 		  $objective->fill(Input::all());

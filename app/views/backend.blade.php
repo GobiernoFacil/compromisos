@@ -15,9 +15,9 @@
 </head>
 <body>
   @yield('content')
-  <!-- the development JS 
-  <script data-main="/js/admin.main" src="/js/bower_components/requirejs/require.js"></script>-->
-  <!-- the production JS -->
-  <script src="/js/admin.main-built.js"></script>
+  <!-- the development JS -->
+  <script data-main="/js/admin.main" src="/js/bower_components/requirejs/require.js"></script>
+  <!-- the production JS 
+  <script src="/js/admin.main-built.js"></script>-->
 </body>
 </html>

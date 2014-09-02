@@ -110,33 +110,48 @@ endswitch;?>
   @endif
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   @if($objective->step_num != 4)
   <!--AGENT-->
   <div class="form-group">
-    {{Form::label('agent', 'Responsable: ', array('class'=>'col-sm-2 control-label'))}}
-	  <div class="col-sm-8">
-	  	@if(Auth::user()->user_type == "society")
-			{{$objective->agent}}
-		@else
-			{{Form::text('agent', $objective->agent, array('class'=>'form-control has-tooltip'))}}
-			<p class="hidden">Responsable/dependencia/OSC que aparecerá en el tablero. 
-				Los nombres de los administradores de cada compromiso también aparecen, no es necesario
-				poner sus nombres de nuevo</p>	  	
-      	@endif
-	  </div>
+    
+    @if(Auth::user()->user_type == "society")
+      <!-- muestra nomás la lista de chácharas  -->
+      <div id="james-bond">
+      </div>
+    
+    @else
+      <!-- permite editar esta lista y agregar chácharas -->
+      <div id="james-bond">
+      </div>
+      <fieldset id="add-secret-agents">
+        <p><a href="#">agregar cháchara y cháchara URL</a></p>
+      </fieldset>
+    @endif
   </div>
 
-  <!--AGENT'S URL-->
-  <div class="form-group">
-    {{Form::label('agent_url', 'Responsable URL: ', array('class'=>'col-sm-2 control-label'))}}
-	  <div class="col-sm-8">
-	  	@if(Auth::user()->user_type == "society")
-			{{$objective->agent_url}}
-		@else
-	      {{Form::text('agent_url', $objective->agent_url, array('class'=>'form-control'))}}			
-	  	@endif
-	  </div>
-  </div>
+
+
+
+
+
+
+
+
 
   <!--ADVANCE DESCRIPTION-->
   <div class="form-group">
