@@ -1087,6 +1087,8 @@ body {
 
 .resultado_link {
   list-style: none; }
+  .resultado_link a {
+    word-wrap: break-word; }
   .resultado_link a:hover {
     color: #2579f8; }
   .resultado_link:hover {
