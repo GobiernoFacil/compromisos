@@ -1085,6 +1085,9 @@ body {
       color: white;
       background: #4d4d4d; }
 
+.medios:link, .medios:visited, .medios:hover, .medios:active {
+  color: white; }
+
 .resultado_link {
   list-style: none; }
   .resultado_link a {

@@ -131,9 +131,15 @@
 							 		 			<p>Responsable: <a href="{{$agent_url}}">{{$agent->agent}} </a></p>			
 							 		 		@endforeach
 							 		 		
-							 		 		<p>	<a class="comentarios_link" title="co-{{$step->step_num}}-{{$objective->id}}">
-							 		 			Comentarios</a><br/>
-							 		 			<span class="comentarios_objetivo co-{{$step->step_num}}-{{$objective->id}}">{{$objective->comments}}</span>
+							 		 		<p>	@if ($objective->comments)
+							 		 			<a class="comentarios_link" title="co-{{$step->step_num}}-{{$objective->id}}">
+							 		 				Comentarios
+							 		 			</a>
+							 		 			<br/>
+							 		 			<span class="comentarios_objetivo co-{{$step->step_num}}-{{$objective->id}}">
+							 		 				{{$objective->comments}}
+							 		 			</span>
+							 		 			@endif
 							 		 		</p>
 							 		    	</div>								 		
 							 		    </li>
