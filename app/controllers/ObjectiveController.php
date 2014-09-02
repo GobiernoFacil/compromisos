@@ -51,7 +51,10 @@ class ObjectiveController extends \BaseController {
 	 */
 	public function store()
 	{
-		// CREATE ONE EVENT FOR EVERY STEP
+		$commitment_id = Input::get('commitment_id');
+		$step_num	= Input::get('step_num');
+		
+		// CREATE ONE EVENT FOR STEP	  	
 	  	$objective = new Objective([
 	  			'step_id'   => Input::get('step_id'),
 	  			'step_num'  => Input::get('step_num'),
@@ -60,7 +63,7 @@ class ObjectiveController extends \BaseController {
 	  	]);
 	  	$objective->save();
 	  	
-	  	return Redirect::back();
+	  	return Redirect::to('commitment/'. $commitment_id .'/edit/#meta-'. $step_num);
 	}
 	
 	
