@@ -123,7 +123,14 @@
 							 		    			@endif
 							 		    		@endif
 							 		 		</p>
-							 		 		<p>Responsable: <a href="{{$objective->agent_url}}">{{$objective->agent}}</a></p>
+							 		 		@foreach($objective->agents AS $agent)
+							 		 			<?php $agent_url = $agent->agent_url;?>
+							 		    				@if (!preg_match("~^(?:f|ht)tps?://~i", $agent_url)) 
+							 								<?php $agent_url = "http://" . $agent_url;?>
+							 		 					@endif
+							 		 			<p>Responsable: <a href="{{$agent_url}}">{{$agent->agent}} </a></p>			
+							 		 		@endforeach
+							 		 		
 							 		 		<p>	<a class="comentarios_link" title="co-{{$step->step_num}}-{{$objective->id}}">
 							 		 			Comentarios</a><br/>
 							 		 			<span class="comentarios_objetivo co-{{$step->step_num}}-{{$objective->id}}">{{$objective->comments}}</span>

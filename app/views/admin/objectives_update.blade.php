@@ -142,23 +142,40 @@ endswitch;?>
     
     @else
       <!-- permite editar esta lista y agregar chácharas -->
-      <div id="james-bond">
+      <div id="james-bond" class="col-md-12">
         @foreach($objective->agents AS $agent)
           <section class="existing-agent"> <!-- this one dies when the kill switch is clicked -->
             <!--AGENT-->
-            <label>Responsable:</label>
-            <input type="text" name="agent[]" value="{{$agent->agent}}">
+            <div class="form-group">
+            	<div class="col-sm-2 control-label">
+            		<label>Responsable:</label>
+            	</div>
+				<div class="col-sm-8">
+					<input type="text" name="agent[]" class="form-control" value="{{$agent->agent}}">
+				</div>
+            </div>
             <!--AGENT'S URL-->
-            <label>Responsable URL:</label>
-            <input type="text" name="agent_url[]" value="{{$agent->agent_url}}"> 
-            <!-- KILL SWITCH -->
-            <a href="#" class="kill-switch">eliminar maroma</a>
+            <div class="form-group">
+            	<div class="col-sm-2 control-label">
+           			<label>Responsable URL:</label>
+            	</div>
+            	<div class="col-sm-8">
+		   			<input type="text" name="agent_url[]" class="form-control" value="{{$agent->agent_url}}"> 
+		   			 <!-- KILL SWITCH -->
+		   			 <a href="#" class="kill-switch">Eliminar responsable y URL</a>
+            	</div>
+            </div>
+           
           </section>
         @endforeach
       </div>
 
-      <fieldset id="add-secret-agents">
-        <p><a href="#">agregar cháchara y cháchara URL</a></p>
+      <fieldset id="add-secret-agents" class="col-md-12">
+      	<div class="form-group">
+		  	<div class="col-sm-8 col-sm-offset-2">
+			  	<p><a href="#" class="btn-sm btn-success">Agregar un responsable y URL del responsable</a></p>    
+			</div>
+      	</div>
       </fieldset>
     @endif
   </div>
