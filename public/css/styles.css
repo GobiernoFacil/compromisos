@@ -1073,7 +1073,7 @@ body {
     font-size: 9px; }
     .detalle p.row span {
       padding: 0; }
-  .detalle p .medios, .detalle p .medios:visited {
+  .detalle p a.medios, .detalle p a.medios:visited {
     background: #6e6c6c;
     border-bottom: 1px solid black;
     color: white;
@@ -1081,11 +1081,11 @@ body {
     padding: 5px 2px;
     text-align: center;
     text-transform: uppercase; }
-    .detalle p .medios:hover, .detalle p .medios:visited:hover {
+    .detalle p a.medios:hover, .detalle p a.medios:visited:hover {
       color: white;
       background: #4d4d4d; }
 
-.medios:link, .medios:visited, .medios:hover, .medios:active {
+a.medios:link, a.medios:visited, a.medios:hover, a.medios:active {
   color: white; }
 
 .resultado_link {
@@ -1250,6 +1250,14 @@ a.objetivo {
     margin: 0.5rem 1rem; } }
 
 @media (max-width: 767px) {
+  body {
+    padding-top: 0; }
+  #header {
+    position: relative; }
+    #header #logo a {
+      font-size: 13px; }
+    #header #header nav ul a {
+      font-size: 12px; }
   section.mobile {
     display: none; }
   .list-title div {
