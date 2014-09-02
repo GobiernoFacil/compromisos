@@ -247,10 +247,12 @@
 	  	</div>
       </div>
       @endforeach
+      @if ($objective->step_num != 4)
       <div class="col-sm-8 col-sm-offset-2">
       	<p>
       	<input type="submit" form="add-objective-{{$step->id}}" class="btn btn-xs btn-success"/ value="Agregar otra Actividad a meta"></p>
       </div>
+      @endif
       <div class="clearfix"></div>
    </fieldset>
    @endforeach
