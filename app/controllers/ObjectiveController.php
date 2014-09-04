@@ -111,7 +111,7 @@ class ObjectiveController extends \BaseController {
 	  }
 
 		  // set the objective status
-		  if($objective->finish_description != ""){
+		  if($objective->finish_description != "" && (!empty($objective->url) || !empty($objective->mir_url) || !empty($objective->mir_file))){
 		  	$objective->status = 'c';
 		  }
 		  elseif($objective->advance_description != ""){
