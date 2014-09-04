@@ -29,8 +29,9 @@ organizaciones de la sociedad civil (OSC).
 ### Instrucciones de instalación
 
 * db llamada “compromisos”
-* Configurar config/local/database.php
 * <code>composer update</code>
 * <code>bower update</code>
+* Configurar config/local/database.php
 * <code>php artisan migrate</code>
 * <code>php artisan db:seed</code>
+* <code>php artisan key:generate</code>
