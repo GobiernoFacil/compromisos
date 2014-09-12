@@ -992,6 +992,9 @@ body {
     display: block;
     font-size: 11px;
     margin: 10px 0; }
+    .list-responsable a.morelink {
+      display: inline-block;
+      margin: 0; }
 
 .id, .ct {
   padding-top: 20px; }

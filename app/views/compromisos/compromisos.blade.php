@@ -183,7 +183,10 @@
 		<!-- info responsable-->
 		<div id="responsable-{{$commitment->id}}" class="row list-responsable">
 			<div class="col-sm-4 col-sm-offset-1 ct">
-				<p>{{Str::words($commitment->description, 20)}}
+				<p>
+					<span class="commitment_description more">
+						{{$commitment->description}}
+					</span>
 					@if(!empty($commitment->plan))
 					<a href="/files/{{$commitment->plan}}" download>Consulta el plan de trabajo</a>
 					@else
