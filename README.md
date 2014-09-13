@@ -25,3 +25,13 @@ organizaciones de la sociedad civil (OSC).
 * Permite a los responsables de los compromisos (tanto a funcionarios públicos como a organizaciones de la sociedad civil) editar el conjunto de actividades puntuales (añadir nuevas o modificar otras) necesarias para cumplir con las metas del compromiso.
 * Estará disponible en el sitio web de la Alianza de Gobierno Abierto en México: http://aga.org.mx/
 * Permite comentarios de la ciudadanía en general y respuestas de los responsables de los compromisos.
+
+### Instrucciones de instalación
+
+* db llamada “compromisos”
+* <code>composer update</code>
+* <code>bower update</code>
+* Configurar config/local/database.php
+* <code>php artisan migrate</code>
+* <code>php artisan db:seed</code>
+* <code>php artisan key:generate</code>

@@ -153,6 +153,8 @@
    @foreach($commitment->steps AS $step)
    <!-- aquí se edita la fecha límite para cada paso y se 
    generan los links para editar cada sección de los pasos -->
+   <a name="meta-{{$step->step_num}}"></a>
+
    <fieldset>
    <h3 class="text-center">
    	<?php  switch ($step->step_num):
@@ -185,7 +187,6 @@
       @foreach($step->objectives AS $objective)
       <div class="form-group">
       	<label class="col-sm-2 control-label">Actividad {{$r++}}:</label>
-      
 	  	<div class="col-sm-8">
 	  		@if ($objective->step_num != 4)
 	  			<!-- si no es resultado final -->	
@@ -246,10 +247,12 @@
 	  	</div>
       </div>
       @endforeach
+      @if ($objective->step_num != 4)
       <div class="col-sm-8 col-sm-offset-2">
       	<p>
       	<input type="submit" form="add-objective-{{$step->id}}" class="btn btn-xs btn-success"/ value="Agregar otra Actividad a meta"></p>
       </div>
+      @endif
       <div class="clearfix"></div>
    </fieldset>
    @endforeach
@@ -298,6 +301,7 @@
 		'method' => 'POST',
 		'id'	=> 'add-objective-'.$step->id
 		])}}
+			<input type="hidden" name="commitment_id" value="{{$commitment->id}}">
 			<input type="hidden" name="step_id" value="{{$step->id}}">
 			<input type="hidden" name="step_num" value="{{$objective->step_num}}">
 			<input type="hidden" name="event_num" value="{{$o}}">

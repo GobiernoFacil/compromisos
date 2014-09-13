@@ -1,17 +1,25 @@
 @extends('frontend', ['title' => 'Tablero de control público de seguimiento del Plan de Acción 2013-2015 México'])
 @section('content')
 @include('frontend_nav')
+<main role="main" class="main">
 <section id="alianza">
 	<div class="container">
 		<div class="row">
-			<h2 class="title">Tablero</h2>
-			<div class="col-md-5">
-			<p class="guia"> <b class="cuadro completado"></b> <span>Completado</span> 
-			<b class="cuadro proceso"></b> <span>En Proceso</span> <b class="cuadro sin_avance"></b> <span>Sin Avance</span>  </p>
-			</div>
-			<div class="col-md-2 col-md-offset-5">
+			<header class="main-header">
+					<h1 class="first-word-bold"><strong>Tablero</strong> </h1>
+				</header>
+			<section class="section-page">
+				<article>
+				<div class="col-sm-5">
+					<p class="guia"> <b class="cuadro completado"></b> <span>Completado</span> 
+						<b class="cuadro proceso"></b> <span>En Proceso</span> <b class="cuadro sin_avance"></b> 
+						<span>Sin Avance</span>  </p>
+				</div>
+				<div class="col-sm-2 col-sm-offset-5">
 				<p>{{link_to('about', 'Acerca del tablero')}}</p>
-			</div>
+				</div>
+				</article>
+			</section>
 		</div>
 	</div>
 </section>
@@ -115,10 +123,23 @@
 							 		    			@endif
 							 		    		@endif
 							 		 		</p>
-							 		 		<p>Responsable: <a href="{{$objective->agent_url}}">{{$objective->agent}}</a></p>
-							 		 		<p>	<a class="comentarios_link" title="co-{{$step->step_num}}-{{$objective->id}}">
-							 		 			Comentarios</a><br/>
-							 		 			<span class="comentarios_objetivo co-{{$step->step_num}}-{{$objective->id}}">{{$objective->comments}}</span>
+							 		 		@foreach($objective->agents AS $agent)
+							 		 			<?php $agent_url = $agent->agent_url;?>
+							 		    				@if (!preg_match("~^(?:f|ht)tps?://~i", $agent_url)) 
+							 								<?php $agent_url = "http://" . $agent_url;?>
+							 		 					@endif
+							 		 			<p>Responsable: <a href="{{$agent_url}}">{{$agent->agent}} </a></p>			
+							 		 		@endforeach
+							 		 		
+							 		 		<p>	@if ($objective->comments)
+							 		 			<a class="comentarios_link" title="co-{{$step->step_num}}-{{$objective->id}}">
+							 		 				Comentarios
+							 		 			</a>
+							 		 			<br/>
+							 		 			<span class="comentarios_objetivo co-{{$step->step_num}}-{{$objective->id}}">
+							 		 				{{$objective->comments}}
+							 		 			</span>
+							 		 			@endif
 							 		 		</p>
 							 		    	</div>								 		
 							 		    </li>
@@ -138,8 +159,8 @@
 							 			<?php $url_objective = $objective->url;?>
 							 			@if (!preg_match("~^(?:f|ht)tps?://~i", $url_objective)) 
 							 				<?php $url_objective = "http://" . $url_objective;?>
-							 				<a href="{{$url_objective}}">{{$url_objective}}</a>
 							 			@endif
+							 			<a href="{{$url_objective}}">{{$url_objective}}</a>
 							 		@endif	
 							 		@if ($objective->finish_description)
 							 		<ul class="resultado">
@@ -162,7 +183,10 @@
 		<!-- info responsable-->
 		<div id="responsable-{{$commitment->id}}" class="row list-responsable">
 			<div class="col-sm-4 col-sm-offset-1 ct">
-				<p>{{Str::words($commitment->description, 20)}}
+				<p>
+					<span class="commitment_description more">
+						{{$commitment->description}}
+					</span>
 					@if(!empty($commitment->plan))
 					<a href="/files/{{$commitment->plan}}" download>Consulta el plan de trabajo</a>
 					@else
@@ -221,4 +245,5 @@
 		
 	</div>
 </section>
+</main>
 @stop

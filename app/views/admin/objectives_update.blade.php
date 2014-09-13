@@ -110,33 +110,88 @@ endswitch;?>
   @endif
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   @if($objective->step_num != 4)
   <!--AGENT-->
   <div class="form-group">
-    {{Form::label('agent', 'Responsable: ', array('class'=>'col-sm-2 control-label'))}}
-	  <div class="col-sm-8">
-	  	@if(Auth::user()->user_type == "society")
-			{{$objective->agent}}
-		@else
-			{{Form::text('agent', $objective->agent, array('class'=>'form-control has-tooltip'))}}
-			<p class="hidden">Responsable/dependencia/OSC que aparecerá en el tablero. 
-				Los nombres de los administradores de cada compromiso también aparecen, no es necesario
-				poner sus nombres de nuevo</p>	  	
-      	@endif
-	  </div>
+    
+    @if(Auth::user()->user_type == "society")
+      <!-- muestra nomás la lista de chácharas  -->
+      <div id="james-bond">
+        @foreach($objective->agents AS $agent)
+          <p>{{$agent->agent}} | {{$agent->agent_url}}</p>
+        @endforeach
+      </div>
+    
+    @else
+      <!-- permite editar esta lista y agregar chácharas -->
+      <div id="james-bond" class="col-md-12">
+        @foreach($objective->agents AS $agent)
+          <section class="existing-agent"> <!-- this one dies when the kill switch is clicked -->
+            <!--AGENT-->
+            <div class="form-group">
+            	<div class="col-sm-2 control-label">
+            		<label>Responsable:</label>
+            	</div>
+				<div class="col-sm-8">
+					<input type="text" name="agent[]" class="form-control" value="{{$agent->agent}}">
+				</div>
+            </div>
+            <!--AGENT'S URL-->
+            <div class="form-group">
+            	<div class="col-sm-2 control-label">
+           			<label>Responsable URL:</label>
+            	</div>
+            	<div class="col-sm-8">
+		   			<input type="text" name="agent_url[]" class="form-control" value="{{$agent->agent_url}}"> 
+		   			 <!-- KILL SWITCH -->
+		   			 <a href="#" class="kill-switch">Eliminar responsable y URL</a>
+            	</div>
+            </div>
+           
+          </section>
+        @endforeach
+      </div>
+
+      <fieldset id="add-secret-agents" class="col-md-12">
+      	<div class="form-group">
+		  	<div class="col-sm-8 col-sm-offset-2">
+			  	<p><a href="#" class="btn-sm btn-success">Agregar un responsable y URL del responsable</a></p>    
+			</div>
+      	</div>
+      </fieldset>
+    @endif
   </div>
 
-  <!--AGENT'S URL-->
-  <div class="form-group">
-    {{Form::label('agent_url', 'Responsable URL: ', array('class'=>'col-sm-2 control-label'))}}
-	  <div class="col-sm-8">
-	  	@if(Auth::user()->user_type == "society")
-			{{$objective->agent_url}}
-		@else
-	      {{Form::text('agent_url', $objective->agent_url, array('class'=>'form-control'))}}			
-	  	@endif
-	  </div>
-  </div>
+
+
+
+
+
+
+
+
+
+
+
+
 
   <!--ADVANCE DESCRIPTION-->
   <div class="form-group">

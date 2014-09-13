@@ -81,8 +81,6 @@ class CreateUsers extends Migration {
       $table->string('mir_url')->nullable();
       $table->string('mir_file')->nullable();
       $table->string('url')->nullable();
-      $table->string('agent')->nullable();
-      $table->string('agent_url')->nullable();
       $table->text('advance_description')->nullable();
       $table->text('finish_description')->nullable();
       $table->text('comments')->nullable();
@@ -95,6 +93,19 @@ class CreateUsers extends Migration {
         ->onDelete('cascade');
     });
 
+    // CREATE THE AGENTS TABLE
+    Schema::create('agents', function($table){
+      $table->increments('id');
+      $table->unsignedInteger('objective_id');
+      $table->string('agent')->nullable();
+      $table->string('agent_url')->nullable();
+      $table->timestamps();
+
+      $table->foreign('objective_id')
+        ->references('id')
+        ->on('objectives')
+        ->onDelete('cascade');
+    });
   
   }
 
@@ -106,10 +117,13 @@ class CreateUsers extends Migration {
   public function down()
   {
     // REMOVE ALL THE TABLES
-    Schema::drop('users');
+    Schema::drop('agents');
     Schema::drop('objectives');
     Schema::drop('steps');
+    schema::drop('commitment_user');
     Schema::drop('commitments');
+    Schema::drop('users');
+
   }
 
 }

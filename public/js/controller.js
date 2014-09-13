@@ -14,7 +14,10 @@ define(function(require){
       // tinyMCE  = require('tinymce'),
       moment   = require('moment'),
       Pikaday  = require('pikaday'),
-      qtip2    = require('qtip2');
+      qtip2    = require('qtip2'),
+
+      // view
+      Agent    = require('views/agent');
 
   //
   // I N I T I A L I Z E   T H E   B A C K B O N E   V I E W
@@ -25,8 +28,10 @@ define(function(require){
     // D E F I N E   T H E   E V E N T S
     // 
     events : {
-      'click #add-user'    : 'add_user',
-      'click .remove-user' : 'remove_user'
+      'click #add-user'            : 'add_user',
+      'click .remove-user'         : 'remove_user',
+      'click #add-secret-agents a' : 'add_agent',
+      'click .kill-switch'         : 'remove_agent'
     },
 
 
@@ -121,6 +126,17 @@ define(function(require){
     },
 
     remove_user : function(e){
+      e.preventDefault();
+      this.$(e.currentTarget).parent().remove();
+    },
+
+    add_agent : function(e){
+      e.preventDefault();
+      var double_o_7 = new Agent();
+      this.$('#james-bond').append(double_o_7.render().el);
+    },
+
+    remove_agent : function(e){
       e.preventDefault();
       this.$(e.currentTarget).parent().remove();
     }

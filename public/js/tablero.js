@@ -42,4 +42,12 @@ $(document).ready(function(e) {
  	 	$('#tablero').find('span.'+id).slideToggle('slow');
  	});
  	
+ 	
+ 	// Mostrar ocultar
+ 	$(".more").shorten({
+    	"showChars" : 80,
+    	"moreText"  : "Ver más",
+    	"lessText"  : "Ocultar",
+	});
+ 	
 });

@@ -51,7 +51,10 @@ class ObjectiveController extends \BaseController {
 	 */
 	public function store()
 	{
-		// CREATE ONE EVENT FOR EVERY STEP
+		$commitment_id = Input::get('commitment_id');
+		$step_num	= Input::get('step_num');
+		
+		// CREATE ONE EVENT FOR STEP	  	
 	  	$objective = new Objective([
 	  			'step_id'   => Input::get('step_id'),
 	  			'step_num'  => Input::get('step_num'),
@@ -60,7 +63,7 @@ class ObjectiveController extends \BaseController {
 	  	]);
 	  	$objective->save();
 	  	
-	  	return Redirect::back();
+	  	return Redirect::to('commitment/'. $commitment_id .'/edit/#meta-'. $step_num);
 	}
 	
 	
@@ -76,6 +79,26 @@ class ObjectiveController extends \BaseController {
 		//
 		$objective = Objective::find($id);
 
+		// THE NEWLY REVAMPED AGENTS CREATION DOKI DOKI
+		$agents_num = count( Input::get('agent') );
+		$agents = Input::get('agent');
+		$urls   = Input::get('agent_url');
+		
+		if($agents_num){
+			// remove the previous agents. Yep, cheap trick.
+			$affectedRows = Agent::where('objective_id', $objective->id)->delete();
+			for($i = 0; $i < $agents_num; $i++ ){
+				if($agents[$i] != '' || $urls[$i] != ''){
+					$a = new Agent;
+					$a->objective_id = $objective->id;
+					$a->agent        = $agents[$i];
+					$a->agent_url    = $urls[$i];
+					$a->save();
+				}
+			}
+		}
+	  // THAT'S ALL FOLKS
+
 		if(Auth::user()->is_admin || $objective->step->commitment->users->find(Auth::user()->id) ){
 
 		  $objective->fill(Input::all());
@@ -88,7 +111,7 @@ class ObjectiveController extends \BaseController {
 	  }
 
 		  // set the objective status
-		  if($objective->finish_description != ""){
+		  if($objective->finish_description != "" && (!empty($objective->url) || !empty($objective->mir_url) || !empty($objective->mir_file))){
 		  	$objective->status = 'c';
 		  }
 		  elseif($objective->advance_description != ""){
