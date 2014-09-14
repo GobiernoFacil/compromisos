@@ -110,6 +110,15 @@ class ObjectiveController extends \BaseController {
 	  	$objective->mir_file = $name;
 	  }
 
+	  /*** NEW STUFF ***/
+	  // SAVE SELFIE FILE; DELETE PREVIOUS FILE IF EXIST
+	  if(Input::hasFile('selfie')){
+	  	$name = uniqid() . '.' . Input::file('selfie')->getClientOriginalExtension();
+	  	Input::file('selfie')->move(self::FILES_DIR, $name);
+	  	$commitment->selfie = $name;
+	  }
+	  /*** ENDS NEW STUFF ***/
+
 		  // set the objective status
 		  if($objective->finish_description != "" && (!empty($objective->url) || !empty($objective->mir_url) || !empty($objective->mir_file))){
 		  	$objective->status = 'c';
@@ -139,8 +148,9 @@ class ObjectiveController extends \BaseController {
 	public function destroy($id)
 	{
 		$objective = Objective::find($id);
+		if( ! empty($objective->selfie) ) @unlink(self::FILES_DIR . '/' . $objective->selfie);
 		$objective->delete();
-	  	return Redirect::back();
+	  return Redirect::back();
 	}
 
 }

@@ -158,6 +158,53 @@ endswitch;?>
 	</div>
   </div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- AQUÍ VIENE LO NUEVO NUEVO -->
+<!-- AGREGAR UNA IMAGEN  -->
+<fieldset>
+{{Form::file('selfie')}}
+
+@if(!empty($commitment->selfie))
+  <p><img src="/files/{{$commitment->selfie}}" style="width:100%; height:auto;"></p>
+@endif
+</fieldset>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <!--OTHER COMMENTS-->
   <div class="form-group">
     {{Form::label('comments', 'Comentarios: ', array('class'=>'col-sm-2 control-label'))}}

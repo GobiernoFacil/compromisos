@@ -83,6 +83,7 @@ class CreateUsers extends Migration {
       $table->string('url')->nullable();
       $table->text('advance_description')->nullable();
       $table->text('finish_description')->nullable();
+      $table->string('selfie')->nullable(); // the new field
       $table->text('comments')->nullable();
       $table->timestamps();
       $table->text('title')->nullable();
