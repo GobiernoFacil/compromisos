@@ -223,19 +223,34 @@ endswitch;?>
   <!--FINISH DESCRIPTION-->
   <div class="form-group">
     {{Form::label('finish_description', 'Descripción final: ', array('class'=>'col-sm-2 control-label'))}}
-	<div class="col-sm-8">
-    {{Form::textarea('finish_description', $objective->finish_description, array('class'=>'form-control has-tooltip'))}}
-
-    @if($objective->step_num == 4)
-    <p class="hidden">Un pequeño resumen de 500 caracteres máximo con la descripción del
-      resultado final.</p>
-    @else
-    <p class="hidden">Al llenar este campo das por concluida esta actividad. 
-      (500 caracteres máximo)</p>
-    @endif
-	</div>
+	  <div class="col-sm-8">
+      {{Form::textarea('finish_description', $objective->finish_description, array('class'=>'form-control has-tooltip'))}}
+      <!-- este IF tiene cada de redundante O____O -->
+      @if($objective->step_num == 4)
+        <p class="hidden">Un pequeño resumen de 500 caracteres máximo con la descripción del
+        resultado final.</p>
+      @else
+        <p class="hidden">Al llenar este campo das por concluida esta actividad. 
+        (500 caracteres máximo)</p>
+      @endif
+    </div>
   </div>
 @endif
+
+<!-- AQUÍ VIENE LO NUEVO NUEVO -->
+@if($objective->step_num == 4)
+  <!-- AGREGAR UNA IMAGEN DEL RESUTLADO FINAL -->
+  <fieldset>
+    {{Form::file('selfie')}}
+    @if(!empty($objective->selfie))
+      <p><img src="/files/{{$objective->selfie}}" style="width:100%; height:auto;"></p>
+    @endif
+  </fieldset>
+@endif
+<!-- AQUÍ TERMINA LO NUEVO -->
+
+
+
 
   <!-- SUBMIT -->
   <div class="form-group">
