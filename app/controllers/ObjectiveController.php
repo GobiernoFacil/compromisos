@@ -3,6 +3,9 @@
 class ObjectiveController extends \BaseController {
 
 	// THE PATH TO THE FILE UPLOAD
+	// aquí está medio raro, pues antes functionaba
+	// con ./files y ahora tuve que cambiar la ruta. 
+	// fomofo
 	const FILES_DIR = './public/files';
 
 	/**
