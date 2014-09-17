@@ -165,8 +165,12 @@
 							 		@if ($objective->finish_description)
 							 		<ul class="resultado">
 									    <li><div class="contenido">
+									    	@if(!empty($objective->selfie))
+												<img src="/public/files/{{$objective->selfie}}" style="width:100%; height:auto;">
+											@endif
 									    	<p>{{$objective->finish_description}} </p>
-									    </div>
+									    	
+											</div>
 									    </li>
 									</ul>
 							 		@endif

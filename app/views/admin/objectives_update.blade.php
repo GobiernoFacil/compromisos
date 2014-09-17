@@ -240,12 +240,17 @@ endswitch;?>
 <!-- AQUÍ VIENE LO NUEVO NUEVO -->
 @if($objective->step_num == 4)
   <!-- AGREGAR UNA IMAGEN DEL RESUTLADO FINAL -->
-  <fieldset>
-    {{Form::file('selfie')}}
-    @if(!empty($objective->selfie))
-      <p><img src="/files/{{$objective->selfie}}" style="width:100%; height:auto;"></p>
-    @endif
-  </fieldset>
+    <div class="form-group">
+    	<div class="col-sm-2 control-label">
+           	<label>Imagen:</label>
+        </div>
+        <div class="col-sm-8">
+			{{Form::file('selfie')}}
+			@if(!empty($objective->selfie))
+			  <p><img src="/public/files/{{$objective->selfie}}" style="width:100%; height:auto;"></p>
+			@endif
+        </div>
+  </div>
 @endif
 <!-- AQUÍ TERMINA LO NUEVO -->
 
