@@ -15,6 +15,11 @@
 </head>
 <body>
   @yield('content')
+  <footer class="row">
+  	<div class="col-md-8 col-md-offset-2">
+	  	<p>Forjado artesanalmente por <a href="http://gobiernofacil.com/">Gobierno Fácil</a></p>
+  	</div>
+  </footer>
   <!-- the development JS -->
   <script data-main="/js/admin.main" src="/js/bower_components/requirejs/require.js"></script>
   <!-- the production JS 

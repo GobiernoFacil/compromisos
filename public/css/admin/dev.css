@@ -74,3 +74,20 @@
 .bs-titles-pg {
 	padding: 25px 0 50px;
 }
+
+/** footer **/
+footer p {
+	margin: 3em 0;
+	color: #888;
+	font-size: 12px;
+	text-align: center;
+}
+
+footer p a {
+	font-weight: bold;
+	color: #ee407c;
+}
+
+footer p a:hover {
+	color: #f40360;
+}
