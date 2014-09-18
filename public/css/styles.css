@@ -1153,6 +1153,14 @@ a.objetivo {
   padding: 2rem 0;
   background: #4f4f4f;
   text-align: center; }
+  #footer .gobierno {
+    color: #b3b3b3;
+    font-size: 12px; }
+    #footer .gobierno a {
+      color: #ee407c;
+      font-weight: 700; }
+      #footer .gobierno a:hover {
+        color: #f40360; }
   #footer ul.logos {
     width: 90%;
     margin: 0 auto; }

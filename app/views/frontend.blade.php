@@ -41,6 +41,10 @@
 				<li><a href="http://tablero.inegifacil.com/" target="_blank">Tablero</a></li>
 				<li><a href="http://aga.ensambledev.com/terminos-y-condiciones">Términos y condiciones</a></li>
 			</ul>
+			<ul class="gobierno">
+				<li>Forjado artesanalmente por: <a href="http://gobiernofacil.com/">Gobierno Fácil</a></li>
+			</ul>
+
 		</nav>
 		
 	</div>
