@@ -3,7 +3,7 @@
 class CommitmentController extends \BaseController {
 
 	// THE PATH TO THE FILE UPLOAD
-	const FILES_DIR = './files';
+	const FILES_DIR = './public/files';
 
 	public function __construct(){
 		// REQUIRES LOGIN ACCESS
