@@ -1183,6 +1183,16 @@ a.objetivo {
         padding: 0.5rem;
         color: #999; }
 
+.gobierno {
+  color: #b3b3b3;
+  font-size: 12px;
+  padding: 20px 0 10px; }
+  .gobierno a {
+    color: #ee407c;
+    font-weight: 700; }
+    .gobierno a:hover {
+      color: #f40360; }
+
 /* logos --------------------*/
 .logo-sprite {
   display: block;

@@ -13,6 +13,11 @@
 
 // THE LANDING PAGE
 Route::resource('/', 'CommitmentFrontController');
+
+// PROJECTS
+Route::get('project/{id}', 'CommitmentFrontController@project');
+
+
 // THE BOARD
 Route::get('about', function(){
   	   return View::make('compromisos.about');
