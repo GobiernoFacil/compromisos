@@ -6,7 +6,7 @@ class ObjectiveController extends \BaseController {
 	// aquí está medio raro, pues antes functionaba
 	// con ./files y ahora tuve que cambiar la ruta. 
 	// fomofo
-	const FILES_DIR = './public/files';
+	const FILES_DIR = './files';
 
 	/**
 	 * Show the form for editing the specified resource.
