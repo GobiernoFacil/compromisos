@@ -31,7 +31,7 @@ organizaciones de la sociedad civil (OSC).
 * db llamada “compromisos”
 * <code>composer update</code>
 * <code>bower update</code> (/public/js)
-* Configurar config/local/database.php
+* Configurar app/config/local/database.php
 * <code>php artisan migrate</code>
 * <code>php artisan db:seed</code>
 * <code>php artisan key:generate</code>
